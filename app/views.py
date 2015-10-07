@@ -18,7 +18,6 @@ def index():
         Ranker(form.url.data)
         return redirect(url_for('siteinspect', sitename=domainname))
     # If this is the first time the user is visiting the page (i.e. nothing has been submitted) simply load the template and form
-    print dir(form.validate_on_submit())
     return render_template("index.html", form=form)
 
 

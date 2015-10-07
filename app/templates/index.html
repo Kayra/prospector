@@ -12,6 +12,7 @@
       <div id="mainindex">
 
 	      <form action="" method="post" name="url">
+              {{ form.csrf_token }}
 		      {{form.url(size=150, class="entryfield", placeholder="http://www.website.co.uk")}}
 
 		      	<input type="submit" value="Prospect" class="btn btn-red" id="crawl">

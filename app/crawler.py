@@ -14,7 +14,7 @@ def Crawler(url):
 		domainhtml = urllib.urlopen(url).read()
 	except urllib.HTTPError:
 		print "Unable to scrape the domain page"
-	domainsoup = BeautifulSoup(domainhtml)
+	domainsoup = BeautifulSoup(domainhtml, "html.parser")
 
 	#Scrape the page
 	domaindata = DomainScrape(domainsoup, url)
@@ -101,7 +101,7 @@ def GetUrls(soup, domainurl, urls, visited):
 
 		#Check that the url goes to the website we are scraping
 		#Make sure we haven't already visited it
-		#and '.' not in urlparse.urlparse(currenturl).path 
+		#and '.' not in urlparse.urlparse(currenturl).path
 		if urlparse.urlparse(domainurl).netloc in urlparse.urlparse(currenturl).netloc and currenturl not in visited and '#' not in currenturl and currenturl not in urls:
 			print "ADDING: %s" % currenturl
 			#Add to urls to scrape
