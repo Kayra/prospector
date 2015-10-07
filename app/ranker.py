@@ -24,7 +24,7 @@ def Ranker(websiteurl):
 
 	#Load in the site to be ranked
 	site = models.Site.query.filter(models.Site.domainurl == websiteurl).first()
-    
+
     #Domain ranking
 	if site.binganalytics:
 		adddomainscore(8)
@@ -63,14 +63,13 @@ def Ranker(websiteurl):
 		#List checks
 		h1s = page.h1s.split('#')
 		for h1 in h1s:
-			print h1
 			if h1 in h1checklist:
 				addscore(3)
 				break
 			else:
 				addscore(9)
 				h1checklist.append(h1)
-			
+
 
 		h2s = page.h2s.split('#')
 		for h2 in h2s:
@@ -81,7 +80,7 @@ def Ranker(websiteurl):
 				addscore(8)
 				h2checklist.append(h2)
 
-			
+
 		h3s = page.h3s.split('#')
 		for h3 in h3s:
 			if h3 in h3checklist:
