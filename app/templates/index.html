@@ -6,25 +6,25 @@
     <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body>
-  	
+
       <h1 class="index">Prospector</h1>
-      
+
       <div id="mainindex">
-      
+
 	      <form action="" method="post" name="url">
-		      {{form.url(size=150, class="entryfield", value="http://www.example.com")}}
-		      
+		      {{form.url(size=150, class="entryfield", placeholder="http://www.website.co.uk")}}
+
 		      	<input type="submit" value="Prospect" class="btn btn-red" id="crawl">
 	      </form>
-	      
+
 	      <div id="indexbuttons">
 	      	<a class="indexbtn" href="{{ url_for('sitelist') }}">View previously analysed sites</a>
 	      </div>
-	      
+
 	      {% for error in form.errors.url %}
 		      	<span style="color: red;">[{{error}}]</span>
-		  {% endfor %} 
-		  
+		  {% endfor %}
+
 	      	<div>
 			{% with messages = get_flashed_messages() %}
 			{% if messages %}
@@ -36,7 +36,7 @@
 			{% endif %}
 			{% endwith %}
 			</div>
-      
+
       </div>
   </body>
 </html>
