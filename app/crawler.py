@@ -69,10 +69,15 @@ def Crawler(url):
             # Download the page
             try:
                 pagehtml = urllib.urlopen(pageurl).read()
-                pagesoup = BeautifulSoup(pagehtml)
+                pagesoup = BeautifulSoup(pagehtml, "html.parser")
                 visited.append(pageurl)
-            except:
+            except Exception, e:
+                print 'Couldn\'t download:'
                 print pageurl
+                print 'Because:'
+                print str(e)
+                pagehtml = None
+                pagesoup = None
 
             # ensures the top level domain is included
             # pageurl = urlparse.urljoin(url, pageurl)
