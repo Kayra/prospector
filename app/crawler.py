@@ -4,105 +4,108 @@ import urlparse
 import urllib
 from bs4 import BeautifulSoup
 
+
 def Crawler(url):
 
-	urls = [url]
-	visited = [url]
+    urls = [url]
+    visited = [url]
 
-	#Download the page
-	try:
-		domainhtml = urllib.urlopen(url).read()
-	except urllib.HTTPError:
-		print "Unable to scrape the domain page"
-	domainsoup = BeautifulSoup(domainhtml, "html.parser")
+    # Download the page
+    try:
+        domainhtml = urllib.urlopen(url).read()
+    except urllib.HTTPError:
+        print "Unable to scrape the domain page"
+    domainsoup = BeautifulSoup(domainhtml, "html.parser")
 
-	#Scrape the page
-	domaindata = DomainScrape(domainsoup, url)
-	domainpagedata = PageScrape(domainsoup, url)
+    # Scrape the page
+    domaindata = DomainScrape(domainsoup, url)
+    domainpagedata = PageScrape(domainsoup, url)
 
-	#Cut out the domain name
-	domainname = url.split(".")
+    # Cut out the domain name
+    domainname = url.split(".")
 
-	#Check if there is a robots file
-	#Scrape the robots file
-	robotsfile = ""
-	robotsurl = urlparse.urljoin(url, 'robots.txt')
-	robotsdata = urllib.urlopen(robotsurl).read()
-	try:
-		if robotsdata and type(robotsdata) is str and len(robotsdata) < 50000:
-			robotsfile = robotsdata.decode('utf-8')
-	except urllib.HTTPError:
-		print "Unable to scrape robots.txt"
+    # Check if there is a robots file
+    # Scrape the robots file
+    robotsfile = ""
+    robotsurl = urlparse.urljoin(url, 'robots.txt')
+    robotsdata = urllib.urlopen(robotsurl).read()
+    try:
+        if robotsdata and type(robotsdata) is str and len(robotsdata) < 50000:
+            robotsfile = robotsdata.decode('utf-8')
+    except urllib.HTTPError:
+        print "Unable to scrape robots.txt"
 
-	#Check if there is a sitemap file
-	#Scrape the sitemap file
-	sitemapfile = ""
-	sitemapurl = urlparse.urljoin(url, 'sitemap.xml')
-	sitemapdata = urllib.urlopen(sitemapurl).read()
-	try:
-		if sitemapdata and isinstance(sitemapdata, (str)) and len(sitemapdata) < 50000:
-			sitemapfile = sitemapdata.decode('utf-8')
-	except urllib.HTTPError:
-		print "Unable to scrape sitemap.xml"
+    # Check if there is a sitemap file
+    # Scrape the sitemap file
+    sitemapfile = ""
+    sitemapurl = urlparse.urljoin(url, 'sitemap.xml')
+    sitemapdata = urllib.urlopen(sitemapurl).read()
+    try:
+        if sitemapdata and isinstance(sitemapdata, (str)) and len(sitemapdata) < 50000:
+            sitemapfile = sitemapdata.decode('utf-8')
+    except urllib.HTTPError:
+        print "Unable to scrape sitemap.xml"
 
-	#Add the domain information to the db
-	url = url
-	s = models.Site(domainurl = url, sitename = domainname[1], binganalytics = domaindata.binganalytics, googleanalytics = domaindata.googleanalytics, robots = robotsfile, sitemap = sitemapfile, ranking = 0)
-	db.session.add(s)
+    # Add the domain information to the db
+    url = url
+    s = models.Site(domainurl=url, sitename=domainname[1], binganalytics=domaindata.binganalytics, googleanalytics=domaindata.googleanalytics, robots=robotsfile, sitemap=sitemapfile, ranking=0)
+    db.session.add(s)
 
-	#Add the page information to the db
-	h = models.Page(pageurl = url, h1s = domainpagedata.h1s, h2s = domainpagedata.h2s, h3s = domainpagedata.h3s, alttags = domainpagedata.alttags, metadesc = domainpagedata.metadesc, title = domainpagedata.title, viewstate = domainpagedata.viewstate, pagination = domainpagedata.pagination, iframe = domainpagedata.iframe, flash = domainpagedata.flash, noindexnofollow = domainpagedata.noindexnofollow, schematag = domainpagedata.schematag, bloglocation = domainpagedata.bloglocation, internallinksno = domainpagedata.internallinksno, domainsite = s)
-	db.session.add(h)
-	db.session.commit()
+    # Add the page information to the db
+    h = models.Page(pageurl=url, h1s=domainpagedata.h1s, h2s=domainpagedata.h2s, h3s=domainpagedata.h3s, alttags=domainpagedata.alttags, metadesc=domainpagedata.metadesc, title=domainpagedata.title, viewstate=domainpagedata.viewstate, pagination=domainpagedata.pagination, iframe=domainpagedata.iframe, flash=domainpagedata.flash, noindexnofollow=domainpagedata.noindexnofollow, schematag=domainpagedata.schematag, bloglocation=domainpagedata.bloglocation, internallinksno=domainpagedata.internallinksno, domainsite=s)
 
-	#Get all the urls in the page
-	GetUrls(domainsoup, url, urls, visited)
+    db.session.add(h)
+    db.session.commit()
 
-	while (len(urls) > 0) and len(visited) < 60:
-		for pageurl in urls:
+    # Get all the urls in the page
+    GetUrls(domainsoup, url, urls, visited)
 
-			print pageurl
-			print len(visited)
+    while (len(urls) > 0) and len(visited) < 60:
+        for pageurl in urls:
 
-			#Download the page
-			try:
-				pagehtml = urllib.urlopen(pageurl).read()
-				pagesoup = BeautifulSoup(pagehtml)
-				visited.append(pageurl)
-			except:
-				print pageurl
+            print pageurl
+            print len(visited)
 
-			#ensures the top level domain is included
-			#pageurl = urlparse.urljoin(url, pageurl)
+            # Download the page
+            try:
+                pagehtml = urllib.urlopen(pageurl).read()
+                pagesoup = BeautifulSoup(pagehtml)
+                visited.append(pageurl)
+            except:
+                print pageurl
 
-			if pagesoup and url in pageurl:
-				#Get all the urls in the page
-				GetUrls(pagesoup, url, urls, visited)
-				#Scrape the page
-				domainpagedata = PageScrape(pagesoup, pageurl)
+            # ensures the top level domain is included
+            # pageurl = urlparse.urljoin(url, pageurl)
 
-				#Add the page information to the db
-				h = models.Page(pageurl = pageurl, h1s = domainpagedata.h1s, h2s = domainpagedata.h2s, h3s = domainpagedata.h3s, alttags = domainpagedata.alttags, metadesc = domainpagedata.metadesc, title = domainpagedata.title, viewstate = domainpagedata.viewstate, pagination = domainpagedata.pagination, iframe = domainpagedata.iframe, flash = domainpagedata.flash, noindexnofollow = domainpagedata.noindexnofollow, schematag = domainpagedata.schematag, bloglocation = domainpagedata.bloglocation, internallinksno = domainpagedata.internallinksno, domainsite = s)
-				db.session.add(h)
-				db.session.commit()
+            if pagesoup and url in pageurl:
+                # Get all the urls in the page
+                GetUrls(pagesoup, url, urls, visited)
+                # Scrape the page
+                domainpagedata = PageScrape(pagesoup, pageurl)
 
-			urls.pop(0)
-			if len(visited) > 60:
-				break
+                # Add the page information to the db
+                h = models.Page(pageurl=pageurl, h1s=domainpagedata.h1s, h2s=domainpagedata.h2s, h3s=domainpagedata.h3s, alttags=domainpagedata.alttags, metadesc=domainpagedata.metadesc, title=domainpagedata.title, viewstate=domainpagedata.viewstate, pagination=domainpagedata.pagination, iframe=domainpagedata.iframe, flash=domainpagedata.flash, noindexnofollow=domainpagedata.noindexnofollow, schematag=domainpagedata.schematag, bloglocation=domainpagedata.bloglocation, internallinksno=domainpagedata.internallinksno, domainsite=s)
+                db.session.add(h)
+                db.session.commit()
 
-	return domainname[1]
+            urls.pop(0)
+            if len(visited) > 60:
+                break
+
+    return domainname[1]
+
 
 def GetUrls(soup, domainurl, urls, visited):
 
-	for tag in soup.findAll('a', href=True):
+    for tag in soup.findAll('a', href=True):
 
-		#Ensures the top level domain is included
-		currenturl = urlparse.urljoin(domainurl, tag['href'])
+        # Ensures the top level domain is included
+        currenturl = urlparse.urljoin(domainurl, tag['href'])
 
-		#Check that the url goes to the website we are scraping
-		#Make sure we haven't already visited it
-		#and '.' not in urlparse.urlparse(currenturl).path
-		if urlparse.urlparse(domainurl).netloc in urlparse.urlparse(currenturl).netloc and currenturl not in visited and '#' not in currenturl and currenturl not in urls:
-			print "ADDING: %s" % currenturl
-			#Add to urls to scrape
-			urls.append(currenturl)
+        # Check that the url goes to the website we are scraping
+        # Make sure we haven't already visited it
+        # and '.' not in urlparse.urlparse(currenturl).path
+        if urlparse.urlparse(domainurl).netloc in urlparse.urlparse(currenturl).netloc and currenturl not in visited and '#' not in currenturl and currenturl not in urls:
+            print "ADDING: %s" % currenturl
+            # Add to urls to scrape
+            urls.append(currenturl)
