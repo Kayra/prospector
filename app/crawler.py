@@ -1,6 +1,6 @@
 from app import db, models
-from scraper import DomainScrape, PageScrape
-import urlparse
+from .scraper import DomainScrape, PageScrape
+import urllib.parse as urlparse
 import urllib
 from bs4 import BeautifulSoup
 
@@ -12,9 +12,10 @@ def Crawler(url):
 
     # Download the page
     try:
-        domainhtml = urllib.urlopen(url).read()
-    except urllib.HTTPError:
-        print "Unable to scrape the domain page"
+        domainhtml = urllib.request.urlopen(url).read()
+    except Exception as error:
+        print(error)
+        print("Unable to scrape the domain page")
     domainsoup = BeautifulSoup(domainhtml, "html.parser")
 
     # Scrape the page
@@ -28,23 +29,25 @@ def Crawler(url):
     # Scrape the robots file
     robotsfile = ""
     robotsurl = urlparse.urljoin(url, 'robots.txt')
-    robotsdata = urllib.urlopen(robotsurl).read()
     try:
+        robotsdata = urllib.request.urlopen(robotsurl).read()
         if robotsdata and type(robotsdata) is str and len(robotsdata) < 50000:
             robotsfile = robotsdata.decode('utf-8')
-    except urllib.HTTPError:
-        print "Unable to scrape robots.txt"
+    except Exception as error:
+        print(error)
+        print("Unable to scrape robots.txt")
 
     # Check if there is a sitemap file
     # Scrape the sitemap file
     sitemapfile = ""
     sitemapurl = urlparse.urljoin(url, 'sitemap.xml')
-    sitemapdata = urllib.urlopen(sitemapurl).read()
     try:
+        sitemapdata = urllib.request.urlopen(sitemapurl).read()
         if sitemapdata and isinstance(sitemapdata, (str)) and len(sitemapdata) < 50000:
             sitemapfile = sitemapdata.decode('utf-8')
-    except urllib.HTTPError:
-        print "Unable to scrape sitemap.xml"
+    except Exception as error:
+        print(error)
+        print("Unable to scrape sitemap.xml")
 
     # Add the domain information to the db
     url = url
@@ -63,19 +66,16 @@ def Crawler(url):
     while (len(urls) > 0) and len(visited) < 60:
         for pageurl in urls:
 
-            print pageurl
-            print len(visited)
-
             # Download the page
             try:
-                pagehtml = urllib.urlopen(pageurl).read()
+                pagehtml = urllib.request.urlopen(pageurl).read()
                 pagesoup = BeautifulSoup(pagehtml, "html.parser")
                 visited.append(pageurl)
-            except Exception, e:
-                print 'Couldn\'t download:'
-                print pageurl
-                print 'Because:'
-                print str(e)
+            except Exception as error:
+                print('Couldn\'t download:')
+                print(pageurl)
+                print('Because:')
+                print(error)
                 pagehtml = None
                 pagesoup = None
 
@@ -111,6 +111,6 @@ def GetUrls(soup, domainurl, urls, visited):
         # Make sure we haven't already visited it
         # and '.' not in urlparse.urlparse(currenturl).path
         if urlparse.urlparse(domainurl).netloc in urlparse.urlparse(currenturl).netloc and currenturl not in visited and '#' not in currenturl and currenturl not in urls:
-            print "ADDING: %s" % currenturl
+            print("ADDING: %s" % currenturl)
             # Add to urls to scrape
             urls.append(currenturl)

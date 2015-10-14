@@ -1,9 +1,8 @@
 from flask import render_template, flash, redirect, url_for
 from app import app, db, models
-from forms import UrlEntry
-from crawler import Crawler
-from ranker import Ranker
-from config import POSTS_PER_PAGE
+from .forms import UrlEntry
+from .crawler import Crawler
+from .ranker import Ranker
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -40,6 +39,6 @@ def siteinspect(sitename, page=1):
 
     site = db.session.query(models.Site).filter_by(sitename=sitename).first()
 
-    currentPages = models.Page.query.filter_by(siteid=site.id).paginate(page, POSTS_PER_PAGE, False)
+    currentPages = models.Page.query.filter_by(siteid=site.id).paginate(page, 1, False)
 
     return render_template("siteinspect.html", site=site, currentPages=currentPages)
