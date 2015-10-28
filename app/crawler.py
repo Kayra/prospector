@@ -16,6 +16,8 @@ def Crawler(url):
     except Exception as error:
         print(error)
         print("Unable to scrape the domain page")
+        domainhtml = ""
+
     domainsoup = BeautifulSoup(domainhtml, "html.parser")
 
     # Scrape the page
