@@ -1,3 +1,4 @@
+from urllib import request
 from flask import render_template, flash, redirect, url_for
 from app import app, db, models
 from .forms import UrlEntry
@@ -11,11 +12,14 @@ def index():
 
     form = UrlEntry()
 
-    # If a url has been entered, assess the website and redirect to the page displaying the results
     if form.validate_on_submit():
-        domainname = Crawler(form.url.data)  # Introducing a dependency, not a strong dependency
-        Ranker(form.url.data)
-        return redirect(url_for('siteinspect', sitename=domainname))
+        try:
+            request.Request(form.url.data)
+            domainname = Crawler(form.url.data)
+            Ranker(form.url.data)
+            return redirect(url_for('siteinspect', sitename=domainname))
+        except ValueError:
+            flash("Invalid url")
 
     # If this is the first time the user is visiting the page (i.e. nothing has been submitted) simply load the template and form
     return render_template("index.html", form=form)
