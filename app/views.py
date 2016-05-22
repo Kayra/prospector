@@ -7,7 +7,6 @@ from .ranker import Ranker
 
 
 @app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
 def index():
 
     form = UrlEntry()
