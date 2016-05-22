@@ -1,4 +1,3 @@
-from __future__ import division
 from app import db, models
 
 total = 0
@@ -153,24 +152,11 @@ def Ranker(websiteurl):
         else:
             addscore(3)
 
-    # print "total: %s" % (total)
-    # print "entries: %s" % (entries)
-    # print "pagecount: %s" % (pagecount)
-
     pageranking = (total / entries) * 10  # average score between 0 and 100
-    # print "Pageranking: "
-    # print pageranking
     factor = 0.2  # a third of the score is the domain. This could be made dependent on the amount of pages
     domainranking = (domaintotal / domainentries) * 10  # score between 0 and 100
-    # print "Domain ranking"
-    # print domainranking
-
-    # print "ranking working outness"
-    # print "%s + (%s * %s) / 1+ %s" % (pageranking, domainranking, factor, factor)
 
     ranking = (pageranking + (domainranking * factor)) / (1 + factor)
-
-    # print ranking
 
     site.ranking = round(ranking)
     db.session.commit()

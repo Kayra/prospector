@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import logging
 
 
@@ -138,7 +137,7 @@ def PageScrape(soup, domainurl):
         except KeyError:
                 logging.info('Key error: embed tag did not contain an src attribute')
 
-    #Check if the page contains a no index no follow
+    # Check if the page contains a no index no follow
     noindexnofollow = ""
     for noindextag in soup.find_all('meta'):
         try:
