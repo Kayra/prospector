@@ -10,13 +10,7 @@ def Crawler(url):
     urls = [url]
     visited = [url]
 
-    # Download the page
-    try:
-        domainhtml = urllib.request.urlopen(url).read()
-    except Exception as error:
-        print(error)
-        print("Unable to scrape the domain page")
-        domainhtml = ""
+    domainhtml = urllib.request.urlopen(url).read()
 
     domainsoup = BeautifulSoup(domainhtml, "html.parser")
 

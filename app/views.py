@@ -1,4 +1,3 @@
-from urllib import request
 from flask import render_template, flash, redirect, url_for
 from app import app, db, models
 from .forms import UrlEntry
@@ -12,12 +11,20 @@ def index():
     form = UrlEntry()
 
     if form.validate_on_submit():
+
+        url_to_prospect = form.url.data
+
+        if 'www.' not in url_to_prospect and 'http://' not in url_to_prospect:
+            url_to_prospect = 'http://www.' + url_to_prospect
+        if 'http://' not in url_to_prospect:
+            url_to_prospect = 'http://' + url_to_prospect
+
         try:
-            request.Request(form.url.data)
-            domainname = Crawler(form.url.data)
-            Ranker(form.url.data)
+            domainname = Crawler(url_to_prospect)
+            Ranker(url_to_prospect)
             return redirect(url_for('siteinspect', sitename=domainname))
-        except ValueError:
+        except ValueError as error:
+            print(error)
             flash("Invalid url")
 
     # If this is the first time the user is visiting the page (i.e. nothing has been submitted) simply load the template and form
