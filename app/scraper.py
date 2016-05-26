@@ -34,11 +34,11 @@ def DomainScrape(soup, domainurl):
     for script in soup.find_all('script'):
         if ('urchin' or 'googleanalytics') in script:
             if script.string and len(script.string) < 10000:
-                googleanalytics = script
+                googleanalytics = script.string
             break
         elif script.string and ('googleanalytics' or '_uacct' or 'pagetracker') in script.string.lower():
             if script.string and len(script.string) < 10000:
-                googleanalytics = script
+                googleanalytics = script.string
             break
 
     # Bing analytics check
