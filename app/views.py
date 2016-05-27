@@ -23,18 +23,14 @@ def index():
             domainname = Crawler(url_to_prospect)
             Ranker(url_to_prospect)
             return redirect(url_for('siteinspect', sitename=domainname))
-        except ValueError as error:
-            print(error)
+        except ValueError:
             flash("Invalid url")
 
-    # If this is the first time the user is visiting the page (i.e. nothing has been submitted) simply load the template and form
     return render_template("index.html", form=form)
 
 
 @app.route('/sitelist')
 def sitelist():
-
-    # Get the latest 10 websites
     sites = db.session.query(models.Site).limit(10)
     return render_template("sitelist.html", sites=sites)
 
@@ -44,7 +40,6 @@ def sitelist():
 def siteinspect(sitename, page=1):
 
     if sitename is None:
-        flash("That site doesn't seem to exist")
         return redirect(url_for('index'))
 
     site = db.session.query(models.Site).filter_by(sitename=sitename).first()
