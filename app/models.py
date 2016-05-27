@@ -10,6 +10,7 @@ class Site(db.Model):
 	robots = db.Column(db.String(50000))
 	sitemap = db.Column(db.String(50000))
 	ranking = db.Column(db.Integer)
+	level = db.Column(db.Integer)
 
 	# Establishes one to many relationship
 	pages = db.relationship('Page', backref='domainsite', lazy='dynamic')

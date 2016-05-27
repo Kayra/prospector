@@ -159,4 +159,14 @@ def Ranker(websiteurl):
     ranking = (pageranking + (domainranking * factor)) / (1 + factor)
 
     site.ranking = round(ranking)
+
+    if (site.ranking / 25) < 2:
+        site.level = 'low'
+    elif (site.ranking / 25) < 3:
+        site.level = 'midlow'
+    elif (site.ranking / 25) < 3:
+        site.level = 'midhigh'
+    elif (site.ranking / 25) < 4:
+        site.level = 'high'
+
     db.session.commit()
