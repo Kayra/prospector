@@ -160,9 +160,9 @@ def Ranker(websiteurl):
 
     site.ranking = round(ranking)
 
-    if (site.ranking / 25) < 2:
+    if (site.ranking / 25) < 1:
         site.level = 'low'
-    elif (site.ranking / 25) < 3:
+    elif (site.ranking / 25) < 2:
         site.level = 'midlow'
     elif (site.ranking / 25) < 3:
         site.level = 'midhigh'

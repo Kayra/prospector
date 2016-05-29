@@ -1,211 +1,211 @@
 {% extends "base.html" %}
 
 {% block content %}
-	
+
 	<div class="main">
-	
-		<a class="sitebtn low" href="{{ url_for('sitelist') }}"> < {{ site.ranking }}% {{ site.domainurl }}</a>
-		
+
+		<a class="sitebtn {{ site.level }}" href="{{ url_for('sitelist') }}"> < {{ site.ranking }}% {{ site.domainurl }}</a>
+
 		<div id="domain">
-			
+
 			<table>
 				<tr>
-					<th>bing anayltics</th> 
-					{% if site.binganalytics %} 
+					<th>bing anayltics</th>
+					{% if site.binganalytics %}
 						<td>present</td>
 					{% else %}
 						<td class="gray">not present</td>
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>google anayltics</th>
-					{% if site.googleanalytics %} 
-						<td>present</td> 
-					{% else %}
-						<td class="gray">not present</td>
-					{% endif %}
-				</tr>
-				
-				<tr>
-					<th>robots.txt</th>
-					{% if site.robots %} 
-						<td>present</td> 
-					{% else %}
-						<td class="gray">not present</td>
-					{% endif %}
-				</tr>
-				
-				<tr>
-					<th>sitemap.xml</th> 
-					{% if site.sitemap %} 
+					{% if site.googleanalytics %}
 						<td>present</td>
 					{% else %}
 						<td class="gray">not present</td>
 					{% endif %}
 				</tr>
-				
+
+				<tr>
+					<th>robots.txt</th>
+					{% if site.robots %}
+						<td>present</td>
+					{% else %}
+						<td class="gray">not present</td>
+					{% endif %}
+				</tr>
+
+				<tr>
+					<th>sitemap.xml</th>
+					{% if site.sitemap %}
+						<td>present</td>
+					{% else %}
+						<td class="gray">not present</td>
+					{% endif %}
+				</tr>
+
 			</table>
 		</div>
-		
+
 		<div id="page">
-			
-						
+
+
 			{% for currentPage in currentPages.items %}
-				
+
 			<p style="text-align:center;padding-bottom:15px;"> {{ currentPage.pageurl }} </p>
-			
+
 			<table>
-				
+
 				<tr>
 					<th>title</th>
-					{% if currentPage.title %} 
+					{% if currentPage.title %}
 						<td>{{ currentPage.title }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>h1 tags</th>
-					{% if currentPage.h1s %} 
+					{% if currentPage.h1s %}
 						<td>{{ currentPage.h1s }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>h2 tags</th>
-					{% if currentPage.h2s %} 
+					{% if currentPage.h2s %}
 						<td>{{ currentPage.h2s }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>h3 tags</th>
-					{% if currentPage.h3s %} 
+					{% if currentPage.h3s %}
 						<td>{{ currentPage.h3s }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>alt tags</th>
-					{% if currentPage.alttags %} 
+					{% if currentPage.alttags %}
 						<td>{{ currentPage.alttags }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>meta description tags</th>
-					{% if currentPage.metadesc %} 
+					{% if currentPage.metadesc %}
 						<td>{{ currentPage.metadesc }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>viewstate</th>
-					{% if currentPage.viewstate %} 
+					{% if currentPage.viewstate %}
 						<td>{{ currentPage.viewstate }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>pagination</th>
-					{% if currentPage.pagination %} 
+					{% if currentPage.pagination %}
 						<td>{{ currentPage.pagination }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>iframe</th>
-					{% if currentPage.iframe %} 
+					{% if currentPage.iframe %}
 						<td>{{ currentPage.iframe }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>flash</th>
-					{% if currentPage.flash %} 
+					{% if currentPage.flash %}
 						<td>{{ currentPage.flash }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>no index no follow</th>
-					{% if currentPage.noindexnofollow %} 
+					{% if currentPage.noindexnofollow %}
 						<td>{{ currentPage.noindexnofollow }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>schema tag</th>
-					{% if currentPage.schematag %} 
+					{% if currentPage.schematag %}
 						<td>{{ currentPage.schematag }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>blog location</th>
-					{% if currentPage.bloglocation %} 
+					{% if currentPage.bloglocation %}
 						<td>{{ currentPage.bloglocation }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>blog location</th>
-					{% if currentPage.bloglocation %} 
+					{% if currentPage.bloglocation %}
 						<td>{{ currentPage.bloglocation }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				<tr>
 					<th>internal links</th>
-					{% if currentPage.internallinksno %} 
+					{% if currentPage.internallinksno %}
 						<td>{{ currentPage.internallinksno }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
 				</tr>
-				
+
 				{% endfor %}
 			</table>
 		</div>
-		
+
 	<!-- 	NAVIGATION BUTTONS   -->
 	{% if currentPages.has_prev %}
 		<a class="nav" style="float:left;" href="{{ url_for('siteinspect', sitename = site.sitename, page = currentPages.prev_num) }}"> << previous page </a>
 	{% endif %}
-	
-	
+
+
 	{% if currentPages.has_next %}
 		<a class="nav" style="float:right;" href="{{ url_for('siteinspect', sitename = site.sitename, page = currentPages.next_num) }}">next page >></a>
 	{% endif %}
-	
+
 	</div>
-	
+
 {% endblock %}
