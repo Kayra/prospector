@@ -26,4 +26,10 @@ class ProspectorSpider(CrawlSpider):
         for header_number in range(1, 4):
             page_data["h" + header_number + "s"] = self._string_joiner(response.css("h" + header_number).extract())
 
+        page_data["alttags"] = self._string_joiner(response.css("img::attr(alt)").extract())
+
+        page_data["metadescs"] = self._string_joiner(response.xpath("//meta[@name='description']/@content").extract())
+
+        page_data["title"] = response.css("title::text").extract()[0]
+
         return page_data
