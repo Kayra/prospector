@@ -32,4 +32,10 @@ class ProspectorSpider(CrawlSpider):
 
         page_data["title"] = response.css("title::text").extract()[0]
 
+        page_data["viewstate"] = response.xpath("//input[@name='__VIEWSTATE']/@value").extract()[0]
+
+        page_data["pagination"] = self._string_joiner(response.xpath("//link[contains(@rel, 'prev') or contains(@rel, 'next')]").extract())
+
+        page_data["iframe"] = response.xpath("//iframe").extract()[0]
+
         return page_data
