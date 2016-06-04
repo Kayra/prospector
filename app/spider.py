@@ -38,4 +38,10 @@ class ProspectorSpider(CrawlSpider):
 
         page_data["iframe"] = response.xpath("//iframe").extract()[0]
 
+        page_data["flash"] = self._string_joiner(response.xpath("//embed[contains(@src, '.swf')]").extract())
+
+        page_data["noindexnofollow"] = response.xpath("//meta[contains(@content, 'no index, no follow')]/@name]").extract()[0]
+
+        page_data["schematag"] = response.xpath("//div/@itemtype").extract()[0]
+
         return page_data
