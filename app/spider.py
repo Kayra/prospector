@@ -44,4 +44,6 @@ class ProspectorSpider(CrawlSpider):
 
         page_data["schematag"] = response.xpath("//div/@itemtype").extract()[0]
 
+        page_data["bloglocations"] = self._string_joiner([bloglocation for bloglocation in response.xpath("//a").extract() if 'blog' in bloglocation.lower()])
+
         return page_data
