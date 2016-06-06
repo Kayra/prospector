@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for
 from app import app, db, models
-from .forms import UrlEntry
-from .crawler import Crawler
-from .ranker import Ranker
+from app.forms import UrlEntry
+from app.crawler import Crawler
+from app.ranker import Ranker
 
 
 @app.route('/', methods=['GET', 'POST'])
