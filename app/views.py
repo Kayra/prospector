@@ -3,6 +3,7 @@ from app import app, db, models
 from app.forms import UrlEntry
 from app.crawler import Crawler
 from app.ranker import Ranker
+from app.utils import format_url
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -12,12 +13,7 @@ def index():
 
     if form.validate_on_submit():
 
-        url_to_prospect = form.url.data
-
-        if 'www.' not in url_to_prospect and 'http://' not in url_to_prospect:
-            url_to_prospect = 'http://www.' + url_to_prospect
-        if 'http://' not in url_to_prospect:
-            url_to_prospect = 'http://' + url_to_prospect
+        url_to_prospect = format_url(form.url.data)
 
         try:
             domainname = Crawler(url_to_prospect)
