@@ -25,14 +25,14 @@ def index():
     return render_template("index.html", form=form)
 
 
-@app.route('/sitelist')
+@app.route('/sites')
 def sitelist():
     sites = db.session.query(models.Site).limit(10)
     return render_template("sitelist.html", sites=sites)
 
 
-@app.route('/siteinspect/<sitename>')
-@app.route('/siteinspect/<sitename>/<int:page>')
+@app.route('/site/<sitename>')
+@app.route('/site/<sitename>/<int:page>')
 def siteinspect(sitename, page=1):
 
     if sitename is None:
