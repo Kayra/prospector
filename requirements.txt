@@ -20,7 +20,6 @@ pycparser==2.14
 PyDispatcher==2.0.5
 pyOpenSSL==16.0.0
 queuelib==1.4.2
-Scrapy==1.1.0
 service-identity==16.0.0
 six==1.10.0
 SQLAlchemy==1.0.8
