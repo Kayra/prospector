@@ -5,6 +5,18 @@ import urllib
 from bs4 import BeautifulSoup
 
 
+class Crawler():
+
+    def __init__(self, domain_url):
+        self.domain_url = domain_url
+
+    def get_html_soup(url):
+        raw_html = urllib.request.urlopen(url).read()
+        return BeautifulSoup(raw_html, "html.parser")
+
+    def scrape_domain_data():
+        pass
+
 def Crawler(url):
 
     urls = [url]
