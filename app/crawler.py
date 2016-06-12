@@ -10,12 +10,19 @@ class Crawler():
     def __init__(self, domain_url):
         self.domain_url = domain_url
 
-    def get_html_soup(url):
+    def get_html_soup(self, url):
         raw_html = urllib.request.urlopen(url).read()
         return BeautifulSoup(raw_html, "html.parser")
 
-    def scrape_domain_data():
-        pass
+    def scrape_domain_data(self, domain_url):
+
+        domain_html_soup = self.get_html_soup(domain_url)
+
+        robots_txt_url = urlparse.urljoin(domain_url, 'robots.txt')
+        robots_txt_data = urllib.request.urlopen(robots_txt_url).read()
+        if robots_txt_data.isinstance(str) and len(robots_txt_data) < 500000:
+            robots_txt = robots_txt_data.decode('utf-8')
+
 
 def Crawler(url):
 
