@@ -23,6 +23,11 @@ class Crawler():
         if robots_txt_data.isinstance(str) and len(robots_txt_data) < 500000:
             robots_txt = robots_txt_data.decode('utf-8')
 
+        sitemap_url = urlparse.urljoin(domain_url, 'sitemap.xml')
+        sitemap_data = urllib.request.urlopen(sitemap_url).read()
+        if sitemap_data.isinstance(str) and len(sitemap_data) < 500000:
+            sitemap = sitemap_data.decode('utf-8')
+
 
 def Crawler(url):
 
