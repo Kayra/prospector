@@ -14,19 +14,22 @@ class Crawler():
         raw_html = urllib.request.urlopen(url).read()
         return BeautifulSoup(raw_html, "html.parser")
 
+    def get_page_contents(self, url):
+        raw_data = urllib.request.urlopen(url).read()
+        if raw_data.isinstance(str) and len(raw_data) < 500000:
+            return raw_data.decode('utf-8')
+
     def scrape_domain_data(self, domain_url):
 
         domain_html_soup = self.get_html_soup(domain_url)
 
         robots_txt_url = urlparse.urljoin(domain_url, 'robots.txt')
-        robots_txt_data = urllib.request.urlopen(robots_txt_url).read()
-        if robots_txt_data.isinstance(str) and len(robots_txt_data) < 500000:
-            robots_txt = robots_txt_data.decode('utf-8')
+        robots_txt_contents = self.get_page_contents(robots_txt_url)
 
         sitemap_url = urlparse.urljoin(domain_url, 'sitemap.xml')
-        sitemap_data = urllib.request.urlopen(sitemap_url).read()
-        if sitemap_data.isinstance(str) and len(sitemap_data) < 500000:
-            sitemap = sitemap_data.decode('utf-8')
+        sitemap_contents = self.get_page_contents(sitemap_url)
+
+
 
 
 def Crawler(url):
