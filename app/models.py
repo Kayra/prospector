@@ -1,7 +1,10 @@
 from app import db
 
 
-class Site(db.Model):
+class SiteData(db.Model):
+
+	__tablename__ = "site_data"
+
 	id = db.Column(db.Integer, primary_key=True)
 	domainurl = db.Column(db.String(300), index=True)
 	sitename = db.Column(db.String(100), index=True)
@@ -13,13 +16,16 @@ class Site(db.Model):
 	level = db.Column(db.Integer)
 
 	# Establishes one to many relationship
-	pages = db.relationship('Page', backref='domainsite', lazy='dynamic')
+	pages = db.relationship('PageData', backref='domain_site', lazy='dynamic')
 
 	def __repr__(self):
-		return '<Site %r>' % (self.domainurl)
+		return '<SiteData %r>' % (self.domainurl)
 
 
-class Page(db.Model):
+class PageData(db.Model):
+
+	__tablename__ = "page_data"
+
 	id = db.Column(db.Integer, primary_key=True)
 	pageurl = db.Column(db.String(500), index=True)
 	h1s = db.Column(db.String(1000), index=True)
@@ -38,7 +44,7 @@ class Page(db.Model):
 	internallinksno = db.Column(db.Integer)
 
 	# Establishes one to many relationship
-	siteid = db.Column(db.Integer, db.ForeignKey('site.id'))
+	site_id = db.Column(db.Integer, db.ForeignKey('site_data.id'))
 
 	def __repr__(self):
-		return '<Page %r>' % (self.pageurl)
+		return '<PageData %r>' % (self.pageurl)

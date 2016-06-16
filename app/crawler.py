@@ -1,4 +1,4 @@
-from app import db, models
+from app.models import SiteData, PageData, db
 from app.scraper import DomainScrape, PageScrape
 import urllib.parse as urlparse
 import urllib
@@ -27,7 +27,7 @@ class Crawler():
         robots_txt_contents = self.get_page_contents('robots.txt')
         sitemap_contents = self.get_page_contents('sitemap.xml')
 
-
+        domain_data =
 
 
 def Crawler(url):
