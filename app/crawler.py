@@ -1,5 +1,5 @@
-from app.models import SiteData, PageData, db
-from app.scraper import DomainScrape, PageScrape
+from app.models import DomainData, PageData, db
+from app.scraper import DomainScraper, PageScraper
 import urllib.parse as urlparse
 import urllib
 from bs4 import BeautifulSoup
@@ -27,7 +27,13 @@ class Crawler():
         robots_txt_contents = self.get_page_contents('robots.txt')
         sitemap_contents = self.get_page_contents('sitemap.xml')
 
-        domain_data =
+        domain_data = DomainData(domain_url=domain_url,
+                                 site_name=domain_url.split('.')[1],
+                                 robots=robots_txt_contents,
+                                 sitemap=sitemap_contents)
+
+        db.session.add(domain_data)
+        db.session.commit()
 
 
 def Crawler(url):

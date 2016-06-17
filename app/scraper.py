@@ -27,7 +27,7 @@ class PageData:
         self.internallinksno = internallinksno
 
 
-def DomainScrape(soup, domainurl):
+def DomainScraper(soup, domainurl):
 
     # Google analytics check
     googleanalytics = ""
@@ -57,7 +57,7 @@ def DomainScrape(soup, domainurl):
     return domaindata
 
 
-def PageScrape(soup, domainurl):
+def PageScraper(soup, domainurl):
 
     # Scrape all the h1s from the page
     h1s = ""

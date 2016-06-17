@@ -1,25 +1,25 @@
 from app import db
 
 
-class SiteData(db.Model):
+class DomainData(db.Model):
 
-	__tablename__ = "site_data"
+	__tablename__ = "domain_data"
 
 	id = db.Column(db.Integer, primary_key=True)
-	domainurl = db.Column(db.String(300), index=True)
-	sitename = db.Column(db.String(100), index=True)
-	binganalytics = db.Column(db.String(10000), index=True)
-	googleanalytics = db.Column(db.String(10000), index=True)
+	domain_url = db.Column(db.String(300), index=True)
+	site_name = db.Column(db.String(100), index=True)
+	bing_analytics = db.Column(db.String(10000), index=True)
+	google_analytics = db.Column(db.String(10000), index=True)
 	robots = db.Column(db.String(50000))
 	sitemap = db.Column(db.String(50000))
-	ranking = db.Column(db.Integer)
+	ranking = db.Column(db.Integer, server_default=0)
 	level = db.Column(db.Integer)
 
 	# Establishes one to many relationship
 	pages = db.relationship('PageData', backref='domain_site', lazy='dynamic')
 
 	def __repr__(self):
-		return '<SiteData %r>' % (self.domainurl)
+		return '<DomainData %r>' % (self.domainurl)
 
 
 class PageData(db.Model):
@@ -44,7 +44,7 @@ class PageData(db.Model):
 	internallinksno = db.Column(db.Integer)
 
 	# Establishes one to many relationship
-	site_id = db.Column(db.Integer, db.ForeignKey('site_data.id'))
+	site_id = db.Column(db.Integer, db.ForeignKey('domain_data.id'))
 
 	def __repr__(self):
 		return '<PageData %r>' % (self.pageurl)
