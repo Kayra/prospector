@@ -26,11 +26,15 @@ class Crawler():
 
         robots_txt_contents = self.get_page_contents('robots.txt')
         sitemap_contents = self.get_page_contents('sitemap.xml')
+        google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
+        bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
 
         domain_data = DomainData(domain_url=domain_url,
                                  site_name=domain_url.split('.')[1],
                                  robots=robots_txt_contents,
-                                 sitemap=sitemap_contents)
+                                 sitemap=sitemap_contents,
+                                 gooogle_analytics=google_analytics,
+                                 bing_analytics=bing_analytics)
 
         db.session.add(domain_data)
         db.session.commit()
