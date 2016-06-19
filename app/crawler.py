@@ -39,6 +39,14 @@ class Crawler():
         db.session.add(domain_data)
         db.session.commit()
 
+    def scrape_page_data(self, page_url):
+
+        page_html_soup = self.get_html_soup(page_url)
+
+        h1s = PageScraper.h1s(page_html_soup)
+        h2s = PageScraper.h2s(page_html_soup)
+        h3s = PageScraper.h3s(page_html_soup)
+
 
 def Crawler(url):
 
