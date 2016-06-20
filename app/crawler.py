@@ -46,6 +46,52 @@ class Crawler():
         h1s = PageScraper.h1s(page_html_soup)
         h2s = PageScraper.h2s(page_html_soup)
         h3s = PageScraper.h3s(page_html_soup)
+        alt_tags = PageScraper.alt_tags(page_html_soup)
+        meta_desc = PageScraper.meta_desc(page_html_soup)
+        title = PageScraper.title(page_html_soup)
+        view_state = PageScraper.view_State(page_html_soup)
+        pagination = PageScraper.pagination(page_html_soup)
+        iframe = PageScraper.iframe(page_html_soup)
+        flash = PageScraper.flash(page_html_soup)
+        no_index_no_follow = PageScraper.no_index_no_follow(page_html_soup)
+        schema_tag = PageScraper.schema_tag(page_html_soup)
+        blog_location = PageScraper.blog_location(page_html_soup)
+        number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup)
+
+        page_data = PageData(page_url=page_url,
+                             h1s=h1s,
+                             h2s=h2s,
+                             h3s=h3s,
+                             alt_tags=alt_tags,
+                             meta_desc=meta_desc,
+                             title=title,
+                             view_state=view_state,
+                             pagination=pagination,
+                             iframe=iframe,
+                             flash=flash,
+                             no_index_no_follow=no_index_no_follow,
+                             schema_tag=schema_tag,
+                             blog_location=blog_location,
+                             number_of_internal_links=number_of_internal_links)
+
+        db.session.add(page_data)
+        db.session.commit()
+
+    def spider_site(self, domain_url):
+
+        urls = list(domain_url)
+
+        page_html_soup = self.get_html_soup(domain_url)
+
+        for link in page_html_soup.findAll('a', href=True):
+
+            current_url = urlparse.urljoin(domain_url, link['href'])
+
+            if urlparse.urlparse(page_html_soup).netloc in urlparse.urlparse(current_url).netloc and '#' not in current_url and current_url not in urls:
+                print("ADDING: %s" % current_url)
+                urls.append(current_url)
+
+            return urls
 
 
 def Crawler(url):
