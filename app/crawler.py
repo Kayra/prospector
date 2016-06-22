@@ -93,6 +93,11 @@ class Crawler():
 
             return urls
 
+    def crawl_site(self):
+
+        self.scrape_domain_data(self.domain_url)
+        [self.scrape_page_data(page_url) for page_url in self.spider_site(self.domain_url)]
+
 
 def Crawler(url):
 
