@@ -16,7 +16,7 @@ def index():
         url_to_prospect = format_url(form.url.data)
 
         try:
-            domainname = Crawler(url_to_prospect)
+            Crawler(url_to_prospect)
             Ranker(url_to_prospect)
             return redirect(url_for('siteinspect', sitename=domainname))
         except ValueError:
