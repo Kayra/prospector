@@ -18,7 +18,7 @@ def index():
         try:
             Crawler(url_to_prospect)
             Ranker(url_to_prospect)
-            return redirect(url_for('siteinspect', sitename=domainname))
+            return redirect(url_for('siteinspect', sitename=url_to_prospect))
         except ValueError:
             flash("Invalid url")
 
