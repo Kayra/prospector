@@ -10,6 +10,7 @@ class Crawler():
     def __init__(self, domain_url):
         self._MAX_PAGES_TO_VISIT = 60
         self.domain_url = domain_url
+        self.crawl_site(self.domain_url)
 
     def get_html_soup(self, url):
         raw_html = urllib.request.urlopen(url).read()
@@ -93,7 +94,7 @@ class Crawler():
 
             return urls
 
-    def crawl_site(self):
+    def crawl_site(self, domain_url):
 
-        self.scrape_domain_data(self.domain_url)
-        [self.scrape_page_data(page_url) for page_url in self.spider_site(self.domain_url)]
+        self.scrape_domain_data(domain_url)
+        [self.scrape_page_data(page_url) for page_url in self.spider_site(domain_url)]
