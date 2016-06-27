@@ -1,6 +1,17 @@
 import logging
 
 
+class DomainScraper():
+
+    @staticmethod
+    def scrape_google_analytics(domain_html_soup):
+        pass
+
+    @staticmethod
+    def scrape_bing_analytics(domain_html_soup):
+        pass
+
+
 class DomainData:
 
     def __init__(self, binganalytics, googleanalytics):
