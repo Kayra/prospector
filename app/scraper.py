@@ -11,6 +11,64 @@ class DomainScraper():
     def scrape_bing_analytics(domain_html_soup):
         pass
 
+class PageScraper():
+
+    @staticmethod
+    def h1s(page_html_soup):
+        pass
+
+    @staticmethod
+    def h2s(page_html_soup):
+        pass
+
+    @staticmethod
+    def h3s(page_html_soup):
+        pass
+
+    @staticmethod
+    def alt_tags(page_html_soup):
+        pass
+
+    @staticmethod
+    def meta_desc(page_html_soup):
+        pass
+
+    @staticmethod
+    def title(page_html_soup):
+        pass
+
+    @staticmethod
+    def view_state(page_html_soup):
+        pass
+
+    @staticmethod
+    def pagination(page_html_soup):
+        pass
+
+    @staticmethod
+    def iframe(page_html_soup):
+        pass
+
+    @staticmethod
+    def flash(page_html_soup):
+        pass
+
+    @staticmethod
+    def no_index_no_follow(page_html_soup):
+        pass
+
+    @staticmethod
+    def schema_tag(page_html_soup):
+        pass
+
+    @staticmethod
+    def blog_location(page_html_soup):
+        pass
+
+    @staticmethod
+    def number_of_internal_links(page_html_soup):
+        pass
+
 
 class DomainData:
 
