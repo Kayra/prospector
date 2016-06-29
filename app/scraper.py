@@ -5,11 +5,19 @@ class DomainScraper():
 
     @staticmethod
     def scrape_google_analytics(domain_html_soup):
-        pass
+
+        for script in domain_html_soup.find_all('script'):
+
+            if script.string and len(script.string) < 10000:
+                if ('urchin' or 'googleanalytics') in script.string.lower():
+                    return script.string
+                elif script.string and ('googleanalytics' or '_uacct' or 'pagetracker') in script.string.lower():
+                    return script.string
 
     @staticmethod
     def scrape_bing_analytics(domain_html_soup):
         pass
+
 
 class PageScraper():
 
