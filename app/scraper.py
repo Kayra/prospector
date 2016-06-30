@@ -7,7 +7,6 @@ class DomainScraper():
     def scrape_google_analytics(domain_html_soup):
 
         for script in domain_html_soup.find_all('script'):
-
             if script.string and len(script.string) < 10000:
                 if ('urchin' or 'googleanalytics') in script.string.lower():
                     return script.string
@@ -16,7 +15,14 @@ class DomainScraper():
 
     @staticmethod
     def scrape_bing_analytics(domain_html_soup):
-        pass
+
+        for script in domain_html_soup.find_all('script'):
+            if script.string and 'mstag' in script.string and script.string < 10000:
+                return script
+
+        for meta in domain_html_soup.find_all('meta'):
+            if 'msvaldiate' in meta and meta < 10000:
+                return meta
 
 
 class PageScraper():
