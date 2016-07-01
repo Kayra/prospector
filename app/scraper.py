@@ -29,7 +29,7 @@ class PageScraper():
 
     @staticmethod
     def h1s(page_html_soup):
-        pass
+        return "#".join([h1 for h1 in page_html_soup.find_all('h1')])
 
     @staticmethod
     def h2s(page_html_soup):
