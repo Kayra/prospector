@@ -37,7 +37,7 @@ class PageScraper():
 
     @staticmethod
     def h3s(page_html_soup):
-        pass
+        return "#".join([h3 for h3 in page_html_soup.find_all('h3')])
 
     @staticmethod
     def alt_tags(page_html_soup):
