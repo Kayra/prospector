@@ -41,7 +41,7 @@ class PageScraper():
 
     @staticmethod
     def alt_tags(page_html_soup):
-        pass
+        return "#".join([img['alt'] for img in page_html_soup.find_all('img')])
 
     @staticmethod
     def meta_desc(page_html_soup):
