@@ -49,7 +49,7 @@ class PageScraper():
 
     @staticmethod
     def title(page_html_soup):
-        pass
+        return page_html_soup.title
 
     @staticmethod
     def view_state(page_html_soup):
