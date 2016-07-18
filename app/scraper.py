@@ -53,7 +53,7 @@ class PageScraper():
 
     @staticmethod
     def view_state(page_html_soup):
-        pass
+        return str([input_tag['value'] for input_tag in page_html_soup.find_all('input') if '__VIEWSTATE' in input_tag['name'].lower()][0])
 
     @staticmethod
     def pagination(page_html_soup):
