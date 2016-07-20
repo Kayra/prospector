@@ -55,21 +55,13 @@ class PageScraper():
     def view_state(page_html_soup):
         return str([input_tag['value'] for input_tag in page_html_soup.find_all('input') if '__VIEWSTATE' in input_tag['name'].lower()][0])
 
-    pagination = ""
-    for pagin in soup.find_all('link'):
-        try:
-            if ('prev' or 'next') in str(pagin['rel']).lower():
-                pagination = str(pagin)
-        except KeyError:
-                logging.info('Key error: the input tag did not contain a viewstate attribute.')
-
     @staticmethod
     def pagination(page_html_soup):
         return str([link_tag for link_tag in page_html_soup.find_all('link') if ('prev' or 'next') in str(link_tag['rel']).lower()][0])
 
     @staticmethod
     def iframe(page_html_soup):
-        pass
+        return page_html_soup.iframe
 
     @staticmethod
     def flash(page_html_soup):
