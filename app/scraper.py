@@ -65,7 +65,7 @@ class PageScraper():
 
     @staticmethod
     def flash(page_html_soup):
-        pass
+        return str([embed_tag for embed_tag in page_html_soup.find_all('embed') if '.swf' in embed_tag['src'].lower()][0])
 
     @staticmethod
     def no_index_no_follow(page_html_soup):
