@@ -69,7 +69,7 @@ class PageScraper():
 
     @staticmethod
     def no_index_no_follow(page_html_soup):
-        pass
+        return str([meta_tag['name'] for meta_tag in page_html_soup.find_all('meta') if 'noindex, nofollow' in meta_tag['content'].lower() and meta_tag.get('name')][0])
 
     @staticmethod
     def schema_tag(page_html_soup):
