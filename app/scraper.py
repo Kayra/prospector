@@ -73,7 +73,7 @@ class PageScraper():
 
     @staticmethod
     def schema_tag(page_html_soup):
-        pass
+        return "#".join([schema_tag for schema_tag in page_html_soup.find_all('div') if schema_tag.get('itemtype')])
 
     @staticmethod
     def blog_location(page_html_soup):
