@@ -45,9 +45,9 @@ class Crawler():
 
         page_html_soup = self.get_html_soup(page_url)
 
-        h1s = PageScraper.h1s(page_html_soup)
-        h2s = PageScraper.h2s(page_html_soup)
-        h3s = PageScraper.h3s(page_html_soup)
+        h1s = PageScraper.header_tags(page_html_soup, 'h1')
+        h2s = PageScraper.header_tags(page_html_soup, 'h2')
+        h3s = PageScraper.header_tags(page_html_soup, 'h3')
         alt_tags = PageScraper.alt_tags(page_html_soup)
         meta_desc = PageScraper.meta_desc(page_html_soup)
         title = PageScraper.title(page_html_soup)

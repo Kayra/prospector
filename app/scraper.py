@@ -28,16 +28,8 @@ class DomainScraper():
 class PageScraper():
 
     @staticmethod
-    def h1s(page_html_soup):
-        return "#".join([h1 for h1 in page_html_soup.find_all('h1')])
-
-    @staticmethod
-    def h2s(page_html_soup):
-        return "#".join([h2 for h2 in page_html_soup.find_all('h2')])
-
-    @staticmethod
-    def h3s(page_html_soup):
-        return "#".join([h3 for h3 in page_html_soup.find_all('h3')])
+    def header_tags(page_html_soup, header_tag_to_scrape):
+        return "#".join([header_tag for header_tag in page_html_soup.find_all(header_tag_to_scrape)])
 
     @staticmethod
     def alt_tags(page_html_soup):
