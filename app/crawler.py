@@ -1,5 +1,5 @@
 from app.models import DomainData, PageData, db
-from app.scraper import DomainScraper, PageScraper
+from app.scrapers import DomainScraper, PageScraper
 import urllib.parse as urlparse
 import urllib
 from bs4 import BeautifulSoup
