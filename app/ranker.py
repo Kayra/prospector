@@ -1,5 +1,21 @@
 from app import db, models
 
+
+class Ranker():
+
+    def __init__(self):
+        pass
+
+    def rank_domain_data(self):
+        pass
+
+    def rank_page_data(self):
+        pass
+
+    def rank_site(self):
+        pass
+
+
 total = 0
 entries = 0
 domaintotal = 0
