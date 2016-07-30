@@ -6,11 +6,21 @@ class Ranker():
     def __init__(self, site_id):
         self.site = DomainData.query.get(site_id)
 
-    def rank_domain_data(self):
+    def rank_domain_data(self, domain_data):
         pass
 
     def rank_page_data(self):
         pass
+
+    def domain_level_calculator(self, domain_rank):
+        if (domain_rank / 25) < 1:
+            return 'low'
+        elif (domain_rank / 25) < 2:
+            return 'midlow'
+        elif (domain_rank / 25) < 3:
+            return 'midhigh'
+        elif (domain_rank / 25) < 4:
+            return 'high'
 
     def rank_site(self):
         pass
