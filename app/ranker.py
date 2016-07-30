@@ -1,10 +1,10 @@
-from app import db, models
+from app.models import DomainData, db
 
 
 class Ranker():
 
-    def __init__(self):
-        pass
+    def __init__(self, site_id):
+        self.site = DomainData.query.get(site_id)
 
     def rank_domain_data(self):
         pass
