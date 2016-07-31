@@ -5,6 +5,50 @@ class Ranker():
 
     def __init__(self, site_id):
         self.site = DomainData.query.get(site_id)
+        self.domain_scores = {
+            "google_analytics": 9,
+            "bing_analytics": 8,
+            "robots": 9,
+            "site_map": 9
+        }
+        self.page_stores = {
+            "h1s": 9,
+            "h2s": 8,
+            "h3s": 7,
+            "alt_tags": 6,
+            "meta_descs": 7,
+            "title": 8,
+            "view_state": 2,
+            "pagination": 8,
+            "iframe": 4,
+            "flash": 3,
+            "no_index_no_follow": 6,
+            "schema_tag": 7,
+            "blog_location": 8,
+            "number_of_internal_links": {
+                "high": {
+                    19: 9
+                },
+                "medium": {
+                    9: 7
+                },
+                "low": {
+                    8: 5
+                }
+            },
+            "url_character_length": {
+                "high": {
+                    150: 2
+                },
+                "medium": {
+                    100: 4
+                },
+                "low": {
+                    50: 7
+                }
+            }
+
+        }
 
     def rank_domain_data(self, domain_data):
         pass
