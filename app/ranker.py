@@ -11,7 +11,7 @@ class Ranker():
             "robots": 9,
             "site_map": 9
         }
-        self.page_stores = {
+        self.page_scores = {
             "h1s": 9,
             "h2s": 8,
             "h3s": 7,
@@ -51,7 +51,7 @@ class Ranker():
         }
 
     def rank_domain_data(self, domain_data):
-        pass
+        return sum(self.domain_scores[getattr(self.site, field)] for field in self.domain_scores.items())
 
     def rank_page_data(self):
         pass
