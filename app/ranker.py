@@ -50,10 +50,10 @@ class Ranker():
 
         }
 
-    def rank_domain_data(self, domain_data):
+    def calculate_domain_score(self, domain_data):
         return sum(self.domain_scores[getattr(self.site, field)] for field in self.domain_scores.items()) / len(self.domain_scores)
 
-    def rank_page_data(self):
+    def calculate_page_score(self):
 
         page_score = 0
 
