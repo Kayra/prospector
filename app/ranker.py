@@ -51,25 +51,25 @@ class Ranker():
         }
 
     def calculate_domain_score(self, domain_data):
-        return sum(self.domain_scores[getattr(self.site, field)] for field in self.domain_scores.items()) / len(self.domain_scores)
+        return sum(self.domain_scores[getattr(domain_data, field)] for field in self.domain_scores.items()) / len(self.domain_scores)
 
-    def calculate_page_score(self):
+    def calculate_page_score(self, page_data):
 
         page_score = 0
 
         for field in self.page_scores.items():
             if 'number_of_internal_links' not in field and 'url_character_length' not in field:
-                page_score += self.page_scores[getattr(self.site, field)]
+                page_score += self.page_scores[getattr(page_data, field)]
 
         links_score = self.page_scores['number_of_internal_links']['low']
         for amount, score in self.page_scores['number_of_internal_links'].items():
-            if self.site.number_of_internal_links > amount:
+            if page_data.number_of_internal_links > amount:
                 links_score = score
         page_score += links_score
 
         url_length_score = self.page_scores['url_character_length']['low']
         for amount, score in self.page_scores['url_character_length'].items():
-            if self.site.number_of_internal_links > amount:
+            if page_data.number_of_internal_links > amount:
                 url_length_score = score
         page_score += url_length_score
 
