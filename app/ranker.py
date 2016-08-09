@@ -4,13 +4,14 @@ from app.models import DomainData, db
 class Ranker():
 
     def __init__(self, site_id):
-        self.site = DomainData.query.get(site_id)
+
         self.domain_scores = {
             "google_analytics": 9,
             "bing_analytics": 8,
             "robots": 9,
             "site_map": 9
         }
+
         self.page_scores = {
             "h1s": 9,
             "h2s": 8,
@@ -85,8 +86,15 @@ class Ranker():
         elif (domain_rank / 25) < 4:
             return 'high'
 
-    def rank_site(self):
-        pass
+    def rank_site(self, site_id):
+
+        site = DomainData.query.get(site_id)
+
+        domain_score = self.calculate_domain_score(site)
+
+        total_page_score = 0
+        for page in site.pages:
+            total_page_score += self.calculate_page_score(page)
 
 
 total = 0
