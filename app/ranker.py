@@ -92,7 +92,7 @@ class Ranker():
 
         domain_score = self.calculate_domain_score(site)
 
-        total_page_score = sum(self.calculate_page_score(page) for page in site.pages)
+        average_page_score = sum(self.calculate_page_score(page) for page in site.pages) / len(site.pages)
 
 
 total = 0
