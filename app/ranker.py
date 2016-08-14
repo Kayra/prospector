@@ -63,19 +63,18 @@ class Ranker():
             if 'number_of_internal_links' not in field and 'url_character_length' not in field:
                 page_score += self.page_scores[getattr(page_data, field)]
 
-        links_score = self.page_scores['number_of_internal_links']['low']
-        for amount, score in self.page_scores['number_of_internal_links'].items():
-            if page_data.number_of_internal_links > amount:
-                links_score = score
-        page_score += links_score
+        page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
 
-        url_length_score = self.page_scores['url_character_length']['low']
-        for amount, score in self.page_scores['url_character_length'].items():
-            if page_data.number_of_internal_links > amount:
-                url_length_score = score
-        page_score += url_length_score
+        page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
 
         return page_score / len(self.page_scores)
+
+    def calculate_number_based_score(self, score_field, data_field):
+        field_score = score_field['low']
+        for amount, score in score_field.items():
+            if data_field > amount:
+                field_score = score
+        return field_score
 
     def domain_level_calculator(self, domain_rank):
         if (domain_rank / 25) < 1:
