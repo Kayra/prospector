@@ -64,7 +64,6 @@ class Ranker():
                 page_score += self.page_scores[getattr(page_data, field)]
 
         page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
-
         page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
 
         return page_score / len(self.page_scores)
