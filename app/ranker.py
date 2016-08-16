@@ -61,9 +61,7 @@ class Ranker():
 
         page_score = 0
 
-        for field in self.page_scores.items():
-            if field not in fields_to_ignore:
-                page_score += self.page_scores[getattr(page_data, field)]
+        page_score += sum([self.page_scores[getattr(page_data, field)] for field in self.page_scores.items() if field not in fields_to_ignore])
 
         page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
         page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
