@@ -3,6 +3,8 @@ from app.models import DomainData, db
 
 class Ranker():
 
+    DOMAIN_IMPORTANCE = 1.3
+
     def __init__(self, site_id):
 
         self.domain_scores = {
@@ -92,6 +94,8 @@ class Ranker():
         domain_score = self.calculate_domain_score(site)
 
         average_page_score = sum(self.calculate_page_score(page) for page in site.pages) / len(site.pages)
+
+        return round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
 
 
 total = 0
