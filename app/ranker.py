@@ -1,9 +1,8 @@
-from app.models import DomainData, db
+from app.models import DomainData
+from config import DOMAIN_IMPORTANCE
 
 
 class Ranker():
-
-    DOMAIN_IMPORTANCE = 1.3
 
     def __init__(self, site_id):
 
