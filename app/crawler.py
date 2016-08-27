@@ -40,7 +40,7 @@ class Crawler():
                                  site_name=domain_url.split('.')[1],
                                  robots=robots_txt_contents,
                                  sitemap=sitemap_contents,
-                                 gooogle_analytics=google_analytics,
+                                 google_analytics=google_analytics,
                                  bing_analytics=bing_analytics)
 
         db.session.add(domain_data)
