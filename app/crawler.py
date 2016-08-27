@@ -19,6 +19,7 @@ class Crawler():
     def get_page_contents(self, url_suffix):
 
         full_url = urlparse.urljoin(self.domain_url, url_suffix)
+
         try:
             raw_data = urllib.request.urlopen(full_url).read()
             if raw_data.isinstance(str) and len(raw_data) < 500000:
