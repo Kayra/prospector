@@ -12,7 +12,7 @@ class DomainData(db.Model):
 	google_analytics = db.Column(db.String(10000), index=True)
 	robots = db.Column(db.String(50000))
 	sitemap = db.Column(db.String(50000))
-	ranking = db.Column(db.Integer, server_default=0)
+	ranking = db.Column(db.Integer, default=0)
 	level = db.Column(db.Integer)
 
 	# Establishes one to many relationship
