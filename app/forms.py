@@ -1,7 +1,7 @@
-from flask.ext.wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import Required
+from wtforms.validators import DataRequired
 
 
-class UrlEntry(Form):
-    url = StringField('url', validators=[Required()])
+class UrlEntry(FlaskForm):
+    url = StringField('url', validators=[DataRequired()])
