@@ -17,10 +17,14 @@ class Crawler():
         return BeautifulSoup(raw_html, "html.parser")
 
     def get_page_contents(self, url_suffix):
+
         full_url = urlparse.urljoin(self.domain_url, url_suffix)
-        raw_data = urllib.request.urlopen(full_url).read()
-        if raw_data.isinstance(str) and len(raw_data) < 500000:
-            return raw_data.decode('utf-8')
+        try:
+            raw_data = urllib.request.urlopen(full_url).read()
+            if raw_data.isinstance(str) and len(raw_data) < 500000:
+                return raw_data.decode('utf-8')
+        except urllib.error.HTTPError as error_message:
+            print('{} for {}'.format(error_message, full_url))
 
     def scrape_domain_data(self, domain_url):
 
