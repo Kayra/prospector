@@ -25,11 +25,20 @@ class DomainScraper():
 
 class PageScraper():
 
+    def no_tag_exception_catcher(scraping_function):
+        def function(*args, **kwargs):
+            try:
+                return scraping_function(*args, **kwargs)
+            except KeyError:
+                return None
+        return function
+
     @staticmethod
     def header_tags(page_html_soup, header_tag_to_scrape):
         return "#".join([header_tag.string for header_tag in page_html_soup.find_all(header_tag_to_scrape)])
 
     @staticmethod
+    @no_tag_exception_catcher
     def alt_tags(page_html_soup):
         return "#".join([img['alt'] for img in page_html_soup.find_all('img')])
 
