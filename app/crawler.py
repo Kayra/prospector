@@ -86,7 +86,7 @@ class Crawler():
 
     def spider_site(self, domain_url):
 
-        urls = list(domain_url)
+        urls = [domain_url]
 
         page_html_soup = self.get_html_soup(domain_url)
 
