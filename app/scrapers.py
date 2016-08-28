@@ -25,7 +25,7 @@ class DomainScraper():
 
 class PageScraper():
 
-    def no_tag_exception_catcher(scraping_function):
+    def no_tag_exception_handler(scraping_function):
         def function(*args, **kwargs):
             try:
                 return scraping_function(*args, **kwargs)
@@ -38,11 +38,12 @@ class PageScraper():
         return "#".join([header_tag.string for header_tag in page_html_soup.find_all(header_tag_to_scrape)])
 
     @staticmethod
-    @no_tag_exception_catcher
+    @no_tag_exception_handler
     def alt_tags(page_html_soup):
         return "#".join([img['alt'] for img in page_html_soup.find_all('img')])
 
     @staticmethod
+    @no_tag_exception_handler
     def meta_desc(page_html_soup):
         return "#".join([meta_desc['content'] for meta_desc in page_html_soup.find_all('meta') if ('description' in meta_desc['name'].lower()) and (len(meta_desc['content']) < 1000)])
 
@@ -51,10 +52,12 @@ class PageScraper():
         return page_html_soup.title
 
     @staticmethod
+    @no_tag_exception_handler
     def view_state(page_html_soup):
         return str([input_tag['value'] for input_tag in page_html_soup.find_all('input') if '__VIEWSTATE' in input_tag['name'].lower()][0])
 
     @staticmethod
+    @no_tag_exception_handler
     def pagination(page_html_soup):
         return str([link_tag for link_tag in page_html_soup.find_all('link') if ('prev' or 'next') in str(link_tag['rel']).lower()][0])
 
@@ -63,10 +66,12 @@ class PageScraper():
         return page_html_soup.iframe
 
     @staticmethod
+    @no_tag_exception_handler
     def flash(page_html_soup):
         return str([embed_tag for embed_tag in page_html_soup.find_all('embed') if '.swf' in embed_tag['src'].lower()][0])
 
     @staticmethod
+    @no_tag_exception_handler
     def no_index_no_follow(page_html_soup):
         return str([meta_tag['name'] for meta_tag in page_html_soup.find_all('meta') if 'noindex, nofollow' in meta_tag['content'].lower() and meta_tag.get('name')][0])
 
@@ -75,6 +80,7 @@ class PageScraper():
         return "#".join([schema_tag for schema_tag in page_html_soup.find_all('div') if schema_tag.get('itemtype')])
 
     @staticmethod
+    @no_tag_exception_handler
     def blog_location(page_html_soup):
         return "#".join([link_tag['href'] for link_tag in page_html_soup.find_all('a', href=True) if ('blog' in str(link_tag)) or ('blog' in link_tag['href'])])
 
