@@ -38,9 +38,8 @@ class PageScraper():
         return "#".join([header_tag.string for header_tag in page_html_soup.find_all(header_tag_to_scrape)])
 
     @staticmethod
-    @no_tag_exception_handler
     def alt_tags(page_html_soup):
-        return "#".join([img['alt'] for img in page_html_soup.find_all('img')])
+        return "#".join([img['alt'] for img in page_html_soup.find_all('img') if 'alt' in img])
 
     @staticmethod
     @no_tag_exception_handler
