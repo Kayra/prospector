@@ -56,7 +56,7 @@ class Crawler():
         alt_tags = PageScraper.alt_tags(page_html_soup)
         meta_desc = PageScraper.meta_desc(page_html_soup)
         title = PageScraper.title(page_html_soup)
-        view_state = PageScraper.view_State(page_html_soup)
+        view_state = PageScraper.view_state(page_html_soup)
         pagination = PageScraper.pagination(page_html_soup)
         iframe = PageScraper.iframe(page_html_soup)
         flash = PageScraper.flash(page_html_soup)
