@@ -53,7 +53,9 @@
 
 			{% for currentPage in currentPages.items %}
 
-			<p style="text-align:center;padding-bottom:15px;"> {{ currentPage.pageurl }} </p>
+			<a href="{{ currentPage.page_url }}">
+				{{ currentPage.page_url }}
+			</a>
 
 			<table>
 
