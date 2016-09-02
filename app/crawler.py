@@ -36,7 +36,7 @@ class Crawler():
         sitemap_contents = self.get_page_contents('sitemap.xml')
         google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
         bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
-        print("SITENAME", domain_url.split('.')[1])
+
         domain_data = DomainData(domain_url=domain_url,
                                  site_name=extract_site_name(domain_url),
                                  robots=robots_txt_contents,
@@ -99,12 +99,13 @@ class Crawler():
 
             current_url = urlparse.urljoin(domain_url, link['href'])
 
-            if urlparse.urlparse(current_url).netloc in urlparse.urlparse(current_url).netloc and '#' not in current_url and current_url not in urls and len(urls) < self._MAX_PAGES_TO_VISIT:
+            if urlparse.urlparse(current_url).netloc in urlparse.urlparse(domain_url).netloc and '#' not in current_url and current_url not in urls and len(urls) < self._MAX_PAGES_TO_VISIT and '@' not in current_url:
                 urls.append(current_url)
 
-            return urls
+        return urls
 
     def crawl_site(self, domain_url):
 
         self.scrape_domain_data(domain_url)
-        [self.scrape_page_data(page_url) for page_url in self.spider_site(domain_url)]
+        for page_url in self.spider_site(domain_url):
+            self.scrape_page_data(page_url)
