@@ -21,7 +21,7 @@ def index():
         try:
             Crawler(url_to_prospect)
             Ranker(url_to_prospect)
-            return redirect(url_for('siteinspect', sitename=extract_site_name(url_to_prospect)))
+            return redirect(url_for('siteinspect', site_name=extract_site_name(url_to_prospect)))
         except ValueError as error:
             print(error)
             flash("Invalid url")
@@ -35,14 +35,14 @@ def sitelist():
     return render_template("sitelist.html", sites=sites)
 
 
-@app.route('/site/<sitename>')
-@app.route('/site/<sitename>/<int:page>')
-def siteinspect(sitename, page=1):
+@app.route('/site/<site_name>')
+@app.route('/site/<site_name>/<int:page>')
+def siteinspect(site_name, page=1):
 
-    if sitename is None:
+    if site_name is None:
         return redirect(url_for('index'))
 
-    site = db.session.query(models.DomainData).filter_by(site_name=sitename).first()
+    site = db.session.query(models.DomainData).filter_by(site_name=site_name).first()
 
     currentPages = models.PageData.query.filter_by(site_id=site.id).paginate(page, POSTS_PER_PAGE, False)
 

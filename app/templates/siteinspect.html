@@ -4,14 +4,14 @@
 
 	<div class="main">
 
-		<a class="sitebtn {{ site.level }}" href="{{ url_for('sitelist') }}"> < {{ site.ranking }}% {{ site.domainurl }}</a>
+		<a class="sitebtn {{ site.level }}" href="{{ url_for('sitelist') }}"> < {{ site.ranking }}% {{ site.domain_url }}</a>
 
 		<div id="domain">
 
 			<table>
 				<tr>
 					<th>bing anayltics</th>
-					{% if site.binganalytics %}
+					{% if site.bing_analytics %}
 						<td>present</td>
 					{% else %}
 						<td class="gray">not present</td>
@@ -20,7 +20,7 @@
 
 				<tr>
 					<th>google anayltics</th>
-					{% if site.googleanalytics %}
+					{% if site.google_analytics %}
 						<td>present</td>
 					{% else %}
 						<td class="gray">not present</td>
@@ -95,8 +95,8 @@
 
 				<tr>
 					<th>alt tags</th>
-					{% if currentPage.alttags %}
-						<td>{{ currentPage.alttags }}</td>
+					{% if currentPage.alt_tags %}
+						<td>{{ currentPage.alt_tags }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -104,8 +104,8 @@
 
 				<tr>
 					<th>meta description tags</th>
-					{% if currentPage.metadesc %}
-						<td>{{ currentPage.metadesc }}</td>
+					{% if currentPage.meta_desc %}
+						<td>{{ currentPage.meta_desc }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -113,8 +113,8 @@
 
 				<tr>
 					<th>viewstate</th>
-					{% if currentPage.viewstate %}
-						<td>{{ currentPage.viewstate }}</td>
+					{% if currentPage.view_state %}
+						<td>{{ currentPage.view_state }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -149,8 +149,8 @@
 
 				<tr>
 					<th>no index no follow</th>
-					{% if currentPage.noindexnofollow %}
-						<td>{{ currentPage.noindexnofollow }}</td>
+					{% if currentPage.no_index_no_follow %}
+						<td>{{ currentPage.no_index_no_follow }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -158,8 +158,8 @@
 
 				<tr>
 					<th>schema tag</th>
-					{% if currentPage.schematag %}
-						<td>{{ currentPage.schematag }}</td>
+					{% if currentPage.schema_tag %}
+						<td>{{ currentPage.schema_tag }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -167,17 +167,8 @@
 
 				<tr>
 					<th>blog location</th>
-					{% if currentPage.bloglocation %}
-						<td>{{ currentPage.bloglocation }}</td>
-					{% else %}
-						<td class="gray">not present</td
-					{% endif %}
-				</tr>
-
-				<tr>
-					<th>blog location</th>
-					{% if currentPage.bloglocation %}
-						<td>{{ currentPage.bloglocation }}</td>
+					{% if currentPage.blog_location %}
+						<td>{{ currentPage.blog_location }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -185,8 +176,8 @@
 
 				<tr>
 					<th>internal links</th>
-					{% if currentPage.internallinksno %}
-						<td>{{ currentPage.internallinksno }}</td>
+					{% if currentPage.internal_links_no %}
+						<td>{{ currentPage.internal_links_no }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
