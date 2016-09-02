@@ -66,6 +66,9 @@ class Crawler():
         blog_location = PageScraper.blog_location(page_html_soup)
         number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
 
+        domain = DomainData.query.filter_by(site_name=extract_site_name(page_url)).first()
+
+        print(domain)
         page_data = PageData(page_url=page_url,
                              h1s=h1s,
                              h2s=h2s,
@@ -80,7 +83,8 @@ class Crawler():
                              no_index_no_follow=no_index_no_follow,
                              schema_tag=schema_tag,
                              blog_location=blog_location,
-                             number_of_internal_links=number_of_internal_links)
+                             number_of_internal_links=number_of_internal_links,
+                             domain_site=domain)
 
         db.session.add(page_data)
         db.session.commit()
