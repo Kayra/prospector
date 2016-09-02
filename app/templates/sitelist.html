@@ -4,7 +4,10 @@
 
 	<div class="main">
 		{% for site in sites %}
-			<a class="sitebtn {{ site.level }}" href="{{ url_for('siteinspect', sitename = site.sitename) }}">{{site.ranking}}% {{site.domainurl}} ></a><br>
+			<a class="sitebtn {{ site.level }}" href="{{ url_for('siteinspect', sitename = site.sitename) }}">
+                {{site.ranking}}% {{site.domain_url}} >
+            </a>
+            <br>
 		{% endfor%}
 	</div>
 
