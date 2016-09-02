@@ -63,7 +63,7 @@ class Crawler():
         no_index_no_follow = PageScraper.no_index_no_follow(page_html_soup)
         schema_tag = PageScraper.schema_tag(page_html_soup)
         blog_location = PageScraper.blog_location(page_html_soup)
-        number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup)
+        number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
 
         page_data = PageData(page_url=page_url,
                              h1s=h1s,
