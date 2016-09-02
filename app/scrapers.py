@@ -53,12 +53,14 @@ class PageScraper():
     @staticmethod
     @no_tag_exception_handler
     def view_state(page_html_soup):
-        return str([input_tag['value'] for input_tag in page_html_soup.find_all('input') if '__VIEWSTATE' in input_tag['name'].lower()][0])
+        view_state = [input_tag['value'] for input_tag in page_html_soup.find_all('input') if '__VIEWSTATE' in input_tag['name'].lower()]
+        return str(view_state[0]) if view_state else None
 
     @staticmethod
     @no_tag_exception_handler
     def pagination(page_html_soup):
-        return str([link_tag for link_tag in page_html_soup.find_all('link') if ('prev' or 'next') in str(link_tag['rel']).lower()][0])
+        pagination = [link_tag for link_tag in page_html_soup.find_all('link') if ('prev' or 'next') in str(link_tag['rel']).lower()]
+        return str(pagination[0]) if pagination else None
 
     @staticmethod
     def iframe(page_html_soup):
@@ -67,12 +69,14 @@ class PageScraper():
     @staticmethod
     @no_tag_exception_handler
     def flash(page_html_soup):
-        return str([embed_tag for embed_tag in page_html_soup.find_all('embed') if '.swf' in embed_tag['src'].lower()][0])
+        flash = [embed_tag for embed_tag in page_html_soup.find_all('embed') if '.swf' in embed_tag['src'].lower()]
+        return str(flash[0]) if flash else None
 
     @staticmethod
     @no_tag_exception_handler
     def no_index_no_follow(page_html_soup):
-        return str([meta_tag['name'] for meta_tag in page_html_soup.find_all('meta') if 'noindex, nofollow' in meta_tag['content'].lower() and meta_tag.get('name')][0])
+        no_index_no_follow = [meta_tag['name'] for meta_tag in page_html_soup.find_all('meta') if 'noindex, nofollow' in meta_tag['content'].lower() and meta_tag.get('name')]
+        return str(no_index_no_follow[0]) if no_index_no_follow else None
 
     @staticmethod
     def schema_tag(page_html_soup):
