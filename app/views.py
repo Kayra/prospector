@@ -31,7 +31,7 @@ def index():
 
 @app.route('/sites')
 def sitelist():
-    sites = db.session.query(models.Site).limit(10)
+    sites = db.session.query(models.DomainData).limit(10)
     return render_template("sitelist.html", sites=sites)
 
 
@@ -42,8 +42,8 @@ def siteinspect(sitename, page=1):
     if sitename is None:
         return redirect(url_for('index'))
 
-    site = db.session.query(models.Site).filter_by(sitename=sitename).first()
+    site = db.session.query(models.DomainData).filter_by(site_name=sitename).first()
 
-    currentPages = models.Page.query.filter_by(siteid=site.id).paginate(page, POSTS_PER_PAGE, False)
+    currentPages = models.PageData.query.filter_by(site_id=site.id).paginate(page, POSTS_PER_PAGE, False)
 
     return render_template("siteinspect.html", site=site, currentPages=currentPages)
