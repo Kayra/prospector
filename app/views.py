@@ -6,7 +6,7 @@ from app import app, db, models
 from app.forms import UrlEntry
 from app.crawler import Crawler
 from app.ranker import Ranker
-from app.utils import format_url
+from app.utils import format_url, extract_site_name
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -21,7 +21,7 @@ def index():
         try:
             Crawler(url_to_prospect)
             Ranker(url_to_prospect)
-            return redirect(url_for('siteinspect', sitename=url_to_prospect))
+            return redirect(url_for('siteinspect', sitename=extract_site_name(url_to_prospect)))
         except ValueError as error:
             print(error)
             flash("Invalid url")

@@ -7,3 +7,7 @@ def format_url(url):
         return 'http://' + url
     else:
         return url
+
+
+def extract_site_name(url):
+    return url.split('.')[1]
