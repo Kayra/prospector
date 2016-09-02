@@ -18,13 +18,13 @@ def index():
 
         url_to_prospect = format_url(form.url.data)
 
-        # try:
-        Crawler(url_to_prospect)
-        Ranker(url_to_prospect)
-        return redirect(url_for('siteinspect', sitename=url_to_prospect))
-        # except ValueError as error:
-            # print(error)
-            # flash("Invalid url")
+        try:
+            Crawler(url_to_prospect)
+            Ranker(url_to_prospect)
+            return redirect(url_for('siteinspect', sitename=url_to_prospect))
+        except ValueError as error:
+            print(error)
+            flash("Invalid url")
 
     return render_template("index.html", form=form)
 

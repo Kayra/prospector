@@ -48,7 +48,7 @@ class PageScraper():
 
     @staticmethod
     def title(page_html_soup):
-        return page_html_soup.title
+        return page_html_soup.title.text if page_html_soup.title else None
 
     @staticmethod
     @no_tag_exception_handler
@@ -64,7 +64,7 @@ class PageScraper():
 
     @staticmethod
     def iframe(page_html_soup):
-        return page_html_soup.iframe
+        return page_html_soup.iframe.text if page_html_soup.iframe else None
 
     @staticmethod
     @no_tag_exception_handler
