@@ -68,7 +68,6 @@ class Crawler():
 
         domain = DomainData.query.filter_by(site_name=extract_site_name(page_url)).first()
 
-        print(domain)
         page_data = PageData(page_url=page_url,
                              h1s=h1s,
                              h2s=h2s,

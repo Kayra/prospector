@@ -47,4 +47,4 @@ class PageData(db.Model):
 	site_id = db.Column(db.Integer, db.ForeignKey('domain_data.id'))
 
 	def __repr__(self):
-		return '<PageData %r>' % (self.pageurl)
+		return '<PageData %r>' % (self.page_url)
