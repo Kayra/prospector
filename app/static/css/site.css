@@ -132,7 +132,7 @@ p.gray
     color: #8C8C8C;
 }
 
-#page a
+#page a, .no-scrapes a
 {
     font-family: "Lato", sans-serif;
     font-size: 1.1em;
@@ -140,6 +140,10 @@ p.gray
     text-align: center;
     padding-bottom: 15px;
     display: block;
+}
+
+.no-scrapes a {
+    padding-top: 10px;
 }
 
 .textright
