@@ -15,7 +15,6 @@ class DomainData(db.Model):
 	ranking = db.Column(db.Integer, default=0)
 	level = db.Column(db.Integer)
 
-	# Establishes one to many relationship
 	pages = db.relationship('PageData', backref='domain_site', lazy='dynamic')
 
 	def __repr__(self):
@@ -43,7 +42,6 @@ class PageData(db.Model):
 	blog_location = db.Column(db.String(1000), default=False)
 	number_of_internal_links = db.Column(db.Integer)
 
-	# Establishes one to many relationship
 	site_id = db.Column(db.Integer, db.ForeignKey('domain_data.id'))
 
 	def __repr__(self):
