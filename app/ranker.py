@@ -18,7 +18,7 @@ class Ranker():
             "h2s": 8,
             "h3s": 7,
             "alt_tags": 6,
-            "meta_descs": 7,
+            "meta_desc": 7,
             "title": 8,
             "view_state": 2,
             "pagination": 8,
@@ -53,14 +53,13 @@ class Ranker():
         self.rank_site(site_id)
 
     def calculate_domain_score(self, domain_data):
+
         fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages']
 
         total_score = 0
-
         for field in self.domain_scores.items():
-            if field not in fields_to_ignore:
-                if getattr(domain_data, field[0]) is not None:
-                    total_score += self.domain_scores[field[0]]
+            if field[0] not in fields_to_ignore and getattr(domain_data, field[0]):
+                total_score += self.domain_scores[field[0]]
 
         return total_score / len(self.domain_scores)
 
@@ -70,7 +69,9 @@ class Ranker():
 
         page_score = 0
 
-        page_score += sum([self.page_scores[getattr(page_data, field)] for field in self.page_scores.items() if field not in fields_to_ignore])
+        for field in self.page_scores.items():
+            if field[0] not in fields_to_ignore and getattr(page_data, field[0]):
+                page_score += self.page_scores[field[0]]
 
         page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
         page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
