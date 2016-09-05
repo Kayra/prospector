@@ -1,4 +1,4 @@
-from app.models import DomainData
+from app.models import DomainData, db
 from config import DOMAIN_IMPORTANCE
 
 
@@ -10,7 +10,7 @@ class Ranker():
             "google_analytics": 9,
             "bing_analytics": 8,
             "robots": 9,
-            "site_map": 9
+            "sitemap": 9
         }
 
         self.page_scores = {
@@ -49,12 +49,20 @@ class Ranker():
                     50: 7
                 }
             }
-
         }
+        self.rank_site(site_id)
 
     def calculate_domain_score(self, domain_data):
         fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages']
-        return sum(self.domain_scores[getattr(domain_data, field)] for field in self.domain_scores.items() if field not in fields_to_ignore) / len(self.domain_scores)
+
+        total_score = 0
+
+        for field in self.domain_scores.items():
+            if field not in fields_to_ignore:
+                if getattr(domain_data, field[0]) is not None:
+                    total_score += self.domain_scores[field[0]]
+
+        return total_score / len(self.domain_scores)
 
     def calculate_page_score(self, page_data):
 
@@ -94,4 +102,7 @@ class Ranker():
 
         average_page_score = sum(self.calculate_page_score(page) for page in site.pages) / len(site.pages)
 
-        return round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
+        site.ranking = round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
+
+        db.session.add(site)
+        db.session.commit()

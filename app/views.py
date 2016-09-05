@@ -17,11 +17,13 @@ def index():
     if form.validate_on_submit():
 
         url_to_prospect = format_url(form.url.data)
+        site_name = extract_site_name(url_to_prospect)
 
         try:
             Crawler(url_to_prospect)
-            Ranker(url_to_prospect)
-            return redirect(url_for('siteinspect', site_name=extract_site_name(url_to_prospect)))
+            site_id = models.DomainData.query.filter_by(site_name=site_name).first().id
+            Ranker(site_id)
+            return redirect(url_for('siteinspect', site_name=site_name))
         except ValueError as error:
             print(error)
             flash("Invalid url")
