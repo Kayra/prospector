@@ -78,11 +78,11 @@ class Ranker():
 
         return total_page_score / len(self.page_scores)
 
-    def calculate_number_based_score(self, score_field, data_field):
-        field_score = score_field['low']
-        for amount, score in score_field.items():
-            if data_field > amount:
-                field_score = score
+    def calculate_number_based_score(self, score_field, page_data_field):
+        field_score = list(score_field['low'].values())[0]
+        for label, score in score_field.items():
+            if page_data_field > list(score.keys())[0]:
+                field_score = list(score.values())[0]
         return field_score
 
     def domain_level_calculator(self, domain_rank):
@@ -101,7 +101,8 @@ class Ranker():
 
         domain_score = self.calculate_domain_score(site)
 
-        average_page_score = sum(self.calculate_page_score(page) for page in site.pages) / len(site.pages)
+        print("HIT", dir(site.pages))
+        average_page_score = sum([self.calculate_page_score(page) for page in site.pages]) / site.pages.count()
 
         site.ranking = round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
 
