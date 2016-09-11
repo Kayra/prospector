@@ -101,10 +101,11 @@ class Ranker():
 
         domain_score = self.calculate_domain_score(site)
 
-        print("HIT", dir(site.pages))
         average_page_score = sum([self.calculate_page_score(page) for page in site.pages]) / site.pages.count()
 
         site.ranking = round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
+
+        site.level = self.domain_level_calculator(site.ranking)
 
         db.session.add(site)
         db.session.commit()
