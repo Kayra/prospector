@@ -50,6 +50,7 @@ class Ranker():
                 }
             }
         }
+
         self.rank_site(site_id)
 
     def calculate_domain_score(self, domain_data):
@@ -60,6 +61,8 @@ class Ranker():
         for field in self.domain_scores.items():
             if field[0] not in fields_to_ignore and getattr(domain_data, field[0]):
                 total_domain_score += self.domain_scores[field[0]]
+
+        print("domain score is", total_domain_score / len(self.domain_scores))
 
         return total_domain_score / len(self.domain_scores)
 
@@ -76,13 +79,18 @@ class Ranker():
         total_page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
         total_page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
 
+        print("page score for page {} is {}".format(page_data.page_url, total_page_score / len(self.page_scores)))
+
         return total_page_score / len(self.page_scores)
 
     def calculate_number_based_score(self, score_field, page_data_field):
+
         field_score = list(score_field['low'].values())[0]
+
         for label, score in score_field.items():
             if page_data_field > list(score.keys())[0]:
                 field_score = list(score.values())[0]
+
         return field_score
 
     def domain_level_calculator(self, domain_rank):
