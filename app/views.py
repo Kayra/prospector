@@ -22,7 +22,9 @@ def index():
         try:
             crawler = Crawler()
             domain_data = crawler.scrape_domain_data(url_to_prospect)
-            print("HIT", domain_data)
+            pages_to_scrape = crawler.spider_site(domain_data.domain_url)
+            pages_data = [crawler.scrape_page_data(page_to_scrape) for page_to_scrape in pages_to_scrape]
+            print(pages_data)
 
             site_id = models.DomainData.query.filter_by(site_name=site_name).first().id
             Ranker(site_id)

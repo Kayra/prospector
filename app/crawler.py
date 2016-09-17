@@ -82,8 +82,7 @@ class Crawler():
                              number_of_internal_links=number_of_internal_links,
                              domain_site=domain)
 
-        db.session.add(page_data)
-        db.session.commit()
+        return page_data
 
     def spider_site(self, domain_url):
 
