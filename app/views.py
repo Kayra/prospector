@@ -20,7 +20,10 @@ def index():
         site_name = extract_site_name(url_to_prospect)
 
         try:
-            Crawler(url_to_prospect)
+            crawler = Crawler()
+            domain_data = crawler.scrape_domain_data(url_to_prospect)
+            print("HIT", domain_data)
+
             site_id = models.DomainData.query.filter_by(site_name=site_name).first().id
             Ranker(site_id)
             return redirect(url_for('siteinspect', site_name=site_name))

@@ -8,18 +8,16 @@ from bs4 import BeautifulSoup
 
 class Crawler():
 
-    def __init__(self, domain_url):
+    def __init__(self):
         self._MAX_PAGES_TO_VISIT = 60
-        self.domain_url = domain_url
-        self.crawl_site(self.domain_url)
 
     def get_html_soup(self, url):
         raw_html = urllib.request.urlopen(url).read()
         return BeautifulSoup(raw_html, "html.parser")
 
-    def get_page_contents(self, url_suffix):
+    def get_page_contents(self, domain_url, url_suffix):
 
-        full_url = urlparse.urljoin(self.domain_url, url_suffix)
+        full_url = urlparse.urljoin(domain_url, url_suffix)
 
         try:
             raw_data = urllib.request.urlopen(full_url).read()
@@ -32,8 +30,8 @@ class Crawler():
 
         domain_html_soup = self.get_html_soup(domain_url)
 
-        robots_txt_contents = self.get_page_contents('robots.txt')
-        sitemap_contents = self.get_page_contents('sitemap.xml')
+        robots_txt_contents = self.get_page_contents(domain_url, 'robots.txt')
+        sitemap_contents = self.get_page_contents(domain_url, 'sitemap.xml')
         google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
         bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
 
@@ -44,8 +42,7 @@ class Crawler():
                                  google_analytics=google_analytics,
                                  bing_analytics=bing_analytics)
 
-        db.session.add(domain_data)
-        db.session.commit()
+        return domain_data
 
     def scrape_page_data(self, page_url):
 
