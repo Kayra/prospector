@@ -62,8 +62,6 @@ class Ranker():
             if field[0] not in fields_to_ignore and getattr(domain_data, field[0]):
                 total_domain_score += self.domain_scores[field[0]]
 
-        print("domain score is", total_domain_score / len(self.domain_scores))
-
         return total_domain_score / len(self.domain_scores)
 
     def calculate_page_score(self, page_data):
@@ -78,8 +76,6 @@ class Ranker():
 
         total_page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
         total_page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
-
-        print("page score for page {} is {}".format(page_data.page_url, total_page_score / len(self.page_scores)))
 
         return total_page_score / len(self.page_scores)
 
