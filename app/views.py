@@ -25,6 +25,9 @@ def index():
             pages_to_scrape = crawler.spider_site(domain_data.domain_url)
             pages_data = [crawler.scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
 
+            ranker = Ranker()
+            domain_data.ranking = ranker.rank_site(domain_data)
+
             db.session.add(domain_data)
             db.session.add_all(pages_data)
             db.session.commit()

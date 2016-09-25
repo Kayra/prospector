@@ -4,7 +4,7 @@ from config import DOMAIN_IMPORTANCE
 
 class Ranker():
 
-    def __init__(self, site_id):
+    def __init__(self):
 
         self.domain_scores = {
             "google_analytics": 9,
@@ -50,8 +50,6 @@ class Ranker():
                 }
             }
         }
-
-        self.rank_site(site_id)
 
     def calculate_domain_score(self, domain_data):
 
@@ -99,17 +97,12 @@ class Ranker():
         elif (domain_rank / 25) < 4:
             return 'high'
 
-    def rank_site(self, site_id):
+    def rank_site(self, domain_data):
 
-        site = DomainData.query.get(site_id)
+        domain_score = self.calculate_domain_score(domain_data)
 
-        domain_score = self.calculate_domain_score(site)
+        average_page_score = sum([self.calculate_page_score(page) for page in domain_data.pages]) / domain_data.pages.count()
 
-        average_page_score = sum([self.calculate_page_score(page) for page in site.pages]) / site.pages.count()
+        return round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
 
-        site.ranking = round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
-
-        site.level = self.domain_level_calculator(site.ranking)
-
-        db.session.add(site)
-        db.session.commit()
+        # site.level = self.domain_level_calculator(site.ranking)
