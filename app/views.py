@@ -23,7 +23,7 @@ def index():
             domain_data = crawler.scrape_domain_data(url_to_prospect)
 
             pages_to_scrape = crawler.spider_site(domain_data.domain_url)
-            pages_data = [crawler.scrape_page_data(page_to_scrape) for page_to_scrape in pages_to_scrape]
+            pages_data = [crawler.scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
 
             db.session.add(domain_data)
             db.session.add_all(pages_data)

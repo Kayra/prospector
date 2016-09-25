@@ -1,4 +1,4 @@
-from app.models import DomainData, PageData, db
+from app.models import DomainData, PageData
 from app.scrapers import DomainScraper, PageScraper
 from app.utils import extract_site_name
 import urllib.parse as urlparse
@@ -44,7 +44,7 @@ class Crawler():
 
         return domain_data
 
-    def scrape_page_data(self, page_url):
+    def scrape_page_data(self, page_url, domain):
 
         page_html_soup = self.get_html_soup(page_url)
 
@@ -62,8 +62,6 @@ class Crawler():
         schema_tag = PageScraper.schema_tag(page_html_soup)
         blog_location = PageScraper.blog_location(page_html_soup)
         number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
-
-        domain = DomainData.query.filter_by(site_name=extract_site_name(page_url)).first()
 
         page_data = PageData(page_url=page_url,
                              h1s=h1s,
