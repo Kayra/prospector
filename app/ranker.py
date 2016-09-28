@@ -104,5 +104,3 @@ class Ranker():
         average_page_score = sum([self.calculate_page_score(page) for page in domain_data.pages]) / domain_data.pages.count()
 
         return round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
-
-        # site.level = self.domain_level_calculator(site.ranking)

@@ -27,12 +27,12 @@ def index():
 
             ranker = Ranker()
             domain_data.ranking = ranker.rank_site(domain_data)
+            domain_data.level = ranker.domain_level_calculator(domain_data.ranking)
 
             db.session.add(domain_data)
             db.session.add_all(pages_data)
             db.session.commit()
-            # site_id = models.DomainData.query.filter_by(site_name=site_name).first().id
-            # Ranker(site_id)
+
             return redirect(url_for('siteinspect', site_name=domain_data.site_name))
 
         except ValueError as error:
