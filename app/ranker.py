@@ -1,4 +1,3 @@
-from app.models import DomainData, db
 from config import DOMAIN_IMPORTANCE
 
 

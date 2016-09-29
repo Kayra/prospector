@@ -6,7 +6,7 @@ from app import app, db, models
 from app.forms import UrlEntry
 from app.crawler import Crawler
 from app.ranker import Ranker
-from app.utils import format_url, extract_site_name
+from app.utils import format_url
 
 
 @app.route('/', methods=['GET', 'POST'])
