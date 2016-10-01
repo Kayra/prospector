@@ -18,19 +18,25 @@ def index():
 
         url_to_prospect = format_url(form.url.data)
 
-        crawler = Crawler()
-        domain_data = crawler.scrape_domain_data(url_to_prospect)
+        domain_data = models.DomainData.query.filter_by(domain_url=url_to_prospect).first()
 
-        pages_to_scrape = crawler.spider_site(domain_data.domain_url)
-        pages_data = [crawler.scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
+        if domain_data:
+            print("HIT")
 
-        ranker = Ranker()
-        domain_data.ranking = ranker.rank_site(domain_data)
-        domain_data.level = ranker.domain_level_calculator(domain_data.ranking)
+        else:
+            crawler = Crawler()
+            domain_data = crawler.scrape_domain_data(url_to_prospect)
 
-        db.session.add(domain_data)
-        db.session.add_all(pages_data)
-        db.session.commit()
+            pages_to_scrape = crawler.spider_site(domain_data.domain_url)
+            pages_data = [crawler.scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
+
+            ranker = Ranker()
+            domain_data.ranking = ranker.rank_site(domain_data)
+            domain_data.level = ranker.domain_level_calculator(domain_data.ranking)
+
+            db.session.add(domain_data)
+            db.session.add_all(pages_data)
+            db.session.commit()
 
         return redirect(url_for('siteinspect', site_name=domain_data.site_name))
 
