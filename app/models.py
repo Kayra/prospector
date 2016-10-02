@@ -18,7 +18,7 @@ class DomainData(db.Model):
 	pages = db.relationship('PageData', backref='domain_site', lazy='dynamic')
 
 	def __repr__(self):
-		return '<DomainData %r>' % (self.domain_url)
+		return '<DomainData %r>' % (self.site_name)
 
 
 class PageData(db.Model):
