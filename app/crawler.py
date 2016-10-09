@@ -26,7 +26,7 @@ class Crawler():
         except urllib.error.HTTPError as error_message:
             print('{} for {}'.format(error_message, full_url))
 
-    def scrape_domain_data(self, domain_url, domain_data):
+    def scrape_domain_data(self, domain_url, domain_data=None):
 
         domain_html_soup = self.get_html_soup(domain_url)
 
