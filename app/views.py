@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for
 
-from config import POSTS_PER_PAGE
+from config import SITES_PER_PAGE
 
 from app import app, db, models
 from app.forms import UrlEntry
@@ -45,7 +45,7 @@ def index():
 
 @app.route('/sites')
 def sitelist():
-    sites = db.session.query(models.DomainData).limit(10)
+    sites = db.session.query(models.DomainData).limit(SITES_PER_PAGE)
     return render_template("sitelist.html", sites=sites)
 
 
@@ -58,6 +58,6 @@ def siteinspect(site_name, page=1):
 
     site = db.session.query(models.DomainData).filter_by(site_name=site_name).first()
 
-    currentPages = models.PageData.query.filter_by(site_id=site.id).paginate(page, POSTS_PER_PAGE, False)
+    currentPages = models.PageData.query.filter_by(site_id=site.id).paginate(page, 1, False)
 
     return render_template("siteinspect.html", site=site, currentPages=currentPages)

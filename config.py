@@ -6,7 +6,7 @@ SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Pagination
-POSTS_PER_PAGE = 1
+SITES_PER_PAGE = 1
 
 # Ranking calculation constant
 DOMAIN_IMPORTANCE = 1.3
