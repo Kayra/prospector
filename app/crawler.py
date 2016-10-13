@@ -11,7 +11,7 @@ from config import MAX_PAGES_TO_VISIT
 
 class Crawler():
 
-    def get_html_soup(self, url):
+    def _get_html_soup(self, url):
         raw_html = urllib.request.urlopen(url).read()
         return BeautifulSoup(raw_html, "html.parser")
 
@@ -28,7 +28,7 @@ class Crawler():
 
     def scrape_domain_data(self, domain_url, domain_data=None):
 
-        domain_html_soup = self.get_html_soup(domain_url)
+        domain_html_soup = self._get_html_soup(domain_url)
 
         robots_txt_contents = self.get_page_contents(domain_url, 'robots.txt')
         sitemap_contents = self.get_page_contents(domain_url, 'sitemap.xml')
@@ -53,7 +53,7 @@ class Crawler():
 
     def scrape_page_data(self, page_url, domain):
 
-        page_html_soup = self.get_html_soup(page_url)
+        page_html_soup = self._get_html_soup(page_url)
 
         h1s = PageScraper.header_tags(page_html_soup, 'h1')
         h2s = PageScraper.header_tags(page_html_soup, 'h2')
@@ -93,7 +93,7 @@ class Crawler():
 
         urls = [domain_url]
 
-        page_html_soup = self.get_html_soup(domain_url)
+        page_html_soup = self._get_html_soup(domain_url)
 
         for link in page_html_soup.findAll('a', href=True):
 
