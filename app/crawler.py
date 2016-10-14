@@ -15,7 +15,7 @@ class Crawler():
         raw_html = urllib.request.urlopen(url).read()
         return BeautifulSoup(raw_html, "html.parser")
 
-    def get_page_contents(self, domain_url, url_suffix):
+    def _get_page_contents(self, domain_url, url_suffix):
 
         full_url = urlparse.urljoin(domain_url, url_suffix)
 
@@ -30,8 +30,8 @@ class Crawler():
 
         domain_html_soup = self._get_html_soup(domain_url)
 
-        robots_txt_contents = self.get_page_contents(domain_url, 'robots.txt')
-        sitemap_contents = self.get_page_contents(domain_url, 'sitemap.xml')
+        robots_txt_contents = self._get_page_contents(domain_url, 'robots.txt')
+        sitemap_contents = self._get_page_contents(domain_url, 'sitemap.xml')
         google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
         bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
 
