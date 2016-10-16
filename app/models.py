@@ -46,3 +46,14 @@ class PageData(db.Model):
 
 	def __repr__(self):
 		return '<PageData %r>' % (self.page_url)
+
+
+class DomainScores(db.model):
+
+	__tablename__ = "domain_scores"
+
+
+class PageScores(db.model):
+
+	__tablename__ = "page_scores"
+
