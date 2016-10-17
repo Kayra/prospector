@@ -52,8 +52,14 @@ class DomainScores(db.model):
 
 	__tablename__ = "domain_scores"
 
+	id = db.Column(db.Integer, primary_key=True)
+	google_analytics = db.Column(db.Integer)
+	bing_analytics = db.Column(db.Integer)
+	robots_txt = db.Column(db.Integer)
+	sitemap_xml = db.Column(db.Integer)
 
 class PageScores(db.model):
 
 	__tablename__ = "page_scores"
 
+	id = db.Column(db.Integer, primary_key=True)
