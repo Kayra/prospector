@@ -58,8 +58,26 @@ class DomainScores(db.model):
 	robots_txt = db.Column(db.Integer)
 	sitemap_xml = db.Column(db.Integer)
 
+	def __repr__(self):
+		return '<DomainScores>'
+
+
 class PageScores(db.model):
 
 	__tablename__ = "page_scores"
 
 	id = db.Column(db.Integer, primary_key=True)
+	h1_tags = db.Column(db.Integer)
+	h2_tags = db.Column(db.Integer)
+	h3_tags = db.Column(db.Integer)
+	alt_tags = db.Column(db.Integer)
+	meta_description = db.Column(db.Integer)
+	title_text = db.Column(db.Integer)
+	view_state = db.Column(db.Integer)
+	pagination = db.Column(db.Integer)
+	iframe_content = db.Column(db.Integer)
+	flash_attribute = db.Column(db.Integer)
+	no_index_no_follow_attribute = db.Column(db.Integer)
+
+	def __repr__(self):
+		return '<PageScores>'
