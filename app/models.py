@@ -48,7 +48,7 @@ class PageData(db.Model):
 		return '<PageData %r>' % (self.page_url)
 
 
-class DomainScores(db.model):
+class DomainScores(db.Model):
 
 	__tablename__ = "domain_scores"
 
@@ -62,7 +62,7 @@ class DomainScores(db.model):
 		return '<DomainScores>'
 
 
-class PageScores(db.model):
+class PageScores(db.Model):
 
 	__tablename__ = "page_scores"
 
