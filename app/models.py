@@ -1,3 +1,5 @@
+from sqlalchemy.dialects.postgresql import ARRAY
+
 from app import db
 
 
@@ -78,6 +80,10 @@ class PageScores(db.Model):
 	iframe_content = db.Column(db.Integer)
 	flash_attribute = db.Column(db.Integer)
 	no_index_no_follow_attribute = db.Column(db.Integer)
+	schema_tag = db.Column(db.Integer)
+	blog_location = db.Column(db.Integer)
+	number_of_internal_links = db.Column(ARRAY(db.Integer))
+	url_character_length = db.Column(ARRAY(db.Integer))
 
 	def __repr__(self):
 		return '<PageScores>'
