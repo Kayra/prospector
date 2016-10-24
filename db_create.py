@@ -24,7 +24,11 @@ default_page_scores = PageScores(h1_tags=9,
                                  pagination=8,
                                  iframe_content=4,
                                  flash_attribute=3,
-                                 no_index_no_follow_attribute=6)
+                                 no_index_no_follow_attribute=6,
+                                 schema_tag=7,
+                                 blog_location=8,
+                                 number_of_internal_links=[5, 7, 9],
+                                 url_character_length=[7, 4, 2])
 
 
 db.session.add(default_domain_scores)
