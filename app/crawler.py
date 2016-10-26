@@ -26,7 +26,6 @@ class Crawler():
         except urllib.error.HTTPError as error_message:
             print('{} for {}'.format(error_message, full_url))
 
-    @staticmethod
     def scrape_domain_data(self, domain_url, domain_data=None):
 
         domain_html_soup = self._get_html_soup(domain_url)
@@ -52,7 +51,6 @@ class Crawler():
 
         return domain_data
 
-    @staticmethod
     def scrape_page_data(self, page_url, domain):
 
         page_html_soup = self._get_html_soup(page_url)
@@ -91,7 +89,6 @@ class Crawler():
 
         return page_data
 
-    @staticmethod
     def spider_site(self, domain_url):
 
         urls = [domain_url]
