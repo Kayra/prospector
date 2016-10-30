@@ -1,5 +1,7 @@
 from config import DOMAIN_IMPORTANCE
 
+from app.models import DomainScores, PageScores
+
 
 class Ranker():
 
@@ -54,13 +56,20 @@ class Ranker():
 
         fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages']
 
+        domain_scores = DomainScores.query.one()
+
+        for column in domain_scores.__table__.columns:
+            print(column.name)
+            print(getattr(domain_scores, column.name))
+
         total_domain_score = 0
 
-        print(domain_data)
-        for column in domain_data.__table__.columns:
-            if column.name not in fields_to_ignore:
-                print(column.name)
-                print(getattr(domain_data, column.name))
+        # print(domain_data)
+        # for column in domain_data.__table__.columns:
+        #     if column.name not in fields_to_ignore:
+        #         print(column.name)
+        #         print(getattr(domain_data, column.name))
+        #         print("score", )
 
         # for field in self.domain_scores.items():
             # if field[0] not in fields_to_ignore and getattr(domain_data, field[0]):
