@@ -30,22 +30,22 @@ class Crawler():
 
         domain_html_soup = self._get_html_soup(domain_url)
 
-        robots_txt_contents = self._get_page_contents(domain_url, 'robots.txt')
-        sitemap_contents = self._get_page_contents(domain_url, 'sitemap.xml')
+        robots_txt = self._get_page_contents(domain_url, 'robots.txt')
+        sitemap_xml = self._get_page_contents(domain_url, 'sitemap.xml')
         google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
         bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
 
         if domain_data:
-            domain_data.robots = robots_txt_contents
-            domain_data.sitemap = sitemap_contents
+            domain_data.robots_txt = robots_txt
+            domain_data.sitemap = sitemap_xml
             domain_data.google_analytics = google_analytics
             domain_data.bing_analytics = bing_analytics
 
         else:
             domain_data = DomainData(domain_url=domain_url,
                                      site_name=extract_site_name(domain_url),
-                                     robots=robots_txt_contents,
-                                     sitemap=sitemap_contents,
+                                     robots=robots_txt,
+                                     sitemap=sitemap_xml,
                                      google_analytics=google_analytics,
                                      bing_analytics=bing_analytics)
 
@@ -55,33 +55,33 @@ class Crawler():
 
         page_html_soup = self._get_html_soup(page_url)
 
-        h1s = PageScraper.header_tags(page_html_soup, 'h1')
-        h2s = PageScraper.header_tags(page_html_soup, 'h2')
-        h3s = PageScraper.header_tags(page_html_soup, 'h3')
+        h1_tags = PageScraper.header_tags(page_html_soup, 'h1')
+        h2_tags = PageScraper.header_tags(page_html_soup, 'h2')
+        h3_tags = PageScraper.header_tags(page_html_soup, 'h3')
         alt_tags = PageScraper.alt_tags(page_html_soup)
-        meta_desc = PageScraper.meta_desc(page_html_soup)
-        title = PageScraper.title(page_html_soup)
+        meta_description = PageScraper.meta_desc(page_html_soup)
+        title_text = PageScraper.title(page_html_soup)
         view_state = PageScraper.view_state(page_html_soup)
         pagination = PageScraper.pagination(page_html_soup)
-        iframe = PageScraper.iframe(page_html_soup)
-        flash = PageScraper.flash(page_html_soup)
-        no_index_no_follow = PageScraper.no_index_no_follow(page_html_soup)
+        iframe_content = PageScraper.iframe(page_html_soup)
+        flash_attribute = PageScraper.flash(page_html_soup)
+        no_index_no_follow_attribute = PageScraper.no_index_no_follow(page_html_soup)
         schema_tag = PageScraper.schema_tag(page_html_soup)
         blog_location = PageScraper.blog_location(page_html_soup)
         number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
 
         page_data = PageData(page_url=page_url,
-                             h1s=h1s,
-                             h2s=h2s,
-                             h3s=h3s,
+                             h1_tags=h1_tags,
+                             h2_tags=h2_tags,
+                             h3_tags=h3_tags,
                              alt_tags=alt_tags,
-                             meta_desc=meta_desc,
-                             title=title,
+                             meta_description=meta_description,
+                             title_text=title_text,
                              view_state=view_state,
                              pagination=pagination,
-                             iframe=iframe,
-                             flash=flash,
-                             no_index_no_follow=no_index_no_follow,
+                             iframe_content=iframe_content,
+                             flash_attribute=flash_attribute,
+                             no_index_no_follow_attribute=no_index_no_follow_attribute,
                              schema_tag=schema_tag,
                              blog_location=blog_location,
                              number_of_internal_links=number_of_internal_links,
