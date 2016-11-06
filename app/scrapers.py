@@ -43,11 +43,11 @@ class PageScraper():
 
     @staticmethod
     @no_tag_exception_handler
-    def meta_desc(page_html_soup):
+    def meta_description(page_html_soup):
         return "#".join([meta_desc['content'] for meta_desc in page_html_soup.find_all('meta') if ('description' in meta_desc['name'].lower()) and (len(meta_desc['content']) < 1000)])
 
     @staticmethod
-    def title(page_html_soup):
+    def title_text(page_html_soup):
         return page_html_soup.title.text if page_html_soup.title else None
 
     @staticmethod
@@ -63,18 +63,18 @@ class PageScraper():
         return str(pagination[0]) if pagination else None
 
     @staticmethod
-    def iframe(page_html_soup):
+    def iframe_content(page_html_soup):
         return page_html_soup.iframe.text if page_html_soup.iframe else None
 
     @staticmethod
     @no_tag_exception_handler
-    def flash(page_html_soup):
+    def flash_attribute(page_html_soup):
         flash = [embed_tag for embed_tag in page_html_soup.find_all('embed') if '.swf' in embed_tag['src'].lower()]
         return str(flash[0]) if flash else None
 
     @staticmethod
     @no_tag_exception_handler
-    def no_index_no_follow(page_html_soup):
+    def no_index_no_follow_attribute(page_html_soup):
         no_index_no_follow = [meta_tag['name'] for meta_tag in page_html_soup.find_all('meta') if 'noindex, nofollow' in meta_tag['content'].lower() and meta_tag.get('name')]
         return str(no_index_no_follow[0]) if no_index_no_follow else None
 
