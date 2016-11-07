@@ -37,15 +37,15 @@ class Crawler():
 
         if domain_data:
             domain_data.robots_txt = robots_txt
-            domain_data.sitemap = sitemap_xml
+            domain_data.sitemap_xml = sitemap_xml
             domain_data.google_analytics = google_analytics
             domain_data.bing_analytics = bing_analytics
 
         else:
             domain_data = DomainData(domain_url=domain_url,
                                      site_name=extract_site_name(domain_url),
-                                     robots=robots_txt,
-                                     sitemap=sitemap_xml,
+                                     robots_txt=robots_txt,
+                                     sitemap_xml=sitemap_xml,
                                      google_analytics=google_analytics,
                                      bing_analytics=bing_analytics)
 
