@@ -58,18 +58,20 @@ class Ranker():
 
         domain_scores = DomainScores.query.one()
 
-        for column in domain_scores.__table__.columns:
-            print(column.name)
-            print(getattr(domain_scores, column.name))
+        # for column in domain_scores.__table__.columns:
+        #     print(column.name)
+        #     print(getattr(domain_scores, column.name))
 
         total_domain_score = 0
 
-        # print(domain_data)
-        # for column in domain_data.__table__.columns:
-        #     if column.name not in fields_to_ignore:
-        #         print(column.name)
-        #         print(getattr(domain_data, column.name))
-        #         print("score", )
+        for column in domain_data.__table__.columns:
+
+            column_data = getattr(domain_data, column.name)
+
+            if column_data and column.name not in fields_to_ignore and column.name in domain_scores.__table__.columns:
+                total_domain_score += getattr(domain_scores, column.name)
+
+        print(total_domain_score)
 
         # for field in self.domain_scores.items():
             # if field[0] not in fields_to_ignore and getattr(domain_data, field[0]):
