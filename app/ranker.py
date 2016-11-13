@@ -80,14 +80,22 @@ class Ranker():
 
         page_scores = PageScores.query.one()
 
-        total_page_score = 0
-
         scores = 0
         for column in page_scores.__table__.columns:
             if column.name not in fields_to_ignore:
                 scores += 1
 
-        print(scores)
+        total_page_score = 0
+        for column in page_data.__table__.columns:
+
+            column_data = getattr(page_data, column.name)
+
+            if column_data and column.name not in fields_to_ignore and column.name not in manually_calculated_fields and column.name in page_scores.__table__.columns:
+                total_page_score += getattr(page_scores, column.name)
+                print(column.name, column_data, getattr(page_scores, column.name))
+                print('\n')
+
+        print(total_page_score / scores)
 
         # for field in self.page_scores.items():
         #     if field[0] not in fields_to_ignore and getattr(page_data, field[0]):
