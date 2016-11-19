@@ -92,10 +92,10 @@ class Ranker():
 
             if column_data and column.name not in fields_to_ignore and column.name not in manually_calculated_fields and column.name in page_scores.__table__.columns:
                 total_page_score += getattr(page_scores, column.name)
+
+            if column.name in manually_calculated_fields and column.name in page_scores.__table__.columns:
                 print(column.name, column_data, getattr(page_scores, column.name))
                 print('\n')
-
-        print(total_page_score / scores)
 
         # for field in self.page_scores.items():
         #     if field[0] not in fields_to_ignore and getattr(page_data, field[0]):
@@ -105,6 +105,8 @@ class Ranker():
         # total_page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
 
         # return total_page_score / len(self.page_scores)
+
+        return total_page_score / scores
 
     def calculate_number_based_score(self, score_field, page_data_field):
 
