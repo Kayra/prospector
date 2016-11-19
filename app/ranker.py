@@ -75,18 +75,28 @@ class Ranker():
 
     def calculate_page_score(self, page_data):
 
-        fields_to_ignore = ['id', 'site_id', 'page_url', 'number_of_internal_links', 'url_character_length']
+        fields_to_ignore = ['id', 'site_id', 'page_url']
+        manually_calculated_fields = ['number_of_internal_links', 'url_character_length']
+
+        page_scores = PageScores.query.one()
 
         total_page_score = 0
 
-        for field in self.page_scores.items():
-            if field[0] not in fields_to_ignore and getattr(page_data, field[0]):
-                total_page_score += self.page_scores[field[0]]
+        scores = 0
+        for column in page_scores.__table__.columns:
+            if column.name not in fields_to_ignore:
+                scores += 1
 
-        total_page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
-        total_page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
+        print(scores)
 
-        return total_page_score / len(self.page_scores)
+        # for field in self.page_scores.items():
+        #     if field[0] not in fields_to_ignore and getattr(page_data, field[0]):
+        #         total_page_score += self.page_scores[field[0]]
+
+        # total_page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
+        # total_page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
+
+        # return total_page_score / len(self.page_scores)
 
     def calculate_number_based_score(self, score_field, page_data_field):
 
