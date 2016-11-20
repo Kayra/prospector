@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 
 class DomainScraper():
 
@@ -89,4 +91,5 @@ class PageScraper():
 
     @staticmethod
     def number_of_internal_links(page_html_soup, domain_url):
-        return len([link for link in page_html_soup.find_all('a', href=True) if domain_url in link['href']])
+        formatted_domain_url = urlparse(domain_url).netloc
+        return len([link for link in page_html_soup.find_all('a', href=True) if formatted_domain_url in link['href']])
