@@ -68,7 +68,9 @@ class Ranker():
 
             column_data = getattr(domain_data, column.name)
 
-            if column_data and column.name not in fields_to_ignore and column.name in domain_scores.__table__.columns:
+            if column_data and \
+               column.name not in fields_to_ignore and \
+               column.name in domain_scores.__table__.columns:
                 total_domain_score += getattr(domain_scores, column.name)
 
         return total_domain_score / scores
@@ -90,11 +92,15 @@ class Ranker():
 
             column_data = getattr(page_data, column.name)
 
-            if column_data and column.name not in fields_to_ignore and column.name not in manually_calculated_fields and column.name in page_scores.__table__.columns:
+            if column_data and \
+               column.name not in fields_to_ignore and \
+               column.name not in manually_calculated_fields and \
+               column.name in page_scores.__table__.columns:
                 total_page_score += getattr(page_scores, column.name)
 
             if column.name in manually_calculated_fields and column.name in page_scores.__table__.columns:
                 print(column.name, column_data, getattr(page_scores, column.name))
+                print("SCORE", self.calculate_number_based_score(getattr(page_scores, column.name), getattr(page_data, column.name)))
                 print('\n')
 
         # for field in self.page_scores.items():
