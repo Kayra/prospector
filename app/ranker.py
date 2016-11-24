@@ -7,13 +7,6 @@ class Ranker():
 
     def __init__(self):
 
-        self.domain_scores = {
-            "google_analytics": 9,
-            "bing_analytics": 8,
-            "robots": 9,
-            "sitemap": 9
-        }
-
         self.page_scores = {
             "h1s": 9,
             "h2s": 8,
