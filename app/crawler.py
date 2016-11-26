@@ -99,7 +99,10 @@ class Crawler():
 
             current_url = urlparse.urljoin(domain_url, link['href'])
 
-            if urlparse.urlparse(current_url).netloc in urlparse.urlparse(domain_url).netloc and '#' not in current_url and current_url not in urls and len(urls) < MAX_PAGES_TO_VISIT and '@' not in current_url:
+            if urlparse.urlparse(current_url).netloc in urlparse.urlparse(domain_url).netloc and \
+               '#' not in current_url and \
+               current_url not in urls and \
+               len(urls) < MAX_PAGES_TO_VISIT and '@' not in current_url:
                 urls.append(current_url)
 
         return urls
