@@ -1,9 +1,8 @@
 # Prospector
-==============================
 
-## A web application that scrapes a website and provides relevant detailed information regarding it's Search Engine Optimisation.
+### A web application that scrapes a website and provides relevant detailed information regarding it's Search Engine Optimisation.
 
-### Installation
+#### Installation
 
     virtualenv venv
     source venv/bin/activate
