@@ -82,8 +82,8 @@ class PageScores(db.Model):
 	no_index_no_follow_attribute = db.Column(db.Integer)
 	schema_tag = db.Column(db.Integer)
 	blog_location = db.Column(db.Integer)
-	number_of_internal_links = db.Column(ARRAY(db.Integer))
-	url_character_length = db.Column(ARRAY(db.Integer))
+	number_of_internal_links = db.Column(db.JSON)
+	url_character_length = db.Column(db.JSON)
 
 	def __repr__(self):
 		return '<PageScores>'

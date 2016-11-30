@@ -27,8 +27,28 @@ default_page_scores = PageScores(h1_tags=9,
                                  no_index_no_follow_attribute=6,
                                  schema_tag=7,
                                  blog_location=8,
-                                 number_of_internal_links=[5, 7, 9],
-                                 url_character_length=[7, 4, 2])
+                                 number_of_internal_links={
+                                     "high": {
+                                         19: 9
+                                     },
+                                     "medium": {
+                                         9: 7
+                                     },
+                                     "low": {
+                                         8: 5
+                                     }
+                                 },
+                                 url_character_length={
+                                     "high": {
+                                         150: 2
+                                     },
+                                     "medium": {
+                                         100: 4
+                                     },
+                                     "low": {
+                                         50: 7
+                                     }
+                                 })
 
 
 db.session.add(default_domain_scores)
