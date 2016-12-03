@@ -1,4 +1,4 @@
-from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import JSON
 
 from app import db
 
@@ -82,8 +82,8 @@ class PageScores(db.Model):
 	no_index_no_follow_attribute = db.Column(db.Integer)
 	schema_tag = db.Column(db.Integer)
 	blog_location = db.Column(db.Integer)
-	number_of_internal_links = db.Column(db.JSON)
-	url_character_length = db.Column(db.JSON)
+	number_of_internal_links = db.Column(JSON)
+	url_character_length = db.Column(JSON)
 
 	def __repr__(self):
 		return '<PageScores>'
