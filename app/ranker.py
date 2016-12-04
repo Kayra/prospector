@@ -109,9 +109,9 @@ class Ranker():
 
     def calculate_number_based_score(self, score_field, page_data_field):
 
-        field_score = score_field[0]
+        field_score = list(score_field['low'].values())[0]
 
-        for score in score_field:
+        for label, score in score_field.items():
             if page_data_field > list(score.keys())[0]:
                 field_score = list(score.values())[0]
 
