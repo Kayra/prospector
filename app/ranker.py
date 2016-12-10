@@ -107,13 +107,14 @@ class Ranker():
 
         return total_page_score / scores
 
+    # TODO: Change this mess. Everything, the data structure, how this works, all of it.
     def calculate_number_based_score(self, score_field, page_data_field):
 
         field_score = list(score_field['low'].values())[0]
 
         for label, score in score_field.items():
-            if page_data_field > list(score.keys())[0]:
-                field_score = list(score.values())[0]
+            if page_data_field > int(list(score.keys())[0]):
+                field_score = int(list(score.values())[0])
 
         return field_score
 
