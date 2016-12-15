@@ -5,46 +5,6 @@ from app.models import DomainScores, PageScores
 
 class Ranker():
 
-    def __init__(self):
-
-        self.page_scores = {
-            "h1s": 9,
-            "h2s": 8,
-            "h3s": 7,
-            "alt_tags": 6,
-            "meta_desc": 7,
-            "title": 8,
-            "view_state": 2,
-            "pagination": 8,
-            "iframe": 4,
-            "flash": 3,
-            "no_index_no_follow": 6,
-            "schema_tag": 7,
-            "blog_location": 8,
-            "number_of_internal_links": {
-                "high": {
-                    19: 9
-                },
-                "medium": {
-                    9: 7
-                },
-                "low": {
-                    8: 5
-                }
-            },
-            "url_character_length": {
-                "high": {
-                    150: 2
-                },
-                "medium": {
-                    100: 4
-                },
-                "low": {
-                    50: 7
-                }
-            }
-        }
-
     def calculate_domain_score(self, domain_data):
 
         fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages']
