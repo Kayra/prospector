@@ -94,17 +94,6 @@ class Ranker():
             if column.name in manually_calculated_fields and column.name in page_scores.__table__.columns:
                 total_page_score += self.calculate_number_based_score(getattr(page_scores, column.name), getattr(page_data, column.name))
 
-            print(total_page_score)
-
-        # for field in self.page_scores.items():
-        #     if field[0] not in fields_to_ignore and getattr(page_data, field[0]):
-        #         total_page_score += self.page_scores[field[0]]
-
-        # total_page_score += self.calculate_number_based_score(self.page_scores['number_of_internal_links'], page_data.number_of_internal_links)
-        # total_page_score += self.calculate_number_based_score(self.page_scores['url_character_length'], page_data.number_of_internal_links)
-
-        # return total_page_score / len(self.page_scores)
-
         return total_page_score / scores
 
     # TODO: Change this mess. Everything, the data structure, how this works, all of it.
