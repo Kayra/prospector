@@ -60,8 +60,8 @@
 
 				<tr>
 					<th>title</th>
-					{% if currentPage.title %}
-						<td>{{ currentPage.title }}</td>
+					{% if currentPage.title_text %}
+						<td>{{ currentPage.title_text }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -69,8 +69,8 @@
 
 				<tr>
 					<th>h1 tags</th>
-					{% if currentPage.h1s %}
-						<td>{{ currentPage.h1s }}</td>
+					{% if currentPage.h1_tags %}
+						<td>{{ currentPage.h1_tags }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -78,8 +78,8 @@
 
 				<tr>
 					<th>h2 tags</th>
-					{% if currentPage.h2s %}
-						<td>{{ currentPage.h2s }}</td>
+					{% if currentPage.h2_tags %}
+						<td>{{ currentPage.h2_tags }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -87,8 +87,8 @@
 
 				<tr>
 					<th>h3 tags</th>
-					{% if currentPage.h3s %}
-						<td>{{ currentPage.h3s }}</td>
+					{% if currentPage.h3_tags %}
+						<td>{{ currentPage.h3_tags }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -105,8 +105,8 @@
 
 				<tr>
 					<th>meta description tags</th>
-					{% if currentPage.meta_desc %}
-						<td>{{ currentPage.meta_desc }}</td>
+					{% if currentPage.meta_description %}
+						<td>{{ currentPage.meta_description }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -132,8 +132,8 @@
 
 				<tr>
 					<th>iframe</th>
-					{% if currentPage.iframe %}
-						<td>{{ currentPage.iframe }}</td>
+					{% if currentPage.iframe_content == True %}
+						<td>{{ currentPage.iframe_content }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -141,8 +141,8 @@
 
 				<tr>
 					<th>flash</th>
-					{% if currentPage.flash %}
-						<td>{{ currentPage.flash }}</td>
+					{% if currentPage.flash_attribute == True %}
+						<td>{{ currentPage.flash_attribute }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -150,8 +150,8 @@
 
 				<tr>
 					<th>no index no follow</th>
-					{% if currentPage.no_index_no_follow %}
-						<td>{{ currentPage.no_index_no_follow }}</td>
+					{% if currentPage.no_index_no_follow_attribute == True %}
+						<td>{{ currentPage.no_index_no_follow_attribute }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -177,8 +177,8 @@
 
 				<tr>
 					<th>internal links</th>
-					{% if currentPage.internal_links_no %}
-						<td>{{ currentPage.internal_links_no }}</td>
+					{% if currentPage.number_of_internal_links %}
+						<td>{{ currentPage.number_of_internal_links }}</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
