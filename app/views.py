@@ -18,14 +18,9 @@ def index():
 
         url_to_prospect = format_url(form.url.data)
 
-        domain_data = models.DomainData.query.filter_by(domain_url=url_to_prospect).first()
-
         crawler = Crawler()
 
-        if domain_data:
-            domain_data = crawler.scrape_domain_data(url_to_prospect, domain_data)
-        else:
-            domain_data = crawler.scrape_domain_data(url_to_prospect)
+        domain_data = crawler.scrape_domain_data(url_to_prospect)
 
         pages_to_scrape = crawler.spider_site(domain_data.domain_url)
         pages_data = [crawler.scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]

@@ -26,7 +26,7 @@ class Crawler():
         except urllib.error.HTTPError as error_message:
             print('{} for {}'.format(error_message, full_url))
 
-    def scrape_domain_data(self, domain_url, domain_data=None):
+    def scrape_domain_data(self, domain_url):
 
         domain_html_soup = self._get_html_soup(domain_url)
 
@@ -34,6 +34,8 @@ class Crawler():
         sitemap_xml = self._get_page_contents(domain_url, 'sitemap.xml')
         google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
         bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
+
+        domain_data = DomainData.query.filter_by(domain_url).first()
 
         if domain_data:
             domain_data.robots_txt = robots_txt
