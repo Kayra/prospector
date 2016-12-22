@@ -72,22 +72,43 @@ class Crawler():
         blog_location = PageScraper.blog_location(page_html_soup)
         number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
 
-        page_data = PageData(page_url=page_url,
-                             h1_tags=h1_tags,
-                             h2_tags=h2_tags,
-                             h3_tags=h3_tags,
-                             alt_tags=alt_tags,
-                             meta_description=meta_description,
-                             title_text=title_text,
-                             view_state=view_state,
-                             pagination=pagination,
-                             iframe_content=iframe_content,
-                             flash_attribute=flash_attribute,
-                             no_index_no_follow_attribute=no_index_no_follow_attribute,
-                             schema_tag=schema_tag,
-                             blog_location=blog_location,
-                             number_of_internal_links=number_of_internal_links,
-                             domain_site=domain)
+        page_data = PageData.query.filter_by(page_url).first()
+
+        if page_data:
+            page_data.page_url = page_url,
+            page_data.h1_tags = h1_tags,
+            page_data.h2_tags = h2_tags,
+            page_data.h3_tags = h3_tags,
+            page_data.alt_tags = alt_tags,
+            page_data.meta_description = meta_description,
+            page_data.title_text = title_text,
+            page_data.view_state = view_state,
+            page_data.pagination = pagination,
+            page_data.iframe_content = iframe_content,
+            page_data.flash_attribute = flash_attribute,
+            page_data.no_index_no_follow_attribute = no_index_no_follow_attribute,
+            page_data.schema_tag = schema_tag,
+            page_data.blog_location = blog_location,
+            page_data.number_of_internal_links = number_of_internal_links,
+            page_data.domain_site = domain
+
+        else:
+            page_data = PageData(page_url=page_url,
+                                 h1_tags=h1_tags,
+                                 h2_tags=h2_tags,
+                                 h3_tags=h3_tags,
+                                 alt_tags=alt_tags,
+                                 meta_description=meta_description,
+                                 title_text=title_text,
+                                 view_state=view_state,
+                                 pagination=pagination,
+                                 iframe_content=iframe_content,
+                                 flash_attribute=flash_attribute,
+                                 no_index_no_follow_attribute=no_index_no_follow_attribute,
+                                 schema_tag=schema_tag,
+                                 blog_location=blog_location,
+                                 number_of_internal_links=number_of_internal_links,
+                                 domain_site=domain)
 
         return page_data
 
