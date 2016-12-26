@@ -71,8 +71,8 @@ class Crawler():
         schema_tag = PageScraper.schema_tag(page_html_soup)
         blog_location = PageScraper.blog_location(page_html_soup)
         number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
-
-        page_data = PageData.query.filter_by(page_url).first()
+        print("HIT", page_url)
+        page_data = PageData.query.filter_by(page_url=page_url).first()
 
         if page_data:
             page_data.page_url = page_url,
