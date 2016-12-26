@@ -35,7 +35,7 @@ class Crawler():
         google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
         bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
 
-        domain_data = DomainData.query.filter_by(domain_url).first()
+        domain_data = DomainData.query.filter_by(domain_url=domain_url).first()
 
         if domain_data:
             domain_data.robots_txt = robots_txt
