@@ -62,7 +62,7 @@ class Ranker():
         field_score = list(score_field['low'].values())[0]
 
         for label, score in score_field.items():
-            if page_data_field > int(list(score.keys())[0]):
+            if page_data_field[0] > int(list(score.keys())[0]):
                 field_score = int(list(score.values())[0])
 
         return field_score
