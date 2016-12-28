@@ -57,57 +57,27 @@ class Crawler():
 
         page_html_soup = self._get_html_soup(page_url)
 
-        h1_tags = PageScraper.header_tags(page_html_soup, 'h1')
-        h2_tags = PageScraper.header_tags(page_html_soup, 'h2')
-        h3_tags = PageScraper.header_tags(page_html_soup, 'h3')
-        alt_tags = PageScraper.alt_tags(page_html_soup)
-        meta_description = PageScraper.meta_description(page_html_soup)
-        title_text = PageScraper.title_text(page_html_soup)
-        view_state = PageScraper.view_state(page_html_soup)
-        pagination = PageScraper.pagination(page_html_soup)
-        iframe_content = PageScraper.iframe_content(page_html_soup)
-        flash_attribute = PageScraper.flash_attribute(page_html_soup)
-        no_index_no_follow_attribute = PageScraper.no_index_no_follow_attribute(page_html_soup)
-        schema_tag = PageScraper.schema_tag(page_html_soup)
-        blog_location = PageScraper.blog_location(page_html_soup)
-        number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
-
         page_data = PageData.query.filter_by(page_url=page_url).first()
 
-        if page_data:
-            page_data.h1_tags = h1_tags,
-            page_data.h2_tags = h2_tags,
-            page_data.h3_tags = h3_tags,
-            page_data.alt_tags = alt_tags,
-            page_data.meta_description = meta_description,
-            page_data.title_text = title_text,
-            page_data.view_state = view_state,
-            page_data.pagination = pagination,
-            page_data.iframe_content = iframe_content,
-            page_data.flash_attribute = flash_attribute,
-            page_data.no_index_no_follow_attribute = no_index_no_follow_attribute,
-            page_data.schema_tag = schema_tag,
-            page_data.blog_location = blog_location,
-            page_data.number_of_internal_links = number_of_internal_links,
+        if not page_data:
+            page_data = PageData()
+            page_data.page_url = page_url
             page_data.domain_site = domain
 
-        else:
-            page_data = PageData(page_url=page_url,
-                                 h1_tags=h1_tags,
-                                 h2_tags=h2_tags,
-                                 h3_tags=h3_tags,
-                                 alt_tags=alt_tags,
-                                 meta_description=meta_description,
-                                 title_text=title_text,
-                                 view_state=view_state,
-                                 pagination=pagination,
-                                 iframe_content=iframe_content,
-                                 flash_attribute=flash_attribute,
-                                 no_index_no_follow_attribute=no_index_no_follow_attribute,
-                                 schema_tag=schema_tag,
-                                 blog_location=blog_location,
-                                 number_of_internal_links=number_of_internal_links,
-                                 domain_site=domain)
+        page_data.h1_tags = PageScraper.header_tags(page_html_soup, 'h1')
+        page_data.h2_tags = PageScraper.header_tags(page_html_soup, 'h2')
+        page_data.h3_tags = PageScraper.header_tags(page_html_soup, 'h3')
+        page_data.alt_tags = PageScraper.alt_tags(page_html_soup)
+        page_data.meta_description = PageScraper.meta_description(page_html_soup)
+        page_data.title_text = PageScraper.title_text(page_html_soup)
+        page_data.view_state = PageScraper.view_state(page_html_soup)
+        page_data.pagination = PageScraper.pagination(page_html_soup)
+        page_data.iframe_content = PageScraper.iframe_content(page_html_soup)
+        page_data.flash_attribute = PageScraper.flash_attribute(page_html_soup)
+        page_data.no_index_no_follow_attribute = PageScraper.no_index_no_follow_attribute(page_html_soup)
+        page_data.schema_tag = PageScraper.schema_tag(page_html_soup)
+        page_data.blog_location = PageScraper.blog_location(page_html_soup)
+        page_data.number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
 
         return page_data
 
