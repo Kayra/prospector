@@ -37,7 +37,7 @@ class PageScraper():
 
     @staticmethod
     def header_tags(page_html_soup, header_tag_to_scrape):
-        return "#".join([header_tag.string for header_tag in page_html_soup.find_all(header_tag_to_scrape)])
+        return [header_tag.string for header_tag in page_html_soup.find_all(header_tag_to_scrape)]
 
     @staticmethod
     def alt_tags(page_html_soup):

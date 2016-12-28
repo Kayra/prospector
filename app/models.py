@@ -1,4 +1,4 @@
-from sqlalchemy.dialects.postgresql import JSON
+from sqlalchemy.dialects.postgresql import JSON, ARRAY
 
 from app import db
 
@@ -29,7 +29,7 @@ class PageData(db.Model):
 
 	id = db.Column(db.Integer, primary_key=True)
 	page_url = db.Column(db.String(500), index=True)
-	h1_tags = db.Column(db.String(1000), index=True)
+	h1_tags = db.Column(ARRAY(db.String(1000)))
 	h2_tags = db.Column(db.String(1000), index=True)
 	h3_tags = db.Column(db.String(1000), index=True)
 	alt_tags = db.Column(db.String(1000), index=True, default=False)
