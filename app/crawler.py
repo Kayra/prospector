@@ -75,7 +75,6 @@ class Crawler():
         page_data = PageData.query.filter_by(page_url=page_url).first()
 
         if page_data:
-            page_data.page_url = page_url,
             page_data.h1_tags = h1_tags,
             page_data.h2_tags = h2_tags,
             page_data.h3_tags = h3_tags,

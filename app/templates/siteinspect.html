@@ -70,7 +70,11 @@
 				<tr>
 					<th>h1 tags</th>
 					{% if currentPage.h1_tags %}
-						<td>{{ currentPage.h1_tags }}</td>
+						<td>
+						{% for h1_tag in currentPage.h1_tags %}
+							{{ h1_tag }} </br>
+						{% endfor %}
+						</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -79,7 +83,11 @@
 				<tr>
 					<th>h2 tags</th>
 					{% if currentPage.h2_tags %}
-						<td>{{ currentPage.h2_tags }}</td>
+						<td>
+						{% for h2_tag in currentPage.h2_tags %}
+							{{ h2_tag }} </br>
+						{% endfor %}
+						</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
@@ -88,7 +96,11 @@
 				<tr>
 					<th>h3 tags</th>
 					{% if currentPage.h3_tags %}
-						<td>{{ currentPage.h3_tags }}</td>
+						<td>
+						{% for h3_tag in currentPage.h3_tags %}
+							{{ h3_tag }} </br>
+						{% endfor %}
+						</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
