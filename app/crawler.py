@@ -37,19 +37,14 @@ class Crawler():
 
         domain_data = DomainData.query.filter_by(domain_url=domain_url).first()
 
-        if domain_data:
-            domain_data.robots_txt = robots_txt
-            domain_data.sitemap_xml = sitemap_xml
-            domain_data.google_analytics = google_analytics
-            domain_data.bing_analytics = bing_analytics
-
-        else:
+        if not domain_data:
             domain_data = DomainData(domain_url=domain_url,
-                                     site_name=extract_site_name(domain_url),
-                                     robots_txt=robots_txt,
-                                     sitemap_xml=sitemap_xml,
-                                     google_analytics=google_analytics,
-                                     bing_analytics=bing_analytics)
+                                     site_name=extract_site_name(domain_url))
+
+        domain_data.robots_txt = robots_txt
+        domain_data.sitemap_xml = sitemap_xml
+        domain_data.google_analytics = google_analytics
+        domain_data.bing_analytics = bing_analytics
 
         return domain_data
 
