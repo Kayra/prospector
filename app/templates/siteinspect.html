@@ -122,7 +122,11 @@
 				<tr>
 					<th>meta description tags</th>
 					{% if currentPage.meta_description %}
-						<td>{{ currentPage.meta_description }}</td>
+						<td>
+						{% for meta_desc in currentPage.meta_description %}
+							{{ meta_desc }} </br>
+						{% endfor %}
+						</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
