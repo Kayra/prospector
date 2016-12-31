@@ -32,7 +32,7 @@ class PageData(db.Model):
 	h1_tags = db.Column(ARRAY(db.String(1000)))
 	h2_tags = db.Column(ARRAY(db.String(1000)))
 	h3_tags = db.Column(ARRAY(db.String(1000)))
-	alt_tags = db.Column(db.String(1000), index=True, default=False)
+	alt_tags = db.Column(ARRAY(db.String(1000)))
 	meta_description = db.Column(db.String(1000), index=True)
 	title_text = db.Column(db.String(1000), index=True)
 	view_state = db.Column(db.String(10000), index=True)

@@ -109,7 +109,11 @@
 				<tr>
 					<th>alt tags</th>
 					{% if currentPage.alt_tags %}
-						<td>{{ currentPage.alt_tags }}</td>
+						<td>
+						{% for alt_tag in currentPage.alt_tags %}
+							{{ alt_tag }} </br>
+						{% endfor %}
+						</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}

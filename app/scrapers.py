@@ -41,7 +41,7 @@ class PageScraper():
 
     @staticmethod
     def alt_tags(page_html_soup):
-        return "#".join([img['alt'] for img in page_html_soup.find_all('img') if 'alt' in img])
+        return [img['alt'] for img in page_html_soup.find_all('img') if 'alt' in img]
 
     @staticmethod
     @no_tag_exception_handler
