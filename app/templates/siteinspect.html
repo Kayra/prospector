@@ -193,7 +193,11 @@
 				<tr>
 					<th>blog location</th>
 					{% if currentPage.blog_location %}
-						<td>{{ currentPage.blog_location }}</td>
+						<td>
+						{% for blog_location in currentPage.blog_location %}
+							{{ blog_location }} </br>
+						{% endfor %}
+						</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}

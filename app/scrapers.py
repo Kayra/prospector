@@ -87,7 +87,7 @@ class PageScraper():
     @staticmethod
     @no_tag_exception_handler
     def blog_location(page_html_soup):
-        return "#".join([link_tag['href'] for link_tag in page_html_soup.find_all('a', href=True) if ('blog' in str(link_tag)) or ('blog' in link_tag['href'])])
+        return [link_tag['href'] for link_tag in page_html_soup.find_all('a', href=True) if ('blog' in str(link_tag)) or ('blog' in link_tag['href'])]
 
     @staticmethod
     def number_of_internal_links(page_html_soup, domain_url):
