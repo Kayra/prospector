@@ -180,7 +180,11 @@
 				<tr>
 					<th>schema tag</th>
 					{% if currentPage.schema_tag %}
-						<td>{{ currentPage.schema_tag }}</td>
+						<td>
+						{% for schema_tag in currentPage.schema_tag %}
+							{{ schema_tag }} </br>
+						{% endfor %}
+						</td>
 					{% else %}
 						<td class="gray">not present</td
 					{% endif %}
