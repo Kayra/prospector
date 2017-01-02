@@ -121,10 +121,10 @@
 
 				<tr>
 					<th>meta description tags</th>
-					{% if currentPage.meta_description %}
+					{% if currentPage.meta_descriptions %}
 						<td>
-						{% for meta_desc in currentPage.meta_description %}
-							{{ meta_desc }} </br>
+						{% for meta_description in currentPage.meta_descriptions %}
+							{{ meta_description }} </br>
 						{% endfor %}
 						</td>
 					{% else %}

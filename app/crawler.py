@@ -63,7 +63,7 @@ class Crawler():
         page_data.h2_tags = PageScraper.header_tags(page_html_soup, 'h2')
         page_data.h3_tags = PageScraper.header_tags(page_html_soup, 'h3')
         page_data.alt_tags = PageScraper.alt_tags(page_html_soup)
-        page_data.meta_description = PageScraper.meta_description(page_html_soup)
+        page_data.meta_descriptions = PageScraper.meta_descriptions(page_html_soup)
         page_data.title_text = PageScraper.title_text(page_html_soup)
         page_data.view_state = PageScraper.view_state(page_html_soup)
         page_data.pagination = PageScraper.pagination(page_html_soup)

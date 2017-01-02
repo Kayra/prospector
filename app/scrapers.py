@@ -45,7 +45,7 @@ class PageScraper():
 
     @staticmethod
     @no_tag_exception_handler
-    def meta_description(page_html_soup):
+    def meta_descriptions(page_html_soup):
         return [meta_desc['content'] for meta_desc in page_html_soup.find_all('meta') if ('description' in meta_desc['name'].lower()) and (len(meta_desc['content']) < 1000)]
 
     @staticmethod
