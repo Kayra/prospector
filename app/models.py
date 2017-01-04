@@ -40,7 +40,7 @@ class PageData(db.Model):
 	iframe_content = db.Column(db.String(1000), default=False)
 	flash_attribute = db.Column(db.String(1000), default=False)
 	no_index_no_follow_attribute = db.Column(db.String(1000), default=False)
-	schema_tag = db.Column(ARRAY(db.String(1000)))
+	schema_tags = db.Column(ARRAY(db.String(1000)))
 	blog_location = db.Column(ARRAY(db.String(1000)))
 	number_of_internal_links = db.Column(db.Integer)
 
@@ -80,7 +80,7 @@ class PageScores(db.Model):
 	iframe_content = db.Column(db.Integer)
 	flash_attribute = db.Column(db.Integer)
 	no_index_no_follow_attribute = db.Column(db.Integer)
-	schema_tag = db.Column(db.Integer)
+	schema_tags = db.Column(db.Integer)
 	blog_location = db.Column(db.Integer)
 	number_of_internal_links = db.Column(JSON)
 	url_character_length = db.Column(JSON)

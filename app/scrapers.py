@@ -81,7 +81,7 @@ class PageScraper():
         return str(no_index_no_follow[0]) if no_index_no_follow else None
 
     @staticmethod
-    def schema_tag(page_html_soup):
+    def schema_tags(page_html_soup):
         return [schema_tag for schema_tag in page_html_soup.find_all('div') if schema_tag.get('itemtype')]
 
     @staticmethod
