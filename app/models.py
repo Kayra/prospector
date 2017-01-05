@@ -41,7 +41,7 @@ class PageData(db.Model):
 	flash_attribute = db.Column(db.String(1000), default=False)
 	no_index_no_follow_attribute = db.Column(db.String(1000), default=False)
 	schema_tags = db.Column(ARRAY(db.String(1000)))
-	blog_location = db.Column(ARRAY(db.String(1000)))
+	blog_locations = db.Column(ARRAY(db.String(1000)))
 	number_of_internal_links = db.Column(db.Integer)
 
 	site_id = db.Column(db.Integer, db.ForeignKey('domain_data.id'))
@@ -81,7 +81,7 @@ class PageScores(db.Model):
 	flash_attribute = db.Column(db.Integer)
 	no_index_no_follow_attribute = db.Column(db.Integer)
 	schema_tags = db.Column(db.Integer)
-	blog_location = db.Column(db.Integer)
+	blog_locations = db.Column(db.Integer)
 	number_of_internal_links = db.Column(JSON)
 	url_character_length = db.Column(JSON)
 

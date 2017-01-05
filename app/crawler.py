@@ -71,7 +71,7 @@ class Crawler():
         page_data.flash_attribute = PageScraper.flash_attribute(page_html_soup)
         page_data.no_index_no_follow_attribute = PageScraper.no_index_no_follow_attribute(page_html_soup)
         page_data.schema_tags = PageScraper.schema_tags(page_html_soup)
-        page_data.blog_location = PageScraper.blog_location(page_html_soup)
+        page_data.blog_locations = PageScraper.blog_locations(page_html_soup)
         page_data.number_of_internal_links = PageScraper.number_of_internal_links(page_html_soup, page_url)
 
         return page_data
