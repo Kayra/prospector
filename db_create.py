@@ -25,7 +25,7 @@ default_page_scores = PageScores(h1_tags=9,
                                  iframe_content=4,
                                  flash_attribute=3,
                                  no_index_no_follow_attribute=6,
-                                 schema_tag=7,
+                                 schema_tags=7,
                                  blog_locations=8,
                                  number_of_internal_links={
                                      "high": {
@@ -47,7 +47,7 @@ default_page_scores = PageScores(h1_tags=9,
                                      },
                                      "low": {
                                          50: 7
-                                     }
+                                     },
                                  })
 
 
