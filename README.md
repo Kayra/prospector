@@ -4,6 +4,8 @@
 
 #### Installation
 
+Ensire you have virtualenv and postgres installed on your system.
+
     virtualenv venv
     source venv/bin/activate
     pip install -r requirements.txt
