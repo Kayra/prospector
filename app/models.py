@@ -15,7 +15,7 @@ class DomainData(db.Model):
 	robots_txt = db.Column(db.String(50000))
 	sitemap_xml = db.Column(db.String(50000))
 	ranking = db.Column(db.Integer, default=0)
-	level = db.Column(db.String(3))
+	level = db.Column(db.String(6))
 
 	pages = db.relationship('PageData', backref='domain_site', lazy='dynamic')
 
