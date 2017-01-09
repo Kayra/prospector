@@ -92,7 +92,9 @@ class Ranker():
     def rank_site(self, domain_data):
 
         domain_score = self.calculate_domain_score(domain_data)
-
         average_page_score = sum([self.calculate_page_score(page) for page in domain_data.pages]) / domain_data.pages.count()
 
-        return round((average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE))
+        overall_score = (average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE)
+        formatted_score = round(overall_score * 10)
+
+        return formatted_score
