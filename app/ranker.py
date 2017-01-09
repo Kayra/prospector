@@ -57,6 +57,12 @@ class Ranker():
                column.name in page_scores.__table__.columns:
                 total_page_score += getattr(page_scores, column.name)
 
+            elif not column_data and \
+                 column.name not in fields_to_ignore and \
+                 column.name not in manually_calculated_fields and \
+                 column.name in page_scores.__table__.columns:
+                    total_page_score += (10 - getattr(page_scores, column.name))
+
             if column.name in manually_calculated_fields and column.name in page_scores.__table__.columns:
                 total_page_score += self.calculate_number_based_score(getattr(page_scores, column.name), getattr(page_data, column.name))
 
