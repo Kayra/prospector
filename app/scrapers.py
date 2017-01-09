@@ -82,7 +82,7 @@ class PageScraper():
 
     @staticmethod
     def schema_tags(page_html_soup):
-        return [schema_tag for schema_tag in page_html_soup.find_all('div') if schema_tag.get('itemtype')]
+        return [schema_tag.text for schema_tag in page_html_soup.find_all('div') if schema_tag.get('itemtype')]
 
     @staticmethod
     @no_tag_exception_handler
