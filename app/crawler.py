@@ -21,7 +21,7 @@ class Crawler():
 
         try:
             raw_data = urllib.request.urlopen(full_url).read()
-            if raw_data.isinstance(str) and len(raw_data) < 500000:
+            if isinstance(raw_data, str) and len(raw_data) < 500000:
                 return raw_data.decode('utf-8')
         except urllib.error.HTTPError as error_message:
             print('{} for {}'.format(error_message, full_url))
