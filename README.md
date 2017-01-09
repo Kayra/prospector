@@ -4,7 +4,7 @@
 
 #### Installation
 
-Ensire you have virtualenv and postgres installed on your system.
+Ensure you have virtualenv and postgres installed on your system.
 
     virtualenv venv
     source venv/bin/activate

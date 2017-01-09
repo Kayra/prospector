@@ -8,12 +8,13 @@ class Ranker():
     def calculate_domain_score(self, domain_data):
 
         fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages']
+        mutually_exclusive_scores = ['bing_analytics']
 
         domain_scores = DomainScores.query.one()
 
         scores = 0
         for column in domain_scores.__table__.columns:
-            if column.name not in fields_to_ignore:
+            if column.name not in fields_to_ignore and column.name not in mutually_exclusive_scores:
                 scores += 1
 
         total_domain_score = 0
@@ -25,6 +26,11 @@ class Ranker():
                column.name not in fields_to_ignore and \
                column.name in domain_scores.__table__.columns:
                 total_domain_score += getattr(domain_scores, column.name)
+
+            elif not column_data and \
+                 column.name not in fields_to_ignore and \
+                 column.name in domain_scores.__table__.columns:
+                    total_domain_score += (10 - getattr(domain_scores, column.name))
 
         return total_domain_score / scores
 
