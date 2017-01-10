@@ -40,7 +40,7 @@ class PageData(db.Model):
 	iframe_content = db.Column(db.String(1000), default=False)
 	flash_attribute = db.Column(db.String(1000), default=False)
 	no_index_no_follow_attribute = db.Column(db.String(1000), default=False)
-	schema_tags = db.Column(ARRAY(db.String(1000)))
+	schema_tags = db.Column(ARRAY(db.String(10000)))
 	blog_locations = db.Column(ARRAY(db.String(1000)))
 	number_of_internal_links = db.Column(db.Integer)
 
