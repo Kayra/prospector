@@ -4,7 +4,7 @@
 
 #### Installation
 
-Ensure you have virtualenv and postgres installed on your system. Also create a database with the [correct credentials]("https://github.com/Kayra/prospector/blob/master/config.py#L4").
+Ensure you have virtualenv and postgres installed on your system. Also create a database with the [correct credentials](https://github.com/Kayra/prospector/blob/master/config.py#L4).
 
     virtualenv venv
     source venv/bin/activate
