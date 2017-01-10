@@ -13,8 +13,9 @@ Ensure you have virtualenv and postgres installed on your system.
     python run.py
 
 #### Todo
-Make the spidering more robust
-Add threading for spidering
-Add users
-Add dynamic scoring for users
-Set up a hot deployment system
+
+* Make the spidering more robust
+* Add threading for spidering
+* Add users
+* Add dynamic scoring for users
+* Set up a hot deployment system
