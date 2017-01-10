@@ -14,6 +14,7 @@ Ensure you have virtualenv and postgres installed on your system.
 
 #### Todo
 
+* Display the data better on site inspect
 * Make the spidering more robust
 * Add threading for spidering
 * Add users
