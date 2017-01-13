@@ -17,6 +17,7 @@ Ensure you have virtualenv and postgres installed on your system. Also create a 
 * Display the data better on site inspect
 * Make the spidering more robust
 * Add threading for spidering
+* Add functionality to change scoring in the UI
 * Add users
 * Add dynamic scoring for users
 * Set up a hot deployment system
