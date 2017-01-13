@@ -9,7 +9,7 @@ Ensure you have virtualenv and postgres installed on your system. Also create a 
     virtualenv venv
     source venv/bin/activate
     pip install -r requirements.txt
-    python manage db upgrade
+    python manage db_create
     python manage runserver
 
 #### Todo
