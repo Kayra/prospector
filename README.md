@@ -23,6 +23,8 @@ Ensure you have virtualenv and postgres installed on your system. Also create a 
 * Add dynamic scoring for users
 * Set up a hot deployment system
 
+#### The site is currently [live](http://prospector.kayra.co.uk/) but may not reflect the latest code.
+
 ![alt text](http://kayra.co.uk/resources/images/prospector.png "Front page")
 ![alt text](http://kayra.co.uk/resources/images/prospector_list.png "Site list page")
 ![alt text](http://kayra.co.uk/resources/images/prospector_detail.png "Site inspect page")
