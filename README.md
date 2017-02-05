@@ -21,7 +21,7 @@ Ensure you have virtualenv and postgres installed on your system. Also create a 
 * Add functionality to change scoring in the UI
 * Add users
 * Add dynamic scoring for users
-* Set up a hot deployment system
+* Set up continuous integration
 
 #### The site is currently [live](http://prospector.kayra.co.uk/) but may not reflect the latest code.
 
