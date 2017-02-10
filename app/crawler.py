@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 
-import urllib.parse as urlparse
-import urllib
+from urllib import parse, request, error,
 
 from app.models import DomainData, PageData
 from app.scrapers import DomainScraper, PageScraper
@@ -12,18 +11,18 @@ from config import MAX_PAGES_TO_VISIT
 class Crawler():
 
     def _get_html_soup(self, url):
-        raw_html = urllib.request.urlopen(url).read()
+        raw_html = request.urlopen(url).read()
         return BeautifulSoup(raw_html, "html.parser")
 
     def _get_page_contents(self, domain_url, url_suffix):
 
-        full_url = urlparse.urljoin(domain_url, url_suffix)
+        full_url = parse.urljoin(domain_url, url_suffix)
 
         try:
-            raw_data = urllib.request.urlopen(full_url).read()
+            raw_data = request.urlopen(full_url).read()
             if isinstance(raw_data, str) and len(raw_data) < 500000:
                 return raw_data.decode('utf-8')
-        except urllib.error.HTTPError as error_message:
+        except error.HTTPError as error_message:
             print('{} for {}'.format(error_message, full_url))
 
     def scrape_domain_data(self, domain_url):
