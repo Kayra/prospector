@@ -2,7 +2,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 from app import app, db
-from app.models import DomainScores, PageScores
+from app.prospector.models import DomainScores, PageScores
 
 migrate = Migrate(app, db)
 

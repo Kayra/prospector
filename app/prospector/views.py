@@ -1,12 +1,16 @@
-from flask import render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for
 
 from config import SITES_PER_PAGE
 
-from app import app, db, models
-from app.forms import UrlEntry
-from app.crawler import Crawler
-from app.ranker import Ranker
-from app.utils import format_url
+from app import app, db
+from app.prospector import models
+from app.prospector.forms import UrlEntry
+from app.prospector.crawler import Crawler
+from app.prospector.ranker import Ranker
+from app.prospector.utils import format_url
+
+
+prospector_blueprint = Blueprint('prospector')
 
 
 @app.route('/', methods=['GET', 'POST'])

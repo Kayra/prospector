@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
 
-from urllib import parse, request, error,
+from urllib import parse, request, error
 
-from app.models import DomainData, PageData
-from app.scrapers import DomainScraper, PageScraper
-from app.utils import extract_site_name
+from app.prospector.models import DomainData, PageData
+from app.prospector.scrapers import DomainScraper, PageScraper
+from app.prospector.utils import extract_site_name
 from config import MAX_PAGES_TO_VISIT
 
 
