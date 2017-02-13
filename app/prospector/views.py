@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, redirect, url_for
 from config import SITES_PER_PAGE
 
 from app import app, db
-from app.prospector import models
+from app.prospector.models import DomainData, PageData
 from app.prospector.forms import UrlEntry
 from app.prospector.crawler import Crawler
 from app.prospector.ranker import Ranker
@@ -44,7 +44,7 @@ def index():
 
 @app.route('/sites')
 def sitelist():
-    sites = db.session.query(models.DomainData).limit(SITES_PER_PAGE)
+    sites = db.session.query(DomainData).limit(SITES_PER_PAGE)
     return render_template("sitelist.html", sites=sites)
 
 
@@ -55,8 +55,8 @@ def siteinspect(site_name, page=1):
     if site_name is None:
         return redirect(url_for('index'))
 
-    site = db.session.query(models.DomainData).filter_by(site_name=site_name).first()
+    site = db.session.query(DomainData).filter_by(site_name=site_name).first()
 
-    currentPages = models.PageData.query.filter_by(site_id=site.id).paginate(page, 1, False)
+    currentPages = PageData.query.filter_by(site_id=site.id).paginate(page, 1, False)
 
     return render_template("siteinspect.html", site=site, currentPages=currentPages)
