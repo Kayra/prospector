@@ -1,9 +1,9 @@
-from flask_user import login_required, UserManager, UserMixin, SQLAlchemyAdapter
+from flask_user import UserMixin
 
 from app import db
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
 
     __tablename__ = "users"
 
