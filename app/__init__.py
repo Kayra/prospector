@@ -13,4 +13,7 @@ user_manager = UserManager(db, app)
 from app.prospector.views import prospector_blueprint
 app.register_blueprint(prospector_blueprint)
 
+from app.users.views import users_blueprint
+app.register_blueprint(users_blueprint)
+
 from app.prospector import views, models
