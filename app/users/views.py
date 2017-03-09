@@ -1,5 +1,7 @@
-from flask import Blueprint, app
+from flask import Blueprint
 from flask_user import login_required
+
+from app import app
 
 users_blueprint = Blueprint('users', __name__)
 
