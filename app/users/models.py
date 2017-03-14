@@ -2,7 +2,8 @@ from flask_user import UserMixin
 
 from app import db
 
-class User(db.Model, UserMixin):
+
+class User(UserMixin, db.Model):
 
     __tablename__ = "users"
 
