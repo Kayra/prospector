@@ -32,3 +32,7 @@ class Configuration:
 
     # Spidering limit
     MAX_PAGES_TO_VISIT = 60
+
+    @staticmethod
+    def init_app(app):
+        pass
