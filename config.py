@@ -1,6 +1,6 @@
 import os
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+BASE_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 
 
 class Configuration:
@@ -28,4 +28,4 @@ class DevelopmentConfigruation(Configuration):
     DEBUG = True
 
     SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DATABASE_URL") or "postgresql://prospector:password@localhost:5432/prospector"
-    SQLALCHEMY_MIGRATE_REPO = os.environ.get("DEV_DB_REPOSITORY_URL") or os.path.join(basedir, 'db_repository')
+    SQLALCHEMY_MIGRATE_REPO = os.environ.get("DEV_DB_REPOSITORY_URL") or os.path.join(BASE_DIRECTORY, 'db_repository')
