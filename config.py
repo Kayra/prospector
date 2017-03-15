@@ -29,3 +29,9 @@ class DevelopmentConfigruation(Configuration):
 
     SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DATABASE_URL") or "postgresql://prospector:password@localhost:5432/prospector"
     SQLALCHEMY_MIGRATE_REPO = os.environ.get("DEV_DB_REPOSITORY_URL") or os.path.join(BASE_DIRECTORY, 'db_repository')
+
+
+class TestingConfiguration(Configuration):
+
+    TESTING = True
+
