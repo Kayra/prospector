@@ -36,3 +36,10 @@ class Configuration:
     @staticmethod
     def init_app(app):
         pass
+
+
+class DevelopmentConfigruation(Configuration):
+
+    DEBUG = True
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DEV_DATABASE_URL") or "postgresql://prospector:password@localhost:5432/prospector"
