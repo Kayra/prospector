@@ -1,22 +1,26 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_user import UserManager, SQLAlchemyAdapter
 from flask_mail import Mail
 
-app = Flask(__name__)
-app.config.from_object('config')
+from config import configurations
 
-db = SQLAlchemy(app)
-mail = Mail(app)
+sqlalchemy = SQLAlchemy()
+mail = Mail()
 
-from app.prospector.views import prospector_blueprint
-app.register_blueprint(prospector_blueprint)
 
-from app.users.views import users_blueprint
-app.register_blueprint(users_blueprint)
+def create_app(configuration_name):
 
-from app.users.models import User
-db_adapter = SQLAlchemyAdapter(db, User)
-user_manager = UserManager(db, app)
+    app = Flask(__name__)
+    app.config.from_object(configurations[configuration_name])
+    configurations[configuration_name].init_app(app)
 
-from app.prospector import views, models
+    sqlalchemy.init_app(app)
+    mail.init_app(app)
+
+    from app.prospector.views import prospector_blueprint
+    app.register_blueprint(prospector_blueprint)
+
+    from app.users.views import users_blueprint
+    app.register_blueprint(users_blueprint)
+
+    return app
