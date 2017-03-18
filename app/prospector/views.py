@@ -10,7 +10,7 @@ from app.prospector.ranker import Ranker
 from app.prospector.utils import format_url
 
 
-prospector_blueprint = Blueprint('prospector')
+prospector_blueprint = Blueprint('prospector', __name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
