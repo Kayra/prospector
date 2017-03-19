@@ -38,5 +38,7 @@ class TestingConfiguration(Configuration):
 
 configruations = {
     "development": DevelopmentConfigruation,
-    "testing": TestingConfiguration
+    "testing": TestingConfiguration,
+
+    "default": DevelopmentConfigruation
 }
