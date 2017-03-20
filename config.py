@@ -36,7 +36,7 @@ class TestingConfiguration(Configuration):
     TESTING = True
 
 
-configruations = {
+configurations = {
     "development": DevelopmentConfigruation,
     "testing": TestingConfiguration,
 
