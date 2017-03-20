@@ -4,7 +4,7 @@ from flask_mail import Mail
 
 from config import configurations
 
-sqlalchemy = SQLAlchemy()
+db = SQLAlchemy()
 mail = Mail()
 
 
@@ -14,7 +14,7 @@ def create_app(configuration_name):
     app.config.from_object(configurations[configuration_name])
     configurations[configuration_name].init_app(app)
 
-    sqlalchemy.init_app(app)
+    db.init_app(app)
     mail.init_app(app)
 
     from app.prospector.views import prospector_blueprint
