@@ -1,9 +1,6 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import current_app, Blueprint, render_template, redirect, url_for
 
-from config import SITES_PER_PAGE
-
-from app import app, db
-from app.prospector.models import DomainData, PageData
+from app.prospector.models import DomainData, PageData, db
 from app.prospector.forms import UrlEntry
 from app.prospector.crawler import Crawler
 from app.prospector.ranker import Ranker
@@ -13,7 +10,7 @@ from app.prospector.utils import format_url
 prospector_blueprint = Blueprint('prospector', __name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@prospector_blueprint.route('/', methods=['GET', 'POST'])
 def index():
 
     form = UrlEntry()
@@ -42,14 +39,15 @@ def index():
     return render_template("index.html", form=form)
 
 
-@app.route('/sites')
+@prospector_blueprint.route('/sites')
 def sitelist():
-    sites = db.session.query(DomainData).limit(SITES_PER_PAGE)
+    sites_per_page = current_app.config["SITES_PER_PAGE"]
+    sites = db.session.query(DomainData).limit(sites_per_page)
     return render_template("sitelist.html", sites=sites)
 
 
-@app.route('/site/<site_name>')
-@app.route('/site/<site_name>/<int:page>')
+@prospector_blueprint.route('/site/<site_name>')
+@prospector_blueprint.route('/site/<site_name>/<int:page>')
 def siteinspect(site_name, page=1):
 
     if site_name is None:
