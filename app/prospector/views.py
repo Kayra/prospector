@@ -9,6 +9,8 @@ from app.prospector.utils import format_url
 
 prospector_blueprint = Blueprint('prospector', __name__)
 
+SITES_PER_PAGE = current_app.config["SITES_PER_PAGE"]
+
 
 @prospector_blueprint.route('/', methods=['GET', 'POST'])
 def index():
@@ -41,8 +43,7 @@ def index():
 
 @prospector_blueprint.route('/sites')
 def sitelist():
-    sites_per_page = current_app.config["SITES_PER_PAGE"]
-    sites = db.session.query(DomainData).limit(sites_per_page)
+    sites = db.session.query(DomainData).limit(SITES_PER_PAGE)
     return render_template("sitelist.html", sites=sites)
 
 

@@ -1,11 +1,16 @@
-from bs4 import BeautifulSoup
+from flask import current_app
 
+from bs4 import BeautifulSoup
 from urllib import parse, request, error
 
 from app.prospector.models import DomainData, PageData
 from app.prospector.scrapers import DomainScraper, PageScraper
 from app.prospector.utils import extract_site_name
-from config import MAX_PAGES_TO_VISIT
+
+# with current_app.app_context():
+#     MAX_PAGES_TO_VISIT = current_app.config["MAX_PAGES_TO_VISIT"]
+
+MAX_PAGES_TO_VISIT = 60
 
 
 class Crawler():
