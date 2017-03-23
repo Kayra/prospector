@@ -1,6 +1,6 @@
-from config import DOMAIN_IMPORTANCE
-
 from app.prospector.models import DomainScores, PageScores
+
+DOMAIN_IMPORTANCE = 1.3
 
 
 class Ranker():
