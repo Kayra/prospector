@@ -9,7 +9,8 @@ from app.prospector.utils import format_url
 
 prospector_blueprint = Blueprint('prospector', __name__)
 
-SITES_PER_PAGE = current_app.config["SITES_PER_PAGE"]
+# SITES_PER_PAGE = current_app.config["SITES_PER_PAGE"]
+SITES_PER_PAGE = 1
 
 
 @prospector_blueprint.route('/', methods=['GET', 'POST'])
