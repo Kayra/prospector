@@ -37,7 +37,7 @@ def index():
         db.session.add_all(pages_data)
         db.session.commit()
 
-        return redirect(url_for('siteinspect', site_name=domain_data.site_name))
+        return redirect(url_for('prospector.siteinspect', site_name=domain_data.site_name))
 
     return render_template("index.html", form=form)
 
