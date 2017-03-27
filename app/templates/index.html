@@ -13,13 +13,13 @@
 
 	      <form action="" method="post" name="url">
               {{ form.csrf_token }}
-		      {{form.url(size=150, class="entryfield", placeholder="http://www.website.co.uk")}}
+		      {{ form.url(size=150, class="entryfield", placeholder="http://www.website.co.uk") }}
 
 		      	<input type="submit" value="Prospect" class="btn btn-red" id="crawl">
 	      </form>
 
 	      <div id="indexbuttons">
-	      	<a class="indexbtn" href="{{ url_for('sitelist') }}">View previously analysed sites</a>
+	      	<a class="indexbtn" href="{{ url_for('prospector.sitelist') }}">View previously analysed sites</a>
 	      </div>
 
 	      {% for error in form.errors.url %}
