@@ -4,7 +4,7 @@
 
 	<div class="main">
 
-		<a class="sitebtn {{ site.level }}" href="{{ url_for('sitelist') }}"> < {{ site.ranking }}% {{ site.domain_url }}</a>
+		<a class="sitebtn {{ site.level }}" href="{{ url_for('prospector.sitelist') }}"> < {{ site.ranking }}% {{ site.domain_url }}</a>
 
 		<div id="domain">
 
@@ -219,14 +219,14 @@
 
 	<!-- 	NAVIGATION BUTTONS   -->
 	{% if currentPages.has_prev %}
-		<a class="nav" style="float:left;" href="{{ url_for('siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
+		<a class="nav" style="float:left;" href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
 			<< previous page
 		</a>
 	{% endif %}
 
 
 	{% if currentPages.has_next %}
-		<a class="nav" style="float:right;" href="{{ url_for('siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
+		<a class="nav" style="float:right;" href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
 			next page >>
 		</a>
 	{% endif %}
