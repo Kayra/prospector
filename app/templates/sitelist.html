@@ -5,7 +5,7 @@
 	<div class="main">
         {% if sites.all() %}
     		{% for site in sites %}
-    			<a class="sitebtn {{ site.level }}" href="{{ url_for('siteinspect', site_name = site.site_name) }}">
+    			<a class="sitebtn {{ site.level }}" href="{{ url_for('prospector.siteinspect', site_name = site.site_name) }}">
                     {{site.ranking}}% {{site.domain_url}} >
                 </a>
                 <br>
