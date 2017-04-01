@@ -1,10 +1,15 @@
 <html>
+
   <head>
+
     <title>Prospector</title>
+
     <link href="/static/css/reset.css" rel="stylesheet">
     <link href="/static/css/site.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
+
   </head>
+
   <body>
 
       <h1 class="index">Prospector</h1>
@@ -12,10 +17,12 @@
       <div id="mainindex">
 
 	      <form action="" method="post" name="url">
+
               {{ form.csrf_token }}
 		      {{ form.url(size=150, class="entryfield", placeholder="http://www.website.co.uk") }}
 
 		      	<input type="submit" value="Prospect" class="btn btn-red" id="crawl">
+
 	      </form>
 
 	      <div id="indexbuttons">
@@ -27,7 +34,8 @@
 		  {% endfor %}
 
 	      	<div>
-			{% with messages = get_flashed_messages() %}
+
+            {% with messages = get_flashed_messages() %}
 			{% if messages %}
 				<ul>
 					{% for message in messages %}
@@ -36,8 +44,11 @@
 				</ul>
 			{% endif %}
 			{% endwith %}
+
 			</div>
 
       </div>
+
   </body>
+
 </html>
