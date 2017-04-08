@@ -3,19 +3,30 @@
 {% block content %}
 
 	<div class="main">
+
         {% if sites.all() %}
+
     		{% for site in sites %}
+
     			<a class="sitebtn {{ site.level }}" href="{{ url_for('prospector.siteinspect', site_name = site.site_name) }}">
                     {{site.ranking}}% {{site.domain_url}} >
                 </a>
+
                 <br>
+
     		{% endfor %}
+
         {% else %}
+
             <div class="no-scrapes">
+
                 <p style="text-align:center;">No sites have been scraped yet.</p>
                 <a href="/">Scrape a site.</a>
+
             </div>
+
         {% endif %}
+
 	</div>
 
 {% endblock %}
