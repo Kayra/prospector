@@ -21,3 +21,9 @@ def logout():
 def profile(username):
     print("HIT PROFILE ON USER", username)
     pass
+
+
+@users_blueprint.route('/register')
+def register():
+    print("HIT")
+    return("HIT")

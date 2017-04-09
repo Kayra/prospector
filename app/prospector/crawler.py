@@ -8,7 +8,7 @@ from app.prospector.scrapers import DomainScraper, PageScraper
 from app.prospector.utils import extract_site_name
 
 # with current_app.app_context():
-#     MAX_PAGES_TO_VISIT = current_app.config["MAX_PAGES_TO_VISIT"]
+    # MAX_PAGES_TO_VISIT = current_app.config["MAX_PAGES_TO_VISIT"]
 
 MAX_PAGES_TO_VISIT = 60
 
