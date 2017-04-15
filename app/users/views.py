@@ -1,13 +1,17 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 from flask_user import login_required
+
+from app.users.forms import LoginForm
 
 users_blueprint = Blueprint('users', __name__)
 
 
 @users_blueprint.route('/login')
 def login():
-    print("HIT LOGIN")
-    pass
+
+    login_form = LoginForm()
+
+    return render_template("users/login.html", form=login_form)
 
 
 @users_blueprint.route('/logout')
