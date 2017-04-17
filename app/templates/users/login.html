@@ -1,9 +1,5 @@
-{% extends "base.html" %}
+{# {% extends "bootstrap/base.html" %} #}
 {% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}
-    Prospector - Login
-{% endblock %}
 
 {% block page_content %}
 
@@ -18,7 +14,7 @@
         <br>
 
         <p>
-            New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>
+            New user? <a href="{{ url_for('users.register') }}">Click here to register</a>
         </p>
 
     </div>

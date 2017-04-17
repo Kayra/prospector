@@ -1,11 +1,13 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 
 from config import configurations
 
 db = SQLAlchemy()
 mail = Mail()
+bootstrap = Bootstrap()
 
 
 def create_app(configuration_name):
@@ -16,6 +18,7 @@ def create_app(configuration_name):
 
     db.init_app(app)
     mail.init_app(app)
+    bootstrap.init_app(app)
 
     from app.prospector.views import prospector_blueprint
     app.register_blueprint(prospector_blueprint)
