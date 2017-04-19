@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from flask_user import login_required
 
-from app.users.forms import LoginForm
+from app.users.forms import LoginForm, RegistrationForm
 
 users_blueprint = Blueprint('users', __name__)
 
@@ -29,5 +29,7 @@ def profile(username):
 
 @users_blueprint.route('/register')
 def register():
-    print("HIT")
-    return("HIT")
+
+    registration_form = RegistrationForm
+
+    return render_template("users/register.html", form=registration_form)
