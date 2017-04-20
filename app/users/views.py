@@ -30,6 +30,6 @@ def profile(username):
 @users_blueprint.route('/register')
 def register():
 
-    registration_form = RegistrationForm
+    registration_form = RegistrationForm()
 
     return render_template("users/register.html", form=registration_form)
