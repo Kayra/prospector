@@ -1,3 +1,5 @@
+from flask import current_app
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_user import UserMixin
 
@@ -29,6 +31,23 @@ class User(UserMixin, db.Model):
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+
+    def confirm(self, token):
+
+        serializer = Serializer(current_app.config["SECRET_KEY"])
+
+        try:
+            data = serializer.loads(token)
+        except Exception:
+            return False
+
+        if data.get("confirm") == self.id:
+            self.confirmed = True
+            db.session.add(self)
+            db.session.commit()
+            return True
+        else:
+            return False
 
     def __repr__(self):
         return '<User %r>' % (self.username)
