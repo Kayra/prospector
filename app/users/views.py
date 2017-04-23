@@ -60,4 +60,4 @@ def logout():
 @login_required
 def profile(username):
     print("HIT PROFILE ON USER", username)
-    pass
+    return redirect(url_for("prospector.index"))
