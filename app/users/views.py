@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import login_required, login_user
+from flask_login import login_required, login_user, logout_user
 
 from app import db
 from app.users.forms import LoginForm, RegistrationForm
@@ -51,8 +51,9 @@ def login():
 
 @users_blueprint.route('/logout')
 def logout():
-    print("HIT LOGOUT")
-    pass
+    logout_user()
+    flash("You have been logged out.")
+    return redirect(url_for("prospector.index"))
 
 
 @users_blueprint.route('/profile/<username>')
