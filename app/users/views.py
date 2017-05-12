@@ -59,7 +59,5 @@ def logout():
 @users_blueprint.route('/profile/<username>')
 @login_required
 def profile(username):
-
     user = User.query.filter_by(username=username).first()
-
     return render_template("users/profile.html", user=user)

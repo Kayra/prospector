@@ -38,7 +38,8 @@ class User(UserMixin, db.Model):
 
         try:
             data = serializer.loads(token)
-        except Exception:
+        except Exception as exception:
+            print(exception)
             return False
 
         if data.get("confirm") == self.id:
