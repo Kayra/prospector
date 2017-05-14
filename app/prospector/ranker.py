@@ -10,7 +10,7 @@ class Ranker():
         fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages']
         mutually_exclusive_scores = ['bing_analytics']
 
-        domain_scores = DomainScores.query.one()
+        domain_scores = DomainScores.query.first()
 
         scores = 0
         for column in domain_scores.__table__.columns:
@@ -39,7 +39,7 @@ class Ranker():
         fields_to_ignore = ['id', 'site_id', 'page_url']
         manually_calculated_fields = ['number_of_internal_links', 'url_character_length']
 
-        page_scores = PageScores.query.one()
+        page_scores = PageScores.query.first()
 
         scores = 0
         for column in page_scores.__table__.columns:
