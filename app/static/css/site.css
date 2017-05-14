@@ -301,7 +301,7 @@ a.indexbtn
 
 .btn#crawl
 {
-    width: 150px;
+    width: 16%;
 }
 
 .sitebtn
@@ -482,8 +482,8 @@ a.indexbtn
 
 #url
 {
-    width: 589px;
-    margin-right: 4px;
+    width: 80%;
+    margin-right: 1%;
 }
 
 .entryfield#url:focus
