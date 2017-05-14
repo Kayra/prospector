@@ -12,6 +12,22 @@
 
 {% endblock %}
 
+{% block content %}
+
+	<header>
+		<h1><a href="{{ url_for('prospector.index') }}">Prospector</a></h1>
+	</header>
+
+
+	<section id="body">
+
+    	{% block page_content %}{% endblock %}
+
+	</section>
+
+{% endblock %}
+
+
 <html>
 
 	<head>
@@ -31,8 +47,8 @@
 		</header>
 
 		<section id="body">
-			{% block content %}
-			{% endblock %}
+{# 			{% block content %}
+			{% endblock %} #}
 		</section>
 
 	</body>
