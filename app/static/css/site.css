@@ -251,7 +251,7 @@ a.indexbtn
 {
     display: inline-block;
     text-align: center;
-    width: 96%;
+    width: 98%;
     margin: 0 2px;
 }
 
@@ -302,6 +302,7 @@ a.indexbtn
 .btn#crawl
 {
     width: 16%;
+    margin-bottom: 1%;
 }
 
 .sitebtn
