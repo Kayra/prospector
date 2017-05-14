@@ -693,3 +693,10 @@ a.indexbtn
     padding: 1px 0;
     margin-bottom: 50px;
 }
+
+.index-auth {
+  text-align: center;
+  position: fixed;
+  bottom: 15px;
+  left: 47%;
+}
