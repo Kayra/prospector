@@ -13,6 +13,52 @@
 
 {% endblock %}
 
+{% block content %}
+
+      <h1 class="index">Prospector</h1>
+
+      <div id="mainindex">
+
+          <form action="" method="post" name="url">
+
+              {{ form.csrf_token }}
+              {{ form.url(size=150, class="entryfield", placeholder="http://www.website.co.uk") }}
+
+                <input type="submit" value="Prospect" class="btn btn-red" id="crawl">
+
+          </form>
+
+          <div id="indexbuttons">
+            <a class="indexbtn" href="{{ url_for('prospector.sitelist') }}">View previously analysed sites</a>
+          </div>
+
+          {% for error in form.errors.url %}
+                <span style="color: red;">[{{error}}]</span>
+          {% endfor %}
+
+            <div>
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+
+            </div>
+
+            <div class="index-auth">
+                <a href="{{ url_for('users.login') }}">Log in</a>
+                <a href="{{ url_for('users.register') }}">Register</a>
+            </div>
+
+      </div>
+
+{% endblock %}
+
 
 <html>
 
