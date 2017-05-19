@@ -6,7 +6,6 @@
 
 {% block head %}
 
-	<link href="/static/css/reset.css" rel="stylesheet">
 	<link href="/static/css/site.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
 
@@ -20,7 +19,11 @@
 
 
 	<div class="container">
-    	{% block page_content %}{% endblock %}
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				{% block page_content %}{% endblock %}
+			</div>
+		</div>
 	</div>
 
 {% endblock %}

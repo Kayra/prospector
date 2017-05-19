@@ -29,13 +29,6 @@ header
     margin-bottom: 35px;
 }
 
-#body
-{
-    width: 960px;
-    margin: 0 auto;
-    text-align: center;
-}
-
 #indexbuttons
 {
     margin-top: 9px;
@@ -88,11 +81,13 @@ h1
     font-size: 10em;
     font-weight: normal;
     text-align: center;
+    margin: 0;
 }
 
 h1 a
 {
     text-decoration: none;
+    color: #fff;
 }
 
 h1 a:visited
