@@ -347,6 +347,8 @@ a.indexbtn
 
 .low:hover
 {
+    color: #ffffff;
+    text-decoration: none;
     background-color: #ec7063;
 }
 
@@ -367,6 +369,7 @@ a.indexbtn
 
 .midlow:focus
 {
+    text-decoration: none;
     outline: none;
     -webkit-transition: 0.25s;
     -moz-transition: 0.25s;
@@ -377,6 +380,8 @@ a.indexbtn
 
 .midlow:hover
 {
+    color: #ffffff;
+    text-decoration: none;
     background-color: #F39C12;
 }
 
@@ -407,6 +412,8 @@ a.indexbtn
 
 .midhigh:hover
 {
+    color: #ffffff;
+    text-decoration: none;
     background-color: #FFCF10;
 }
 
@@ -437,6 +444,8 @@ a.indexbtn
 
 .high:hover
 {
+    color: #ffffff;
+    text-decoration: none;
     background-color: #33E07C;
 }
 
