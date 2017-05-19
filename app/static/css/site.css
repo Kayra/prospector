@@ -83,6 +83,12 @@ h1 a
     color: #fff;
 }
 
+h1 a:hover
+{
+    text-decoration: none;
+    color: #b0b0b0;
+}
+
 h1 a:visited
 {
     color: #fff;
