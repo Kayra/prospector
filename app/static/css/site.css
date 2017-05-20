@@ -77,6 +77,10 @@ h1
     margin: 0;
 }
 
+.index input, .index a {
+  font-size: 1em;
+}
+
 h1 a, h1 a:focus
 {
     text-decoration: none;
