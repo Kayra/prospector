@@ -14,46 +14,50 @@
 
 {% block content %}
 
-      <h1 class="index">Prospector</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
 
-      <div id="mainindex">
+            <h1 class="index">Prospector</h1>
 
-          <form action="" method="post" name="url">
+                <form class="form form-horizontal" method="POST" role="form">
 
-              {{ form.csrf_token }}
-              {{ form.url(size=150, class="entryfield", placeholder="http://www.website.co.uk") }}
+                    {{ form.csrf_token }}
+                    {{ form.url(size=150, class="form-control", placeholder="http://www.website.co.uk") }}
 
-                <input type="submit" value="Prospect" class="btn btn-red" id="crawl">
+                    <input type="submit" value="Prospect" class="btn btn-red">
 
-          </form>
+                </form>
 
-          <div id="indexbuttons">
-            <a class="indexbtn" href="{{ url_for('prospector.sitelist') }}">View previously analysed sites</a>
-          </div>
+                  <div id="indexbuttons">
+                    <a class="indexbtn" href="{{ url_for('prospector.sitelist') }}">View previously analysed sites</a>
+                  </div>
 
-          {% for error in form.errors.url %}
-                <span style="color: red;">[{{error}}]</span>
-          {% endfor %}
+                  {% for error in form.errors.url %}
+                        <span style="color: red;">[{{error}}]</span>
+                  {% endfor %}
 
-            <div>
+                    <div>
 
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <ul>
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                {% endwith %}
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% endwith %}
 
-            </div>
+                    </div>
 
-            <div class="index-auth">
-                <a href="{{ url_for('users.login') }}">Log in</a>
-                <a href="{{ url_for('users.register') }}">Register</a>
-            </div>
+                    <div class="index-auth">
+                        <a href="{{ url_for('users.login') }}">Log in</a>
+                        <a href="{{ url_for('users.register') }}">Register</a>
+                    </div>
 
+        </div>
       </div>
+    </div>
 
 {% endblock %}
