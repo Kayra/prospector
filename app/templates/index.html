@@ -20,7 +20,7 @@
 
             <h1 class="index">Prospector</h1>
 
-                <form class="form form-horizontal" method="POST" role="form">
+                <form class="form form-horizontal index" method="POST" role="form">
 
                     {{ form.csrf_token }}
                     {{ form.url(size=150, class="form-control", placeholder="http://www.website.co.uk") }}
@@ -29,9 +29,7 @@
 
                 </form>
 
-                  <div id="indexbuttons">
                     <a class="indexbtn" href="{{ url_for('prospector.sitelist') }}">View previously analysed sites</a>
-                  </div>
 
                   {% for error in form.errors.url %}
                         <span style="color: red;">[{{error}}]</span>

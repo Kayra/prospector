@@ -245,8 +245,7 @@ a.indexbtn
 {
     display: inline-block;
     text-align: center;
-    width: 98%;
-    margin: 0 2px;
+    width: 100%;
 }
 
 .btn:hover, a.indexbtn:hover
@@ -461,6 +460,18 @@ a.indexbtn
 }
 /*******************ENTRY******************/
 
+form.index {
+  height: 35px;
+  margin-bottom: 10px;
+}
+
+form.index .btn {
+  height: inherit;
+  margin-bottom: 1px;
+  padding-top: 6px;
+  width: 19%;
+}
+
 .entryfield
 {
     border: 2px solid #bdc3c7;
@@ -487,7 +498,8 @@ a.indexbtn
 #url
 {
     width: 80%;
-    margin-right: 1%;
+    height: inherit;
+    display: inline;
 }
 
 .entryfield#url:focus
