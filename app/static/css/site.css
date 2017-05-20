@@ -94,7 +94,7 @@ h1 a:visited
     color: #fff;
 }
 
-h1.index
+.index h1
 {
     margin: 200px 0 0;
     color: #2f2f2f;
@@ -213,7 +213,7 @@ table .chevron {
 
 /******************BUTTONS*****************/
 
-.btn, a.indexbtn
+.btn, .index a
 {
     border: none;
     background: #bdc3c7;
@@ -241,21 +241,21 @@ table .chevron {
     -moz-appearance: none;
 }
 
-a.indexbtn
+.index a
 {
     display: inline-block;
     text-align: center;
     width: 100%;
 }
 
-.btn:hover, a.indexbtn:hover
+.btn:hover, .index a:hover
 {
     background-color: #cacfd2;
     color: #ffffff;
     outline: none;
 }
 
-.btn:focus, a.indexbtn:focus {
+.btn:focus, .index a:focus {
     outline: none;
     -webkit-transition: 0.25s;
     -moz-transition: 0.25s;
@@ -271,7 +271,7 @@ a.indexbtn
     box-shadow: none;
 }*/
 
-.btn.btn-red, a.indexbtn
+.btn.btn-red, .index a
 {
     background-color: #e74c3c;
 }
@@ -282,11 +282,11 @@ a.indexbtn
     color: #ffffff;
 }*/
 
-.btn.btn-red:hover, a.indexbtn:hover {
+.btn.btn-red:hover, .index a:hover {
     background-color: #ec7063;
 }
 
-.btn.btn-red:active, a.indexbtn:active
+.btn.btn-red:active, .index a:active
 {
     background-color: #c44133;
     color: rgba(255, 255, 255, 0.75);
@@ -460,16 +460,19 @@ a.indexbtn
 }
 /*******************ENTRY******************/
 
-form.index {
+
+
+.index form {
   height: 35px;
   margin-bottom: 10px;
 }
 
-form.index .btn {
-  height: inherit;
-  margin-bottom: 1px;
-  padding-top: 6px;
-  width: 19%;
+.index form .btn {
+    height: inherit;
+    margin-bottom: 1px;
+    padding-top: 6px;
+    width: 18%;
+    margin-left: 1%;
 }
 
 .entryfield
