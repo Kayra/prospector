@@ -1,4 +1,5 @@
 from flask import current_app, Blueprint, render_template, redirect, url_for
+from flask_login import current_user
 
 from app.prospector.models import DomainData, PageData, db
 from app.prospector.forms import UrlEntry
@@ -15,6 +16,9 @@ SITES_PER_PAGE = 1
 
 @prospector_blueprint.route('/', methods=['GET', 'POST'])
 def index():
+
+    if current_user.is_authenticated:
+        print(current_user)
 
     form = UrlEntry()
 
