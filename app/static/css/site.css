@@ -250,6 +250,7 @@ table .chevron {
     display: inline-block;
     text-align: center;
     width: 100%;
+    font-size: 1em;
 }
 
 .btn:hover, .index a:hover
