@@ -11,7 +11,7 @@ from app.prospector.utils import format_url
 prospector_blueprint = Blueprint('prospector', __name__)
 
 # SITES_PER_PAGE = current_app.config["SITES_PER_PAGE"]
-SITES_PER_PAGE = 1
+SITES_PER_PAGE = 10
 
 
 @prospector_blueprint.route('/', methods=['GET', 'POST'])
@@ -34,8 +34,6 @@ def index():
         domain_data.ranking = ranker.rank_site(domain_data)
         domain_data.level = ranker.domain_level_calculator(domain_data.ranking)
 
-        print("HIT", dir(domain_data))
-
         if current_user.is_authenticated:
             domain_data.owner = current_user.id
 
@@ -50,7 +48,16 @@ def index():
 
 @prospector_blueprint.route('/sites')
 def sitelist():
-    sites = db.session.query(DomainData).limit(SITES_PER_PAGE)
+
+    user = None
+    if current_user.is_authenticated:
+        user = current_user
+
+    if user is not None:
+        sites = DomainData.query.filter_by(owner=user.id).limit(SITES_PER_PAGE)
+    else:
+        sites = DomainData.query.filter_by(owner=None).limit(SITES_PER_PAGE)
+
     return render_template("sitelist.html", sites=sites)
 
 
