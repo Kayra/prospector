@@ -51,10 +51,16 @@
 
                 </div>
 
-                <div class="index-auth">
+            </div>
+
+            <div class="index-auth">
+
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('users.profile', username = current_user.username) }}">{{ current_user.username }}</a>
+                {% else %}
                     <a href="{{ url_for('users.login') }}">Log in</a>
                     <a href="{{ url_for('users.register') }}">Register</a>
-                </div>
+                {% endif %}
 
             </div>
 
