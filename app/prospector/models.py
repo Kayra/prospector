@@ -19,7 +19,7 @@ class DomainData(db.Model):
 
 	pages = db.relationship('PageData', backref='domain_site', lazy='dynamic')
 
-	user = db.Column(db.Integer, db.ForeignKey('user.id'))
+	user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
 	def __repr__(self):
 		return '<DomainData %r>' % (self.site_name)
