@@ -16,7 +16,6 @@ MAX_PAGES_TO_VISIT = 60
 class Crawler():
 
     def _get_html_soup(self, url):
-        print("HIT URL", url)
         raw_html = request.urlopen(url).read()
         return BeautifulSoup(raw_html, "html.parser")
 

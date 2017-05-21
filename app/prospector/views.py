@@ -17,9 +17,6 @@ SITES_PER_PAGE = 1
 @prospector_blueprint.route('/', methods=['GET', 'POST'])
 def index():
 
-    if current_user.is_authenticated:
-        print(current_user)
-
     form = UrlEntry()
 
     if form.validate_on_submit():
@@ -36,6 +33,11 @@ def index():
         ranker = Ranker()
         domain_data.ranking = ranker.rank_site(domain_data)
         domain_data.level = ranker.domain_level_calculator(domain_data.ranking)
+
+        print("HIT", dir(domain_data))
+
+        if current_user.is_authenticated:
+            domain_data.owner = current_user.id
 
         db.session.add(domain_data)
         db.session.add_all(pages_data)
