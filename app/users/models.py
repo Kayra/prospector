@@ -17,6 +17,8 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
 
+    domains = db.relationship('DomainData', backref='user', lazy='dynamic')
+
     @property
     def password(self):
         raise AttributeError("The password is not a readable attribute.")
