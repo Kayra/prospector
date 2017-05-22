@@ -7,7 +7,7 @@ class Ranker():
 
     def calculate_domain_score(self, domain_data):
 
-        fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages']
+        fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages', 'owner']
         mutually_exclusive_scores = ['bing_analytics']
 
         domain_scores = DomainScores.query.first()

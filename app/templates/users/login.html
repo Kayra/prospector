@@ -7,16 +7,14 @@
         <h2>Log in</h2>
     </div>
 
-    <div class="col-md-4">
 
-        {{ wtf.quick_form(form) }}
+    {{ wtf.quick_form(form) }}
 
-        <br>
+    <br>
 
-        <p>
-            New user? <a href="{{ url_for('users.register') }}">Click here to register.</a>
-        </p>
+    <p>
+        New user? <a href="{{ url_for('users.register') }}">Click here to register.</a>
+    </p>
 
-    </div>
 
 {% endblock %}
