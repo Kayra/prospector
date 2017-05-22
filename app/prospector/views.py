@@ -2,7 +2,7 @@ from flask import current_app, Blueprint, render_template, redirect, url_for
 
 from app.prospector.models import DomainData, PageData, db
 from app.prospector.forms import UrlEntry
-from app.prospector.crawler import Crawler
+from app.prospector.crawler import scrape_domain_data, spider_site, scrape_page_data
 from app.prospector.ranker import Ranker
 from app.prospector.utils import format_url
 
@@ -22,12 +22,10 @@ def index():
 
         url_to_prospect = format_url(form.url.data)
 
-        crawler = Crawler()
+        domain_data = scrape_domain_data(url_to_prospect)
 
-        domain_data = crawler.scrape_domain_data(url_to_prospect)
-
-        pages_to_scrape = crawler.spider_site(domain_data.domain_url)
-        pages_data = [crawler.scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
+        pages_to_scrape = spider_site(domain_data.domain_url)
+        pages_data = [scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
 
         ranker = Ranker()
         domain_data.ranking = ranker.rank_site(domain_data)
