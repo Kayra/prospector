@@ -1,8 +1,9 @@
 from flask import current_app, Blueprint, render_template, redirect, url_for
+from flask_login import current_user
 
 from app.prospector.models import DomainData, PageData, db
 from app.prospector.forms import UrlEntry
-from app.prospector.crawler import Crawler
+from app.prospector.crawler import scrape_domain_data, spider_site, scrape_page_data
 from app.prospector.ranker import Ranker
 from app.prospector.utils import format_url
 
@@ -10,7 +11,7 @@ from app.prospector.utils import format_url
 prospector_blueprint = Blueprint('prospector', __name__)
 
 # SITES_PER_PAGE = current_app.config["SITES_PER_PAGE"]
-SITES_PER_PAGE = 1
+SITES_PER_PAGE = 10
 
 
 @prospector_blueprint.route('/', methods=['GET', 'POST'])
@@ -22,16 +23,17 @@ def index():
 
         url_to_prospect = format_url(form.url.data)
 
-        crawler = Crawler()
+        domain_data = scrape_domain_data(url_to_prospect)
 
-        domain_data = crawler.scrape_domain_data(url_to_prospect)
-
-        pages_to_scrape = crawler.spider_site(domain_data.domain_url)
-        pages_data = [crawler.scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
+        pages_to_scrape = spider_site(domain_data.domain_url)
+        pages_data = [scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
 
         ranker = Ranker()
         domain_data.ranking = ranker.rank_site(domain_data)
         domain_data.level = ranker.domain_level_calculator(domain_data.ranking)
+
+        if current_user.is_authenticated:
+            domain_data.owner = current_user.id
 
         db.session.add(domain_data)
         db.session.add_all(pages_data)
@@ -44,7 +46,16 @@ def index():
 
 @prospector_blueprint.route('/sites')
 def sitelist():
-    sites = db.session.query(DomainData).limit(SITES_PER_PAGE)
+
+    user = None
+    if current_user.is_authenticated:
+        user = current_user
+
+    if user is not None:
+        sites = DomainData.query.filter_by(owner=user.id).limit(SITES_PER_PAGE)
+    else:
+        sites = DomainData.query.filter_by(owner=None).limit(SITES_PER_PAGE)
+
     return render_template("sitelist.html", sites=sites)
 
 
