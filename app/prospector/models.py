@@ -19,6 +19,8 @@ class DomainData(db.Model):
 
 	pages = db.relationship('PageData', backref='domain_site', lazy='dynamic')
 
+	owner = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+
 	def __repr__(self):
 		return '<DomainData %r>' % (self.site_name)
 
@@ -44,7 +46,7 @@ class PageData(db.Model):
 	blog_locations = db.Column(ARRAY(db.String(1000)))
 	number_of_internal_links = db.Column(db.Integer)
 
-	site_id = db.Column(db.Integer, db.ForeignKey('domain_data.id'))
+	site_id = db.Column(db.Integer, db.ForeignKey('domain_data.id'), nullable=False)
 
 	def __repr__(self):
 		return '<PageData %r>' % (self.page_url)
