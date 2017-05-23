@@ -3,7 +3,7 @@ from app.prospector.models import DomainScores, PageScores
 DOMAIN_IMPORTANCE = 1.3
 
 
-def calculate_domain_score(self, domain_data):
+def calculate_domain_score(domain_data):
 
     fields_to_ignore = ['id', 'domain_url', 'site_name', 'ranking', 'level', 'pages', 'owner']
     mutually_exclusive_scores = ['bing_analytics']
@@ -33,7 +33,7 @@ def calculate_domain_score(self, domain_data):
     return total_domain_score / scores
 
 
-def calculate_page_score(self, page_data):
+def calculate_page_score(page_data):
 
     fields_to_ignore = ['id', 'site_id', 'page_url']
     manually_calculated_fields = ['number_of_internal_links', 'url_character_length']
@@ -69,7 +69,7 @@ def calculate_page_score(self, page_data):
 
 
 # TODO: Change this mess. Everything, the data structure, how this works, all of it.
-def calculate_number_based_score(self, score_field, page_data_field):
+def calculate_number_based_score(score_field, page_data_field):
 
     field_score = list(score_field['low'].values())[0]
 
@@ -80,7 +80,7 @@ def calculate_number_based_score(self, score_field, page_data_field):
     return field_score
 
 
-def domain_level_calculator(self, domain_rank):
+def domain_level_calculator(domain_rank):
     if (domain_rank / 25) < 1:
         return 'low'
     elif (domain_rank / 25) < 2:
@@ -91,7 +91,7 @@ def domain_level_calculator(self, domain_rank):
         return 'high'
 
 
-def rank_site(self, domain_data):
+def rank_site(domain_data):
 
     domain_score = self.calculate_domain_score(domain_data)
     average_page_score = sum([self.calculate_page_score(page) for page in domain_data.pages]) / domain_data.pages.count()
