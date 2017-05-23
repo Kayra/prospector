@@ -82,7 +82,7 @@ def scrape_page_data(page_url, domain):
     return page_data
 
 
-def spider_site(self, domain_url):
+def spider_site(domain_url):
 
     urls = [domain_url]
 
