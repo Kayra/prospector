@@ -4,7 +4,7 @@ from flask_login import current_user
 from app.prospector.models import DomainData, PageData, db
 from app.prospector.forms import UrlEntry
 from app.prospector import crawler
-from app.prospector.ranker import Ranker
+from app.prospector import ranker
 from app.prospector.utils import format_url
 
 
