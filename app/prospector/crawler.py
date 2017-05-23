@@ -100,10 +100,3 @@ def spider_site(self, domain_url):
             urls.append(current_url)
 
     return urls
-
-
-def crawl_site(domain_url):
-
-    scrape_domain_data(domain_url)
-    for page_url in spider_site(domain_url):
-        scrape_page_data(page_url)
