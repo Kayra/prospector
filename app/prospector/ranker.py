@@ -63,7 +63,7 @@ def _calculate_page_score(page_data):
                 total_page_score += (10 - getattr(page_scores, column.name))
 
         if column.name in manually_calculated_fields and column.name in page_scores.__table__.columns:
-            total_page_score += self.calculate_number_based_score(getattr(page_scores, column.name), getattr(page_data, column.name))
+            total_page_score += _calculate_number_based_score(getattr(page_scores, column.name), getattr(page_data, column.name))
 
     return total_page_score / scores
 
@@ -93,8 +93,8 @@ def domain_level_calculator(domain_rank):
 
 def rank_site(domain_data):
 
-    domain_score = self.calculate_domain_score(domain_data)
-    average_page_score = sum([self.calculate_page_score(page) for page in domain_data.pages]) / domain_data.pages.count()
+    domain_score = _calculate_domain_score(domain_data)
+    average_page_score = sum([_calculate_page_score(page) for page in domain_data.pages]) / domain_data.pages.count()
 
     overall_score = (average_page_score + (domain_score * DOMAIN_IMPORTANCE)) / (1 + DOMAIN_IMPORTANCE)
     formatted_score = round(overall_score * 10)
