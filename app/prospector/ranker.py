@@ -32,6 +32,7 @@ def calculate_domain_score(self, domain_data):
 
     return total_domain_score / scores
 
+
 def calculate_page_score(self, page_data):
 
     fields_to_ignore = ['id', 'site_id', 'page_url']
@@ -66,6 +67,7 @@ def calculate_page_score(self, page_data):
 
     return total_page_score / scores
 
+
 # TODO: Change this mess. Everything, the data structure, how this works, all of it.
 def calculate_number_based_score(self, score_field, page_data_field):
 
@@ -77,6 +79,7 @@ def calculate_number_based_score(self, score_field, page_data_field):
 
     return field_score
 
+
 def domain_level_calculator(self, domain_rank):
     if (domain_rank / 25) < 1:
         return 'low'
@@ -86,6 +89,7 @@ def domain_level_calculator(self, domain_rank):
         return 'midhigh'
     elif (domain_rank / 25) < 4:
         return 'high'
+
 
 def rank_site(self, domain_data):
 
