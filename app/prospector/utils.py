@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 
-from app.prospector.models import DomainData
+from app.prospector.models import DomainData, DomainScores, PageScores
 
 
 def format_url(url):
@@ -36,3 +36,11 @@ def get_or_create_domain_data(domain_url, user):
         domain_data = DomainData(domain_url=domain_url, site_name=extract_site_name(domain_url))
 
     return domain_data
+
+
+def create_default_domain_scores():
+    pass
+
+
+def create_default_page_scores():
+    pass
