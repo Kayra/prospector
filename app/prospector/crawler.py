@@ -3,9 +3,8 @@ from flask import current_app
 from bs4 import BeautifulSoup
 from urllib import parse, request, error
 
-from app.prospector.models import DomainData, PageData
+from app.prospector.models import PageData
 from app.prospector.scrapers import DomainScraper, PageScraper
-from app.prospector.utils import extract_site_name
 
 # with current_app.app_context():
     # MAX_PAGES_TO_VISIT = current_app.config["MAX_PAGES_TO_VISIT"]
@@ -30,25 +29,16 @@ def _get_page_contents(domain_url, url_suffix):
         print('{} for {}'.format(error_message, full_url))
 
 
-def scrape_domain_data(domain_url):
+def scrape_domain_data(domain_data):
+
+    domain_url = domain_data.domain_url
 
     domain_html_soup = _get_html_soup(domain_url)
 
-    robots_txt = _get_page_contents(domain_url, 'robots.txt')
-    sitemap_xml = _get_page_contents(domain_url, 'sitemap.xml')
-    google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
-    bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
-
-    domain_data = DomainData.query.filter_by(domain_url=domain_url).first()
-
-    if not domain_data:
-        domain_data = DomainData(domain_url=domain_url,
-                                 site_name=extract_site_name(domain_url))
-
-    domain_data.robots_txt = robots_txt
-    domain_data.sitemap_xml = sitemap_xml
-    domain_data.google_analytics = google_analytics
-    domain_data.bing_analytics = bing_analytics
+    domain_data.robots_txt = _get_page_contents(domain_url, 'robots.txt')
+    domain_data.sitemap_xml = _get_page_contents(domain_url, 'sitemap.xml')
+    domain_data.google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
+    domain_data.bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
 
     return domain_data
 
@@ -57,7 +47,7 @@ def scrape_page_data(page_url, domain):
 
     page_html_soup = _get_html_soup(page_url)
 
-    page_data = PageData.query.filter_by(page_url=page_url).first()
+    page_data = PageData.query.filter_by(page_url=page_url).filter_by(domain_site=domain).first()
 
     if not page_data:
         page_data = PageData()
