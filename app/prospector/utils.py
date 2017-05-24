@@ -1,5 +1,7 @@
 from urllib.parse import urlparse
 
+from app.prospector.models import DomainData
+
 
 def format_url(url):
     if 'www.' not in url and 'http://' not in url:
