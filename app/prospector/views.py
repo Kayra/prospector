@@ -5,7 +5,7 @@ from app.prospector.models import DomainData, PageData, db
 from app.prospector.forms import UrlEntry
 from app.prospector import crawler
 from app.prospector import ranker
-from app.prospector.utils import format_url, extract_site_name, get_or_create_domain_data
+from app.prospector.utils import format_url, get_or_create_domain_data
 
 
 prospector_blueprint = Blueprint('prospector', __name__)
