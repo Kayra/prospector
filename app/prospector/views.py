@@ -5,7 +5,7 @@ from app.prospector.models import DomainData, PageData, db
 from app.prospector.forms import UrlEntry
 from app.prospector import crawler
 from app.prospector import ranker
-from app.prospector.utils import format_url, extract_site_name
+from app.prospector.utils import format_url, extract_site_name, get_or_create_domain_data
 
 
 prospector_blueprint = Blueprint('prospector', __name__)
@@ -27,15 +27,7 @@ def index():
 
         url_to_prospect = format_url(form.url.data)
 
-        if user is not None:
-            domain_data = DomainData.query.filter_by(domain_url=url_to_prospect).filter_by(owner=user.id).first()
-        else:
-            domain_data = DomainData.query.filter_by(domain_url=url_to_prospect).filter_by(owner=None).first()
-
-        if domain_data is None and user is not None:
-            domain_data = DomainData(domain_url=url_to_prospect, site_name=extract_site_name(url_to_prospect), owner=user.id)
-        elif domain_data is None:
-            domain_data = DomainData(domain_url=url_to_prospect, site_name=extract_site_name(url_to_prospect))
+        domain_data = get_or_create_domain_data(url_to_prospect, user)
 
         domain_data = crawler.scrape_domain_data(domain_data)
 
