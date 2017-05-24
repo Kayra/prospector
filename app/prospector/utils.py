@@ -39,7 +39,13 @@ def get_or_create_domain_data(domain_url, user):
 
 
 def create_default_domain_scores():
-    pass
+
+    default_domain_scores = DomainScores(google_analytics=9,
+                                         bing_analytics=8,
+                                         robots_txt=9,
+                                         sitemap_xml=9)
+
+    return default_domain_scores
 
 
 def create_default_page_scores():
