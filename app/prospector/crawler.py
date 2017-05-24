@@ -36,15 +36,10 @@ def scrape_domain_data(domain_data):
 
     domain_html_soup = _get_html_soup(domain_url)
 
-    robots_txt = _get_page_contents(domain_url, 'robots.txt')
-    sitemap_xml = _get_page_contents(domain_url, 'sitemap.xml')
-    google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
-    bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
-
-    domain_data.robots_txt = robots_txt
-    domain_data.sitemap_xml = sitemap_xml
-    domain_data.google_analytics = google_analytics
-    domain_data.bing_analytics = bing_analytics
+    domain_data.robots_txt = _get_page_contents(domain_url, 'robots.txt')
+    domain_data.sitemap_xml = _get_page_contents(domain_url, 'sitemap.xml')
+    domain_data.google_analytics = DomainScraper.scrape_google_analytics(domain_html_soup)
+    domain_data.bing_analytics = DomainScraper.scrape_bing_analytics(domain_html_soup)
 
     return domain_data
 
