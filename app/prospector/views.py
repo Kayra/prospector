@@ -28,7 +28,6 @@ def index():
         url_to_prospect = format_url(form.url.data)
 
         domain_data = get_or_create_domain_data(url_to_prospect, user)
-
         domain_data = crawler.scrape_domain_data(domain_data)
 
         pages_to_scrape = crawler.spider_site(domain_data.domain_url)
