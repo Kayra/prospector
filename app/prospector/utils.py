@@ -18,5 +18,16 @@ def extract_site_name(url):
     return parsed_url.netloc.split('.')[position]
 
 
-def get_or_create_domain_data(domain_url, user_id):
-    pass
+def get_or_create_domain_data(domain_url, user):
+
+    if user is not None:
+        domain_data = DomainData.query.filter_by(domain_url=domain_url).filter_by(owner=user.id).first()
+    else:
+        domain_data = DomainData.query.filter_by(domain_url=domain_url).filter_by(owner=None).first()
+
+    if domain_data is None and user is not None:
+        domain_data = DomainData(domain_url=domain_url, site_name=extract_site_name(domain_url), owner=user.id)
+    elif domain_data is None:
+        domain_data = DomainData(domain_url=domain_url, site_name=extract_site_name(domain_url))
+
+    return domain_data
