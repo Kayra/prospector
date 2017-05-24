@@ -37,9 +37,6 @@ def index():
         domain_data.ranking = ranker.rank_site(domain_data)
         domain_data.level = ranker.domain_level_calculator(domain_data.ranking)
 
-        if current_user.is_authenticated:
-            domain_data.owner = current_user.id
-
         db.session.add(domain_data)
         db.session.add_all(pages_data)
         db.session.commit()
