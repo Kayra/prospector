@@ -14,3 +14,7 @@ def extract_site_name(url):
     parsed_url = urlparse(url)
     position = 1 if 'www' in parsed_url.netloc else 0
     return parsed_url.netloc.split('.')[position]
+
+
+def get_or_create_domain_data(domain_url, user_id):
+    pass
