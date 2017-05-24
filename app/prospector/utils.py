@@ -16,8 +16,10 @@ def format_url(url):
 
 
 def extract_site_name(url):
+
     parsed_url = urlparse(url)
     position = 1 if 'www' in parsed_url.netloc else 0
+
     return parsed_url.netloc.split('.')[position]
 
 
