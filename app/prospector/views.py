@@ -17,15 +17,24 @@ SITES_PER_PAGE = 10
 @prospector_blueprint.route('/', methods=['GET', 'POST'])
 def index():
 
+    user = None
+    if current_user.is_authenticated:
+        user = current_user
+
     form = UrlEntry()
 
     if form.validate_on_submit():
 
         url_to_prospect = format_url(form.url.data)
 
-        domain_data = DomainData.query.filter_by(domain_url=url_to_prospect).first()
+        if user is not None:
+            domain_data = DomainData.query.filter_by(domain_url=url_to_prospect).filter_by(owner=user.id).first()
+        else:
+            domain_data = DomainData.query.filter_by(domain_url=url_to_prospect).filter_by(owner=None).first()
 
-        if not domain_data:
+        if domain_data is None and user is not None:
+            domain_data = DomainData(domain_url=url_to_prospect, site_name=extract_site_name(url_to_prospect), owner=user.id)
+        elif domain_data is None:
             domain_data = DomainData(domain_url=url_to_prospect, site_name=extract_site_name(url_to_prospect))
 
         domain_data = crawler.scrape_domain_data(domain_data)
