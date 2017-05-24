@@ -47,7 +47,7 @@ def scrape_page_data(page_url, domain):
 
     page_html_soup = _get_html_soup(page_url)
 
-    page_data = PageData.query.filter_by(page_url=page_url).first()
+    page_data = PageData.query.filter_by(page_url=page_url).filter_by(domain_site=domain).first()
 
     if not page_data:
         page_data = PageData()
