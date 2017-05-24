@@ -5,7 +5,7 @@ from app.prospector.models import DomainData, PageData, db
 from app.prospector.forms import UrlEntry
 from app.prospector import crawler
 from app.prospector import ranker
-from app.prospector.utils import format_url
+from app.prospector.utils import format_url, extract_site_name
 
 
 prospector_blueprint = Blueprint('prospector', __name__)
@@ -23,7 +23,12 @@ def index():
 
         url_to_prospect = format_url(form.url.data)
 
-        domain_data = crawler.scrape_domain_data(url_to_prospect)
+        domain_data = DomainData.query.filter_by(domain_url=url_to_prospect).first()
+
+        if not domain_data:
+            domain_data = DomainData(domain_url=url_to_prospect, site_name=extract_site_name(url_to_prospect))
+
+        domain_data = crawler.scrape_domain_data(domain_data)
 
         pages_to_scrape = crawler.spider_site(domain_data.domain_url)
         pages_data = [crawler.scrape_page_data(page_to_scrape, domain_data) for page_to_scrape in pages_to_scrape]
