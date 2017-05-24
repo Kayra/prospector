@@ -22,7 +22,8 @@ def db_create():
     default_domain_scores = DomainScores(google_analytics=9,
                                          bing_analytics=8,
                                          robots_txt=9,
-                                         sitemap_xml=9)
+                                         sitemap_xml=9,
+                                         owner=None)
 
     default_page_scores = PageScores(h1_tags=9,
                                      h2_tags=8,
@@ -58,7 +59,8 @@ def db_create():
                                          "low": {
                                              50: 7
                                          },
-                                     })
+                                     },
+                                     owner=None)
 
     db.session.add(default_domain_scores)
     db.session.add(default_page_scores)
