@@ -38,17 +38,18 @@ def get_or_create_domain_data(domain_url, user):
     return domain_data
 
 
-def create_default_domain_scores():
+def create_default_domain_scores(owner=None):
 
     default_domain_scores = DomainScores(google_analytics=9,
                                          bing_analytics=8,
                                          robots_txt=9,
-                                         sitemap_xml=9)
+                                         sitemap_xml=9,
+                                         owner=None)
 
     return default_domain_scores
 
 
-def create_default_page_scores():
+def create_default_page_scores(owner=None):
 
     default_page_scores = PageScores(h1_tags=9,
                                      h2_tags=8,
@@ -84,6 +85,7 @@ def create_default_page_scores():
                                          "low": {
                                              50: 7
                                          },
-                                     })
+                                     },
+                                     owner=owner)
 
     return default_page_scores
