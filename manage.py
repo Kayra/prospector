@@ -20,10 +20,7 @@ def db_create():
     db.create_all()
 
     default_domain_scores = create_default_domain_scores()
-    default_domain_scores.owner = None
-
     default_page_scores = create_default_page_scores()
-    default_page_scores.owner = None
 
     db.session.add(default_domain_scores)
     db.session.add(default_page_scores)
