@@ -4,6 +4,8 @@ from flask_login import login_required, login_user, logout_user
 from app import db
 from app.users.forms import LoginForm, RegistrationForm
 from app.users.models import User
+from app.prospector.utils import create_default_domain_scores, create_default_page_scores
+
 
 users_blueprint = Blueprint('users', __name__)
 
@@ -19,7 +21,12 @@ def register():
                     username=registration_form.username.data,
                     password=registration_form.password.data)
 
+        default_domain_scores = create_default_domain_scores(owner=user)
+        default_page_scores = create_default_page_scores(owner=user)
+
         db.session.add(user)
+        db.session.add(default_domain_scores)
+        db.session.add(default_page_scores)
         db.session.commit()
 
         flash("Your account has been created. Please log in.")
