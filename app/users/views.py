@@ -70,5 +70,6 @@ def profile(username):
 
     user = User.query.filter_by(username=username).first()
     domain_scores = DomainScores.query.filter_by(owner=user).first()
+    page_scores = PageScores.query.filter_by(owner=user).first()
 
-    return render_template("users/profile.html", user=user, domain_scores=domain_scores)
+    return render_template("users/profile.html", user=user, domain_scores=domain_scores, page_scores=page_scores)
