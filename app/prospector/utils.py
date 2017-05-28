@@ -101,3 +101,7 @@ def load_domain_scores_model_to_form(domain_score_model, domain_score_form):
 
 def load_page_scores_form_to_model(page_score_model, page_score_form):
     pass
+
+
+def load_page_scores_model_to_form(page_score_model, page_score_form):
+    pass
