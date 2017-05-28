@@ -112,6 +112,7 @@ def edit_page_scores(username):
 
         db.session.add(page_scores)
         db.session.commit()
+        flash("Your page scores have been updated.")
 
     page_scores_form = load_page_scores_model_to_form(page_scores, page_scores_form)
 
