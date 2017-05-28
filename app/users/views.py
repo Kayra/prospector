@@ -144,6 +144,7 @@ def edit_domain_scores(username):
 
         db.session.add(domain_scores)
         db.session.commit()
+        flash("Your domain scores have been updated.")
 
     domain_scores_form.google_analytics.data = domain_scores.google_analytics
     domain_scores_form.bing_analytics.data = domain_scores.bing_analytics
