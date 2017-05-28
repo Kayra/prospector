@@ -81,7 +81,6 @@ def profile(username):
 
     if domain_scores_form.validate_on_submit():
 
-        domain_scores = DomainScores.query.filter_by(owner=user.id).first()
         domain_scores.google_analytics = domain_scores_form.google_analytics.data
         domain_scores.bing_analytics = domain_scores_form.bing_analytics.data
         domain_scores.robots_txt = domain_scores_form.robots_txt.data
