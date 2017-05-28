@@ -44,7 +44,7 @@ def create_default_domain_scores(owner=None):
                                          bing_analytics=8,
                                          robots_txt=9,
                                          sitemap_xml=9,
-                                         owner=None)
+                                         owner=owner)
 
     return default_domain_scores
 
