@@ -152,3 +152,9 @@ def edit_domain_scores(username):
     domain_scores_form.sitemap_xml.data = domain_scores.sitemap_xml
 
     return render_template("users/edit_domain_scores.html", user=user, domain_scores_form=domain_scores_form)
+
+
+@users_blueprint.route('/page_scores/<username>', methods=["GET", "POST"])
+@login_required
+def edit_page_scores(username):
+    pass
