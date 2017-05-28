@@ -9,10 +9,10 @@ class UrlEntry(FlaskForm):
 
 class DomainScoresForm(FlaskForm):
 
-    google_analytics = IntegerField('google_analytics', validators=[DataRequired(), NumberRange(min=1, max=10)])
-    bing_analytics = IntegerField('bing_analytics', validators=[DataRequired(), NumberRange(min=1, max=10)])
-    robots_txt = IntegerField('robots_txt', validators=[DataRequired(), NumberRange(min=1, max=10)])
-    sitemap_xml = IntegerField('sitemap_xml', validators=[DataRequired(), NumberRange(min=1, max=10)])
+    google_analytics = IntegerField('Google Analytics', validators=[DataRequired(), NumberRange(min=1, max=10)])
+    bing_analytics = IntegerField('Bing Analytics', validators=[DataRequired(), NumberRange(min=1, max=10)])
+    robots_txt = IntegerField('robots.txt', validators=[DataRequired(), NumberRange(min=1, max=10)])
+    sitemap_xml = IntegerField('sitemap.xml', validators=[DataRequired(), NumberRange(min=1, max=10)])
 
     submit = SubmitField("Save")
 
