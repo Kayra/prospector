@@ -6,7 +6,7 @@ from app.users.forms import LoginForm, RegistrationForm
 from app.users.models import User
 from app.prospector.models import DomainScores, PageScores
 from app.prospector.forms import DomainScoresForm, PageScoresForm
-from app.prospector.utils import create_default_domain_scores, create_default_page_scores
+from app.prospector.utils import create_default_domain_scores, create_default_page_scores, load_domain_scores_form_to_model
 
 
 users_blueprint = Blueprint('users', __name__)
@@ -80,24 +80,21 @@ def edit_domain_scores(username):
 
     user = User.query.filter_by(username=username).first()
 
-    domain_scores = DomainScores.query.filter_by(owner=user.id).first()
+    domain_scores_model = DomainScores.query.filter_by(owner=user.id).first()
     domain_scores_form = DomainScoresForm()
 
     if domain_scores_form.validate_on_submit():
 
-        domain_scores.google_analytics = domain_scores_form.google_analytics.data
-        domain_scores.bing_analytics = domain_scores_form.bing_analytics.data
-        domain_scores.robots_txt = domain_scores_form.robots_txt.data
-        domain_scores.sitemap_xml = domain_scores_form.sitemap_xml.data
+        domain_scores_model = load_domain_scores_form_to_model(domain_scores_model, domain_scores_form)
 
-        db.session.add(domain_scores)
+        db.session.add(domain_scores_model)
         db.session.commit()
         flash("Your domain scores have been updated.")
 
-    domain_scores_form.google_analytics.data = domain_scores.google_analytics
-    domain_scores_form.bing_analytics.data = domain_scores.bing_analytics
-    domain_scores_form.robots_txt.data = domain_scores.robots_txt
-    domain_scores_form.sitemap_xml.data = domain_scores.sitemap_xml
+    domain_scores_form.google_analytics.data = domain_scores_model.google_analytics
+    domain_scores_form.bing_analytics.data = domain_scores_model.bing_analytics
+    domain_scores_form.robots_txt.data = domain_scores_model.robots_txt
+    domain_scores_form.sitemap_xml.data = domain_scores_model.sitemap_xml
 
     return render_template("users/edit_domain_scores.html", user=user, domain_scores_form=domain_scores_form)
 
