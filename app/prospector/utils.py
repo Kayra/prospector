@@ -89,3 +89,7 @@ def create_default_page_scores(owner=None):
                                      owner=owner)
 
     return default_page_scores
+
+
+def load_domain_scores_form_to_model(domain_score_form, domain_score_model):
+    pass
