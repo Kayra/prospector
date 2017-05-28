@@ -67,7 +67,7 @@ def logout():
     return redirect(url_for("prospector.index"))
 
 
-@users_blueprint.route('/profile/<username>')
+@users_blueprint.route('/profile/<username>', methods=["GET", "POST"])
 @login_required
 def profile(username):
 
