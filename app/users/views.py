@@ -157,4 +157,43 @@ def edit_domain_scores(username):
 @users_blueprint.route('/page_scores/<username>', methods=["GET", "POST"])
 @login_required
 def edit_page_scores(username):
-    pass
+
+    user = User.query.filter_by(username=username).first()
+
+    page_scores = PageScores.query.filter_by(owner=user.id).first()
+    page_scores_form = PageScoresForm()
+
+    if page_scores_form.validate_on_submit():
+
+        page_scores.h1_tags = page_scores_form.h1_tags.data
+        page_scores.h2_tags = page_scores_form.h2_tags.data
+        page_scores.h3_tags = page_scores_form.h3_tags.data
+        page_scores.alt_tags = page_scores_form.alt_tags.data
+        page_scores.meta_descriptions = page_scores_form.meta_descriptions.data
+        page_scores.title_text = page_scores_form.title_text.data
+        page_scores.view_state = page_scores_form.view_state.data
+        page_scores.pagination = page_scores_form.pagination.data
+        page_scores.iframe_content = page_scores_form.iframe_content.data
+        page_scores.flash_attribute = page_scores_form.flash_attribute.data
+        page_scores.no_index_no_follow_attribute = page_scores_form.no_index_no_follow_attribute.data
+        page_scores.schema_tags = page_scores_form.schema_tags.data
+        page_scores.blog_locations = page_scores_form.blog_locations.data
+
+        db.session.add(page_scores)
+        db.session.commit()
+
+    page_scores_form.h1_tags.data = page_scores.h1_tags
+    page_scores_form.h2_tags.data = page_scores.h2_tags
+    page_scores_form.h3_tags.data = page_scores.h3_tags
+    page_scores_form.alt_tags.data = page_scores.alt_tags
+    page_scores_form.meta_descriptions.data = page_scores.meta_descriptions
+    page_scores_form.title_text.data = page_scores.title_text
+    page_scores_form.view_state.data = page_scores.view_state
+    page_scores_form.pagination.data = page_scores.pagination
+    page_scores_form.iframe_content.data = page_scores.iframe_content
+    page_scores_form.flash_attribute.data = page_scores.flash_attribute
+    page_scores_form.no_index_no_follow_attribute.data = page_scores.no_index_no_follow_attribute
+    page_scores_form.schema_tags.data = page_scores.schema_tags
+    page_scores_form.blog_locations.data = page_scores.blog_locations
+
+    return render_template("users/edit_page_scores.html", user=user, page_scores_form=page_scores_form)
