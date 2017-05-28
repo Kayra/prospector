@@ -22,8 +22,8 @@ def register():
                     username=registration_form.username.data,
                     password=registration_form.password.data)
 
-        default_domain_scores = create_default_domain_scores(owner=user)
-        default_page_scores = create_default_page_scores(owner=user)
+        default_domain_scores = create_default_domain_scores(owner=user.id)
+        default_page_scores = create_default_page_scores(owner=user.id)
 
         db.session.add(user)
         db.session.add(default_domain_scores)
@@ -69,7 +69,7 @@ def logout():
 def profile(username):
 
     user = User.query.filter_by(username=username).first()
-    domain_scores = DomainScores.query.filter_by(owner=user).first()
-    page_scores = PageScores.query.filter_by(owner=user).first()
+    domain_scores = DomainScores.query.filter_by(owner=user.id).first()
+    page_scores = PageScores.query.filter_by(owner=user.id).first()
 
     return render_template("users/profile.html", user=user, domain_scores=domain_scores, page_scores=page_scores)

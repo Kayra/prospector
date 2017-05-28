@@ -9,6 +9,10 @@
 
     <h3>Your scores</h3>
 
+    {% for domain_score in domain_scores %}
+        {{ domain_score }}
+    {% endfor %}
+
     <p>
         <a href="{{ url_for('users.logout') }}">Click here to log out.</a>
     </p>
