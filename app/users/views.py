@@ -94,5 +94,18 @@ def profile(username):
     domain_scores_form.robots_txt.data = domain_scores.robots_txt
     domain_scores_form.sitemap_xml.data = domain_scores.sitemap_xml
 
+    page_scores_form.h1_tags.data = page_scores.h1_tags
+    page_scores_form.h2_tags.data = page_scores.h2_tags
+    page_scores_form.h3_tags.data = page_scores.h3_tags
+    page_scores_form.alt_tags.data = page_scores.alt_tags
+    page_scores_form.meta_descriptions.data = page_scores.meta_descriptions
+    page_scores_form.title_text.data = page_scores.title_text
+    page_scores_form.view_state.data = page_scores.view_state
+    page_scores_form.pagination.data = page_scores.pagination
+    page_scores_form.iframe_content.data = page_scores.iframe_content
+    page_scores_form.flash_attribute.data = page_scores.flash_attribute
+    page_scores_form.no_index_no_follow_attribute.data = page_scores.no_index_no_follow_attribute
+    page_scores_form.schema_tags.data = page_scores.schema_tags
+    page_scores_form.blog_locations.data = page_scores.blog_locations
 
     return render_template("users/profile.html", user=user, domain_scores_form=domain_scores_form, page_scores_form=page_scores_form)
