@@ -15,12 +15,13 @@ Ensure you have virtualenv and postgres installed on your system. Also create a 
 
 #### Todo
 
-* Display the data better on site inspect
+* Add ability to see all pages listed (with page score?)
+* Add ability for user to delete sites
+* Add ability for user to update password
+* Add ability for user to delete account (cascade deletion of all sites owned by that user and all pages belonging to those sites)
+* Link to robots.txt and sitemap.xml when present
 * Make the spidering more robust
 * Add threading for spidering
-* Add functionality to change scoring in the UI
-* Add users
-* Add dynamic scoring for users
 * Set up continuous integration
 
 #### The site is currently [live](http://prospector.kayra.co.uk/) but may not reflect the latest code.
