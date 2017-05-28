@@ -91,6 +91,7 @@ def edit_domain_scores(username):
         db.session.add(domain_scores_model)
         db.session.commit()
         flash("Your domain scores have been updated.")
+        return redirect(url_for("users.edit_domain_scores", username=user.username))
 
     domain_scores_form = load_domain_scores_model_to_form(domain_scores_model, domain_scores_form)
 
