@@ -32,3 +32,5 @@ class PageScoresForm(FlaskForm):
     no_index_no_follow_attribute = IntegerField('no_index_no_follow_attribute', validators=[DataRequired(), NumberRange(min=1, max=10)])
     schema_tags = IntegerField('schema_tags', validators=[DataRequired(), NumberRange(min=1, max=10)])
     blog_locations = IntegerField('blog_locations', validators=[DataRequired(), NumberRange(min=1, max=10)])
+
+    submit = SubmitField("Save")

@@ -5,7 +5,7 @@ from app import db
 from app.users.forms import LoginForm, RegistrationForm
 from app.users.models import User
 from app.prospector.models import DomainScores, PageScores
-from app.prospector.forms import DomainScoresForm
+from app.prospector.forms import DomainScoresForm, PageScoresForm
 from app.prospector.utils import create_default_domain_scores, create_default_page_scores
 
 
@@ -76,6 +76,9 @@ def profile(username):
     domain_scores = DomainScores.query.filter_by(owner=user.id).first()
     domain_scores_form = DomainScoresForm()
 
+    page_scores = PageScores.query.filter_by(owner=user.id).first()
+    page_scores_form = PageScoresForm()
+
     if domain_scores_form.validate_on_submit():
 
         domain_scores = DomainScores.query.filter_by(owner=user.id).first()
@@ -91,6 +94,5 @@ def profile(username):
     domain_scores_form.robots_txt.data = domain_scores.robots_txt
     domain_scores_form.sitemap_xml.data = domain_scores.sitemap_xml
 
-    page_scores = PageScores.query.filter_by(owner=user.id).first()
 
-    return render_template("users/profile.html", user=user, domain_scores_form=domain_scores_form, page_scores=page_scores)
+    return render_template("users/profile.html", user=user, domain_scores_form=domain_scores_form, page_scores_form=page_scores_form)

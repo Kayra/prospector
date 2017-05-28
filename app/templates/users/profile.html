@@ -17,9 +17,7 @@
 
     <h3>Your page scores</h3>
 
-    {% for page_score_field in page_scores.__table__.columns._data.keys() %}
-        <p>{{ page_score_field }} - {{ page_scores[page_score_field] }}</p>
-    {% endfor %}
+    {{ wtf.quick_form(page_scores_form) }}
 
     <br>
 
