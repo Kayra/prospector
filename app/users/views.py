@@ -5,6 +5,7 @@ from app import db
 from app.users.forms import LoginForm, RegistrationForm
 from app.users.models import User
 from app.prospector.models import DomainScores, PageScores
+from app.prospector.forms import DomainScoresForm
 from app.prospector.utils import create_default_domain_scores, create_default_page_scores
 
 
@@ -71,7 +72,10 @@ def logout():
 def profile(username):
 
     user = User.query.filter_by(username=username).first()
+
     domain_scores = DomainScores.query.filter_by(owner=user.id).first()
+    domain_scores_form = DomainScoresForm()
+
     page_scores = PageScores.query.filter_by(owner=user.id).first()
 
     return render_template("users/profile.html", user=user, domain_scores=domain_scores, page_scores=page_scores)

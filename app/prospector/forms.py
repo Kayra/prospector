@@ -7,7 +7,7 @@ class UrlEntry(FlaskForm):
     url = StringField('url', validators=[DataRequired()])
 
 
-class DomainScores(FlaskForm):
+class DomainScoresForm(FlaskForm):
 
     google_analytics = IntegerField('google_analytics', validators=[DataRequired()])
 
