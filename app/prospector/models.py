@@ -62,6 +62,8 @@ class DomainScores(db.Model):
 	robots_txt = db.Column(db.Integer)
 	sitemap_xml = db.Column(db.Integer)
 
+	owner = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+
 	def __repr__(self):
 		return '<DomainScores>'
 
@@ -86,6 +88,8 @@ class PageScores(db.Model):
 	blog_locations = db.Column(db.Integer)
 	number_of_internal_links = db.Column(JSON)
 	url_character_length = db.Column(JSON)
+
+	owner = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
 
 	def __repr__(self):
 		return '<PageScores>'
