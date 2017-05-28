@@ -75,6 +75,19 @@ def profile(username):
 
     domain_scores = DomainScores.query.filter_by(owner=user.id).first()
     domain_scores_form = DomainScoresForm()
+
+    if domain_scores_form.validate_on_submit():
+
+        print("SHOULD BE", domain_scores_form.google_analytics.data)
+        domain_scores = DomainScores.query.filter_by(owner=user.id).first()
+        domain_scores.google_analytics = domain_scores_form.google_analytics.data
+        domain_scores.bing_analytics = domain_scores_form.bing_analytics.data
+        domain_scores.robots_txt = domain_scores_form.robots_txt.data
+        domain_scores.sitemap_xml = domain_scores_form.sitemap_xml.data
+        print("IS", domain_scores.google_analytics)
+        db.session.add(domain_scores)
+        db.session.commit()
+
     domain_scores_form.google_analytics.data = domain_scores.google_analytics
     domain_scores_form.bing_analytics.data = domain_scores.bing_analytics
     domain_scores_form.robots_txt.data = domain_scores.robots_txt
