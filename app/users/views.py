@@ -71,9 +71,7 @@ def logout():
 def profile(username):
 
     user = User.query.filter_by(username=username).first()
-    print("HIT", user.id)
     domain_scores = DomainScores.query.filter_by(owner=user.id).first()
     page_scores = PageScores.query.filter_by(owner=user.id).first()
-    print(domain_scores)
 
     return render_template("users/profile.html", user=user, domain_scores=domain_scores, page_scores=page_scores)
