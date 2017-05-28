@@ -124,3 +124,30 @@ def profile(username):
     page_scores_form.blog_locations.data = page_scores.blog_locations
 
     return render_template("users/profile.html", user=user, domain_scores_form=domain_scores_form, page_scores_form=page_scores_form)
+
+
+@users_blueprint.route('/domain_scores/<username>', methods=["GET", "POST"])
+@login_required
+def edit_domain_scores(username):
+
+    user = User.query.filter_by(username=username).first()
+
+    domain_scores = DomainScores.query.filter_by(owner=user.id).first()
+    domain_scores_form = DomainScoresForm()
+
+    if domain_scores_form.validate_on_submit():
+
+        domain_scores.google_analytics = domain_scores_form.google_analytics.data
+        domain_scores.bing_analytics = domain_scores_form.bing_analytics.data
+        domain_scores.robots_txt = domain_scores_form.robots_txt.data
+        domain_scores.sitemap_xml = domain_scores_form.sitemap_xml.data
+
+        db.session.add(domain_scores)
+        db.session.commit()
+
+    domain_scores_form.google_analytics.data = domain_scores.google_analytics
+    domain_scores_form.bing_analytics.data = domain_scores.bing_analytics
+    domain_scores_form.robots_txt.data = domain_scores.robots_txt
+    domain_scores_form.sitemap_xml.data = domain_scores.sitemap_xml
+
+    return render_template("users/edit_domain_scores.html", user=user, domain_scores_form=domain_scores_form)
