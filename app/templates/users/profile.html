@@ -7,24 +7,18 @@
         <h2>Hello {{ user.username }}</h2>
     </div>
 
+    <h3><a href="">Update your domain scores</a></h3>
 
-    <h3>Your domain scores</h3>
+    <h3><a href="">Update your page scores</a></h3>
 
-    {{ wtf.quick_form(domain_scores_form) }}
+    <h3><a href="">Delete your scraped websites</a></h3>
 
-    <br>
+    <h3><a href="">Update your password</a></h3>
 
-
-    <h3>Your page scores</h3>
-
-    {{ wtf.quick_form(page_scores_form) }}
+    <h3><a href="">Delete your account</a></h3>
 
     <br>
 
-
-    <p>
-        <a href="{{ url_for('users.logout') }}">Click here to log out.</a>
-    </p>
-
+    <h3><a href="{{ url_for('users.logout') }}">Log out</a></h3>
 
 {% endblock %}
