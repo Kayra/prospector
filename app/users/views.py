@@ -75,6 +75,10 @@ def profile(username):
 
     domain_scores = DomainScores.query.filter_by(owner=user.id).first()
     domain_scores_form = DomainScoresForm()
+    domain_scores_form.google_analytics.data = domain_scores.google_analytics
+    domain_scores_form.bing_analytics.data = domain_scores.bing_analytics
+    domain_scores_form.robots_txt.data = domain_scores.robots_txt
+    domain_scores_form.sitemap_xml.data = domain_scores.sitemap_xml
 
     page_scores = PageScores.query.filter_by(owner=user.id).first()
 
