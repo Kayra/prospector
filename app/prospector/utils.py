@@ -130,5 +130,20 @@ def load_page_scores_form_to_model(page_scores_model, page_scores_form):
     return page_scores_model
 
 
-def load_page_scores_model_to_form(page_score_model, page_score_form):
-    pass
+def load_page_scores_model_to_form(page_scores_model, page_scores_form):
+
+    page_scores_form.h1_tags.data = page_scores_model.h1_tags
+    page_scores_form.h2_tags.data = page_scores_model.h2_tags
+    page_scores_form.h3_tags.data = page_scores_model.h3_tags
+    page_scores_form.alt_tags.data = page_scores_model.alt_tags
+    page_scores_form.meta_descriptions.data = page_scores_model.meta_descriptions
+    page_scores_form.title_text.data = page_scores_model.title_text
+    page_scores_form.view_state.data = page_scores_model.view_state
+    page_scores_form.pagination.data = page_scores_model.pagination
+    page_scores_form.iframe_content.data = page_scores_model.iframe_content
+    page_scores_form.flash_attribute.data = page_scores_model.flash_attribute
+    page_scores_form.no_index_no_follow_attribute.data = page_scores_model.no_index_no_follow_attribute
+    page_scores_form.schema_tags.data = page_scores_model.schema_tags
+    page_scores_form.blog_locations.data = page_scores_model.blog_locations
+
+    return page_scores_form
