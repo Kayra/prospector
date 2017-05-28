@@ -9,7 +9,7 @@
 
     <h3><a href="{{ url_for('users.edit_domain_scores', username = current_user.username) }}">Update your domain scores</a></h3>
 
-    <h3><a href="">Update your page scores</a></h3>
+    <h3><a href="{{ url_for('users.edit_page_scores', username = current_user.username) }}">Update your page scores</a></h3>
 
     <h3><a href="">Delete your scraped websites</a></h3>
 
