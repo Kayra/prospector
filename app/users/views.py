@@ -7,7 +7,7 @@ from app.users.models import User
 from app.prospector.models import DomainScores, PageScores
 from app.prospector.forms import DomainScoresForm, PageScoresForm
 from app.prospector.utils import (create_default_domain_scores, create_default_page_scores, load_domain_scores_form_to_model,
-                                  load_domain_scores_model_to_form)
+                                  load_domain_scores_model_to_form, load_page_scores_form_to_model)
 
 
 users_blueprint = Blueprint('users', __name__)
@@ -108,19 +108,7 @@ def edit_page_scores(username):
 
     if page_scores_form.validate_on_submit():
 
-        page_scores.h1_tags = page_scores_form.h1_tags.data
-        page_scores.h2_tags = page_scores_form.h2_tags.data
-        page_scores.h3_tags = page_scores_form.h3_tags.data
-        page_scores.alt_tags = page_scores_form.alt_tags.data
-        page_scores.meta_descriptions = page_scores_form.meta_descriptions.data
-        page_scores.title_text = page_scores_form.title_text.data
-        page_scores.view_state = page_scores_form.view_state.data
-        page_scores.pagination = page_scores_form.pagination.data
-        page_scores.iframe_content = page_scores_form.iframe_content.data
-        page_scores.flash_attribute = page_scores_form.flash_attribute.data
-        page_scores.no_index_no_follow_attribute = page_scores_form.no_index_no_follow_attribute.data
-        page_scores.schema_tags = page_scores_form.schema_tags.data
-        page_scores.blog_locations = page_scores_form.blog_locations.data
+        page_scores = load_page_scores_form_to_model(page_scores, page_scores_form)
 
         db.session.add(page_scores)
         db.session.commit()
