@@ -6,7 +6,8 @@ from app.users.forms import LoginForm, RegistrationForm
 from app.users.models import User
 from app.prospector.models import DomainScores, PageScores
 from app.prospector.forms import DomainScoresForm, PageScoresForm
-from app.prospector.utils import create_default_domain_scores, create_default_page_scores, load_domain_scores_form_to_model
+from app.prospector.utils import (create_default_domain_scores, create_default_page_scores, load_domain_scores_form_to_model,
+                                  load_domain_scores_model_to_form)
 
 
 users_blueprint = Blueprint('users', __name__)
@@ -91,10 +92,7 @@ def edit_domain_scores(username):
         db.session.commit()
         flash("Your domain scores have been updated.")
 
-    domain_scores_form.google_analytics.data = domain_scores_model.google_analytics
-    domain_scores_form.bing_analytics.data = domain_scores_model.bing_analytics
-    domain_scores_form.robots_txt.data = domain_scores_model.robots_txt
-    domain_scores_form.sitemap_xml.data = domain_scores_model.sitemap_xml
+    domain_scores_form = load_domain_scores_model_to_form(domain_scores_model, domain_scores_form)
 
     return render_template("users/edit_domain_scores.html", user=user, domain_scores_form=domain_scores_form)
 

@@ -101,8 +101,14 @@ def load_domain_scores_form_to_model(domain_scores_model, domain_scores_form):
     return domain_scores_model
 
 
-def load_domain_scores_model_to_form(domain_score_model, domain_score_form):
-    pass
+def load_domain_scores_model_to_form(domain_scores_model, domain_scores_form):
+
+    domain_scores_form.google_analytics.data = domain_scores_model.google_analytics
+    domain_scores_form.bing_analytics.data = domain_scores_model.bing_analytics
+    domain_scores_form.robots_txt.data = domain_scores_model.robots_txt
+    domain_scores_form.sitemap_xml.data = domain_scores_model.sitemap_xml
+
+    return domain_scores_form
 
 
 def load_page_scores_form_to_model(page_score_model, page_score_form):
