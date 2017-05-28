@@ -78,4 +78,4 @@ def profile(username):
 
     page_scores = PageScores.query.filter_by(owner=user.id).first()
 
-    return render_template("users/profile.html", user=user, domain_scores=domain_scores, page_scores=page_scores)
+    return render_template("users/profile.html", user=user, domain_scores_form=domain_scores_form, page_scores=page_scores)
