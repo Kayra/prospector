@@ -84,4 +84,4 @@ def site_inspect_all_pages(site_name):
 
     all_pages = PageData.query.filter_by(site_id=site.id).all()
 
-    return render_template("site-inspect-all-pages.html", site=site, all_pages=all_pages)
+    return render_template("site_inspect_all_pages.html", site=site, all_pages=all_pages)
