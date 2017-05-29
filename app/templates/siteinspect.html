@@ -228,7 +228,7 @@
 
 		{% if currentPages.has_prev or currentPages.has_next %}
 			<a class="all-pages"
-			   href="">
+			   href="{{ url_for('prospector.site_inspect_all_pages', site_name = site.site_name) }}">
 				all pages
 			</a>
 		{% endif %}
