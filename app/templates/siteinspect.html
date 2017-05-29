@@ -227,6 +227,14 @@
 
 		{% endif %}
 
+		{% if currentPages.has_prev or currentPages.has_next %}
+			<a class="nav"
+			   style="text-align:center;"
+			   href="">
+				all pages
+			</a>
+		{% endif %}
+
 
 		{% if currentPages.has_next %}
 
