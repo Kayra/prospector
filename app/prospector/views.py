@@ -72,3 +72,16 @@ def siteinspect(site_name, page=1):
     currentPages = PageData.query.filter_by(site_id=site.id).paginate(page, 1, False)
 
     return render_template("siteinspect.html", site=site, currentPages=currentPages)
+
+
+@prospector_blueprint.route('/site/<site_name>/all')
+def site_inspect_all_pages(site_name):
+
+    if site_name is None:
+        return redirect(url_for('index'))
+
+    site = db.session.query(DomainData).filter_by(site_name=site_name).first()
+
+    all_pages = PageData.query.filter_by(site_id=site.id).all()
+
+    return render_template("site-inspect-all-pages.html", site=site, all_pages=all_pages)
