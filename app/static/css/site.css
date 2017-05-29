@@ -736,3 +736,9 @@ nav {
   bottom: 15px;
   left: 47%;
 }
+
+.all-pages a {
+    display: block;
+    font-size: 1.2em;
+    padding: 10px 0;
+}
