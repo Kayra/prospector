@@ -219,8 +219,7 @@
 
 		{% if currentPages.has_prev %}
 
-			<a class="nav"
-			   style="float:left;"
+			<a style="float:left;"
 			   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
 				<< previous page
 			</a>
@@ -228,8 +227,7 @@
 		{% endif %}
 
 		{% if currentPages.has_prev or currentPages.has_next %}
-			<a class="nav"
-			   style="text-align:center;"
+			<a style="text-align:center;"
 			   href="">
 				all pages
 			</a>
@@ -238,8 +236,7 @@
 
 		{% if currentPages.has_next %}
 
-			<a class="nav"
-			   style="float:right;"
+			<a style="float:right;"
 			   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
 				next page >>
 			</a>
