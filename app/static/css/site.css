@@ -726,6 +726,10 @@ nav {
     text-align: right;
 }
 
+.site-inspect .all-pages {
+    text-align: center;
+}
+
 .index-auth {
   text-align: center;
   position: fixed;
