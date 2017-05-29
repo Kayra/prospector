@@ -5,7 +5,8 @@
     <a class="sitebtn {{ site.level }}" href="{{ url_for('prospector.sitelist') }}"> < {{ site.ranking }}% {{ site.domain_url }}</a>
 
     {% for page in all_pages %}
-        <p>{{ page.page_url }}</p>
+        <a href="{{ url_for('prospector.siteinspect', site_name=site.site_name, page=loop.index) }}">{{ page.page_url }}</a>
+        <br>
     {% endfor %}
 
 {% endblock %}
