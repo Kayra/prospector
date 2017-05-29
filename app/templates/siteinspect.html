@@ -215,27 +215,29 @@
 		</table>
 	</div>
 
-	<!-- 	NAVIGATION BUTTONS   -->
-	{% if currentPages.has_prev %}
+	<nav class="site-inspect">
 
-		<a class="nav"
-		   style="float:left;"
-		   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
-			<< previous page
-		</a>
+		{% if currentPages.has_prev %}
 
-	{% endif %}
+			<a class="nav"
+			   style="float:left;"
+			   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
+				<< previous page
+			</a>
+
+		{% endif %}
 
 
-	{% if currentPages.has_next %}
+		{% if currentPages.has_next %}
 
-		<a class="nav"
-		   style="float:right;"
-		   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
-			next page >>
-		</a>
+			<a class="nav"
+			   style="float:right;"
+			   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
+				next page >>
+			</a>
 
-	{% endif %}
-	<!-- 	END OF NAVIGATION BUTTONS   -->
+		{% endif %}
+
+	</nav>
 
 {% endblock %}
