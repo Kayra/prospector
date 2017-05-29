@@ -718,6 +718,10 @@ nav {
     margin-bottom: 50px;
 }
 
+.site-inspect .previous {
+    text-align: left;
+}
+
 .index-auth {
   text-align: center;
   position: fixed;

@@ -219,7 +219,7 @@
 
 		{% if currentPages.has_prev %}
 
-			<a style="float:left;"
+			<a class="previous"
 			   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
 				<< previous page
 			</a>
