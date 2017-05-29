@@ -722,6 +722,10 @@ nav {
     text-align: left;
 }
 
+.site-inspect .next {
+    text-align: right;
+}
+
 .index-auth {
   text-align: center;
   position: fixed;

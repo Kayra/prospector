@@ -236,7 +236,7 @@
 
 		{% if currentPages.has_next %}
 
-			<a style="float:right;"
+			<a class="next"
 			   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
 				next page >>
 			</a>
