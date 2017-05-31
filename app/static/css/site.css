@@ -715,12 +715,11 @@ nav {
     font-family: "Lato", sans-serif;
     font-size: 1.1em;
     padding: 1px 0;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .site-inspect {
     text-align: center;
-    padding-bottom: 10px;
 }
 
 .site-inspect .previous {
@@ -744,4 +743,8 @@ nav {
   left: 47%;
 }
 
-
+.all-pages a {
+    font-size: 1.2em;
+    padding: 10px 0;
+    display: block;
+}
