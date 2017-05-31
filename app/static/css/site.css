@@ -718,16 +718,22 @@ nav {
     margin-bottom: 50px;
 }
 
+.site-inspect {
+    text-align: center;
+}
+
 .site-inspect .previous {
-    text-align: left;
+    display: inline;
+    float: left;
 }
 
 .site-inspect .next {
-    text-align: right;
+    display: inline;
+    float: right;
 }
 
-.site-inspect .all-pages {
-    text-align: center;
+.site-inspect .all {
+    display: inline;
 }
 
 .index-auth {
@@ -738,7 +744,6 @@ nav {
 }
 
 .all-pages a {
-    display: block;
     font-size: 1.2em;
     padding: 10px 0;
 }

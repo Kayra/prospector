@@ -219,28 +219,31 @@
 
 		{% if currentPages.has_prev %}
 
-			<a class="previous"
-			   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
-				<< previous page
-			</a>
+			<div class="previous">
+				<a href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
+					<< previous page
+				</a>
+			</div>
 
 		{% endif %}
 
 		{% if currentPages.has_prev or currentPages.has_next %}
-			<a class="all-pages"
-			   href="{{ url_for('prospector.site_inspect_all_pages', site_name = site.site_name) }}">
-				all pages
-			</a>
+
+			<div class="all">
+				<a href="{{ url_for('prospector.site_inspect_all_pages', site_name = site.site_name) }}">
+					all pages
+				</a>
+			</div>
+
 		{% endif %}
 
 
 		{% if currentPages.has_next %}
-
-			<a class="next"
-			   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
-				next page >>
-			</a>
-
+			<div class="next">
+				<a href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
+					next page >>
+				</a>
+			</div>
 		{% endif %}
 
 	</nav>
