@@ -4,7 +4,7 @@ from flask_login import login_required, login_user, logout_user
 from app import db
 from app.users.forms import LoginForm, RegistrationForm
 from app.users.models import User
-from app.prospector.models import DomainScores, PageScores
+from app.prospector.models import DomainScores, PageScores, DomainData
 from app.prospector.forms import DomainScoresForm, PageScoresForm
 from app.prospector.utils import (create_default_domain_scores, create_default_page_scores, load_domain_scores_form_to_model,
                                   load_domain_scores_model_to_form, load_page_scores_form_to_model, load_page_scores_model_to_form)
@@ -127,4 +127,9 @@ def delete_sites(username):
 
     user = User.query.filter_by(username=username).first()
 
-    return render_template("users/delete_sites.html", user=user)
+    if user is not None:
+        sites = DomainData.query.filter_by(owner=user.id).all()
+    else:
+        sites = DomainData.query.filter_by(owner=None).all()
+
+    return render_template("users/delete_sites.html", user=user, sites=sites)
