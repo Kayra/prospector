@@ -6,10 +6,10 @@
 
             {% for site in sites %}
 
-                <a class="sitebtn {{ site.level }}" href="{{ url_for('prospector.siteinspect', site_name = site.site_name) }}">
+                <a class="sitebtn {{ site.level }}" href="{{ url_for('users.delete', site_id = site.id) }}">
                     {{site.ranking}}% {{site.domain_url}}
+                    <p style="float:right; display:inline; padding:0;">X</p>
                 </a>
-                <p style="text-align:right;">X</p>
                 <br>
 
             {% endfor %}

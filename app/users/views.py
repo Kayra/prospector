@@ -133,3 +133,10 @@ def delete_sites(username):
         sites = DomainData.query.filter_by(owner=None)
 
     return render_template("users/delete_sites.html", user=user, sites=sites)
+
+
+@users_blueprint.route('/delete_site/<site_id>')
+@login_required
+def delete_site(site_id):
+    pass
+    # return render_template("users/delete_sites.html", user=user, sites=sites)
