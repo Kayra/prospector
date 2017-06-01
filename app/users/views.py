@@ -119,3 +119,12 @@ def edit_page_scores(username):
     page_scores_form = load_page_scores_model_to_form(page_scores, page_scores_form)
 
     return render_template("users/edit_page_scores.html", user=user, page_scores_form=page_scores_form)
+
+
+@users_blueprint.route('/delete_sites/<username>')
+@login_required
+def delete_sites(username):
+
+    user = User.query.filter_by(username=username).first()
+
+    return render_template("users/delete_sites.html", user=user)
