@@ -224,6 +224,7 @@
 			</a>
 		</div>
 
+
 		{% if currentPages.has_prev or currentPages.has_next %}
 
 			<div class="all">
@@ -235,13 +236,12 @@
 		{% endif %}
 
 
-		{% if currentPages.has_next %}
-			<div class="next">
-				<a href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
-					next page >>
-				</a>
-			</div>
-		{% endif %}
+		<div class="next">
+			<a  {% if not currentPages.has_next %} style="visibility: hidden;" {% endif %}
+				href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
+				next page >>
+			</a>
+		</div>
 
 	</nav>
 
