@@ -53,15 +53,19 @@
 
             </div>
 
-            <div class="index-auth">
+            <div class="index-auth footer navbar-fixed-bottom">
 
-                {% if current_user.is_authenticated %}
-                    <p>Currently logged in as <a href="{{ url_for('users.profile', username = current_user.username) }}">{{ current_user.username }}</a></p>
-                {% else %}
-                    <a href="{{ url_for('users.login') }}">Log in</a>
-                    -
-                    <a href="{{ url_for('users.register') }}">Register</a>
-                {% endif %}
+                <div class="container text-center">
+
+                    {% if current_user.is_authenticated %}
+                        <p>Currently logged in as <a href="{{ url_for('users.profile', username = current_user.username) }}">{{ current_user.username }}</a></p>
+                    {% else %}
+                        <p>
+                            <a href="{{ url_for('users.login') }}">Log in</a> - <a href="{{ url_for('users.register') }}">Register</a>
+                        </p>
+                    {% endif %}
+
+                </div>
 
             </div>
 

@@ -736,11 +736,8 @@ nav {
     display: inline;
 }
 
-.index-auth {
-  text-align: center;
-  position: fixed;
-  bottom: 15px;
-  left: 47%;
+.index-auth p {
+    text-align: center;
 }
 
 .all-pages a {
