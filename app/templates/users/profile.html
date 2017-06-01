@@ -11,7 +11,7 @@
 
     <h3><a href="{{ url_for('users.edit_page_scores', username = current_user.username) }}">Update your page scores</a></h3>
 
-    <h3><a href="">Delete your scraped websites</a></h3>
+    <h3><a href="{{ url_for('users.delete_sites', username = current_user.username) }}">Delete your scraped websites</a></h3>
 
     <h3><a href="">Update your password</a></h3>
 

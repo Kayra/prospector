@@ -128,8 +128,8 @@ def delete_sites(username):
     user = User.query.filter_by(username=username).first()
 
     if user is not None:
-        sites = DomainData.query.filter_by(owner=user.id).all()
+        sites = DomainData.query.filter_by(owner=user.id)
     else:
-        sites = DomainData.query.filter_by(owner=None).all()
+        sites = DomainData.query.filter_by(owner=None)
 
     return render_template("users/delete_sites.html", user=user, sites=sites)
