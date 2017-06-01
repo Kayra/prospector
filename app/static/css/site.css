@@ -748,3 +748,7 @@ nav {
     padding: 10px 0;
     display: block;
 }
+
+div.all-pages {
+    padding-bottom: 10px;
+}
