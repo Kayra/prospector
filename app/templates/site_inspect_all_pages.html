@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+    <a class="sitebtn {{ site.level }}" href="{{ url_for('prospector.sitelist') }}"> < {{ site.ranking }}% {{ site.domain_url }}</a>
+
+    <div class="all-pages">
+
+        {% for page in all_pages %}
+            <a href="{{ url_for('prospector.siteinspect', site_name=site.site_name, page=loop.index) }}">
+                {{ page.page_url }}
+            </a>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

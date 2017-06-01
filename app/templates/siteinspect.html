@@ -50,7 +50,7 @@
 
 		{% for currentPage in currentPages.items %}
 
-		<a href="{{ currentPage.page_url }}">
+		<a href="{{ currentPage.page_url }}" target="_blank">
 			{{ currentPage.page_url }}
 		</a>
 
@@ -215,27 +215,34 @@
 		</table>
 	</div>
 
-	<!-- 	NAVIGATION BUTTONS   -->
-	{% if currentPages.has_prev %}
+	<nav class="site-inspect">
 
-		<a class="nav"
-		   style="float:left;"
-		   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
-			<< previous page
-		</a>
-
-	{% endif %}
+		<div class="previous">
+			<a  {% if not currentPages.has_prev %} style="visibility: hidden;" {% endif %}
+				href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
+				<< previous page
+			</a>
+		</div>
 
 
-	{% if currentPages.has_next %}
+		{% if currentPages.has_prev or currentPages.has_next %}
 
-		<a class="nav"
-		   style="float:right;"
-		   href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
-			next page >>
-		</a>
+			<div class="all">
+				<a href="{{ url_for('prospector.site_inspect_all_pages', site_name = site.site_name) }}">
+					all pages
+				</a>
+			</div>
 
-	{% endif %}
-	<!-- 	END OF NAVIGATION BUTTONS   -->
+		{% endif %}
+
+
+		<div class="next">
+			<a  {% if not currentPages.has_next %} style="visibility: hidden;" {% endif %}
+				href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.next_num) }}">
+				next page >>
+			</a>
+		</div>
+
+	</nav>
 
 {% endblock %}

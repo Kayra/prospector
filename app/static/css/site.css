@@ -711,11 +711,29 @@ table .chevron {
 
 }*/
 
-.nav {
+nav {
     font-family: "Lato", sans-serif;
     font-size: 1.1em;
     padding: 1px 0;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+.site-inspect {
+    text-align: center;
+}
+
+.site-inspect .previous {
+    display: inline;
+    float: left;
+}
+
+.site-inspect .next {
+    display: inline;
+    float: right;
+}
+
+.site-inspect .all {
+    display: inline;
 }
 
 .index-auth {
@@ -723,4 +741,14 @@ table .chevron {
   position: fixed;
   bottom: 15px;
   left: 47%;
+}
+
+.all-pages a {
+    font-size: 1.2em;
+    padding: 10px 0;
+    display: block;
+}
+
+div.all-pages {
+    padding-bottom: 10px;
 }
