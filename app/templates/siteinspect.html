@@ -217,15 +217,12 @@
 
 	<nav class="site-inspect">
 
-		{% if currentPages.has_prev %}
-
-			<div class="previous">
-				<a href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
-					<< previous page
-				</a>
-			</div>
-
-		{% endif %}
+		<div class="previous">
+			<a  {% if not currentPages.has_prev %} style="visibility: hidden;" {% endif %}
+				href="{{ url_for('prospector.siteinspect', site_name = site.site_name, page = currentPages.prev_num) }}">
+				<< previous page
+			</a>
+		</div>
 
 		{% if currentPages.has_prev or currentPages.has_next %}
 
