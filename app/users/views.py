@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 
 from app import db
 from app.users.forms import LoginForm, RegistrationForm
@@ -138,5 +138,15 @@ def delete_sites(username):
 @users_blueprint.route('/delete_site/<site_id>')
 @login_required
 def delete_site(site_id):
-    pass
-    # return render_template("users/delete_sites.html", user=user, sites=sites)
+
+    user = current_user
+
+    site_to_delete = DomainData.query.get(site_id)
+
+    if site_to_delete and site_to_delete.owner == user.id:
+        db.session.delete(site_to_delete)
+        db.session.commit()
+        redirect(url_for("users.delete_sites", username=user.username))
+
+    else:
+        redirect(url_for("users.delete_sites", username=user.username))
