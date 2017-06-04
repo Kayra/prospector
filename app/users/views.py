@@ -144,9 +144,14 @@ def delete_site(site_id):
     site_to_delete = DomainData.query.get(site_id)
 
     if site_to_delete and site_to_delete.owner == user.id:
+
+        for page_to_delete in site_to_delete.pages:
+            db.session.delete(page_to_delete)
+        db.session.commit()
+
         db.session.delete(site_to_delete)
         db.session.commit()
-        redirect(url_for("users.delete_sites", username=user.username))
+        return redirect(url_for("users.delete_sites", username=user.username))
 
     else:
-        redirect(url_for("users.delete_sites", username=user.username))
+        return redirect(url_for("users.delete_sites", username=user.username))
