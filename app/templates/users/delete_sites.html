@@ -6,7 +6,7 @@
 
             {% for site in sites %}
 
-                <a class="sitebtn {{ site.level }}" href="{{ url_for('users.delete', site_id = site.id) }}">
+                <a class="sitebtn {{ site.level }}" href="{{ url_for('users.delete_site', site_id = site.id) }}">
                     {{site.ranking}}% {{site.domain_url}}
                     <p style="float:right; display:inline; padding:0;">X</p>
                 </a>
