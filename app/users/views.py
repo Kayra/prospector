@@ -155,3 +155,9 @@ def delete_site(site_id):
 
     else:
         return redirect(url_for("users.delete_sites", username=user.username))
+
+
+@users_blueprint.route('/update-password/<username>')
+@login_required
+def update_password(username):
+    pass
