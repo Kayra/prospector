@@ -160,4 +160,7 @@ def delete_site(site_id):
 @users_blueprint.route('/update-password/<username>')
 @login_required
 def update_password(username):
-    pass
+
+    user = current_user
+
+    return render_template("users/update_password.html", user=user)
