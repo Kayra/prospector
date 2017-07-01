@@ -13,7 +13,7 @@
 
     <h3><a href="{{ url_for('users.delete_sites', username = current_user.username) }}">Delete your scraped websites</a></h3>
 
-    <h3><a href="">Update your password</a></h3>
+    <h3><a href="{{ url_for('users.update_password', username = current_user.username) }}">Update your password</a></h3>
 
     <h3><a href="">Delete your account</a></h3>
 
