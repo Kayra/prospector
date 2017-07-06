@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, login_user, logout_user, current_user
 
 from app import db
-from app.users.forms import LoginForm, RegistrationForm
+from app.users.forms import LoginForm, RegistrationForm, UpdatePasswordForm
 from app.users.models import User
 from app.prospector.models import DomainScores, PageScores, DomainData
 from app.prospector.forms import DomainScoresForm, PageScoresForm
@@ -163,4 +163,6 @@ def update_password(username):
 
     user = current_user
 
-    return render_template("users/update_password.html", user=user)
+    update_password_form = UpdatePasswordForm()
+
+    return render_template("users/update_password.html", user=user, form=update_password_form)
