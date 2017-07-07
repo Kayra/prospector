@@ -157,7 +157,7 @@ def delete_site(site_id):
         return redirect(url_for("users.delete_sites", username=user.username))
 
 
-@users_blueprint.route('/update-password/<username>')
+@users_blueprint.route('/update-password/<username>', methods=["GET", "POST"])
 @login_required
 def update_password(username):
 
@@ -165,4 +165,16 @@ def update_password(username):
 
     update_password_form = UpdatePasswordForm()
 
-    return render_template("users/update_password.html", user=user, form=update_password_form)
+    if update_password_form.validate_on_submit():
+
+        user.password = update_password_form.new_password.data
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash("Your password has been updated.")
+
+        return redirect(url_for("users.profile", username=username))
+
+    else:
+        return render_template("users/update_password.html", user=user, form=update_password_form)

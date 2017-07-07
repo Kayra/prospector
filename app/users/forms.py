@@ -41,4 +41,4 @@ class UpdatePasswordForm(FlaskForm):
     new_password = PasswordField("New Password", validators=[Required(), EqualTo("new_password_two", message="Passwords must match.")])
     new_password_two = PasswordField("Confirm new password", validators=[Required()])
 
-    submit = SubmitField("Register")
+    submit = SubmitField("Update")
