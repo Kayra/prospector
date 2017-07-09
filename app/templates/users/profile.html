@@ -21,4 +21,16 @@
 
     <h3><a href="{{ url_for('users.logout') }}">Log out</a></h3>
 
+    <script type="text/javascript">
+
+        function user_confirmation(url) {
+
+            if (confirm("Are you sure you want to delete your account? This cannot be undone.") == true) {
+                location.href = url;
+            }
+
+        }
+
+    </script>
+
 {% endblock %}
