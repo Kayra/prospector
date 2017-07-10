@@ -178,3 +178,12 @@ def update_password(username):
 
     else:
         return render_template("users/update_password.html", user=user, form=update_password_form)
+
+
+@users_blueprint.route('/delete-account/<username>')
+@login_required
+def delete_account(username):
+
+    user = current_user
+
+    return redirect(url_for("index"))
