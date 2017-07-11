@@ -184,6 +184,10 @@ def update_password(username):
 @login_required
 def delete_account(username):
 
-    user = current_user
+    user = User.query.filter_by(username=username).first()
+
+    logout_user()
+    db.session.delete(user)
+    db.session.commit()
 
     return redirect(url_for("index"))
