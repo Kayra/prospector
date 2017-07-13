@@ -15,7 +15,7 @@
 
     <h3><a href="{{ url_for('users.update_password', username = current_user.username) }}">Update your password</a></h3>
 
-    <h3><a href="{{ url_for('users.delete_account', username = current_user.username) }}">Delete your account</a></h3>
+    <h3><a href="" onclick="user_confirmation('{{ url_for('users.delete_account', username = current_user.username) }}')">Delete your account</a></h3>
 
     <br>
 
@@ -24,7 +24,7 @@
     <script type="text/javascript">
 
         function user_confirmation(url) {
-
+            console.log(url)
             if (confirm("Are you sure you want to delete your account? This cannot be undone.") == true) {
                 location.href = url;
             }
