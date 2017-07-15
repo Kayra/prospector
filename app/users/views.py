@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 
 from app import db
 from app.users.forms import LoginForm, RegistrationForm
 from app.users.models import User
-from app.prospector.models import DomainScores, PageScores
+from app.prospector.models import DomainScores, PageScores, DomainData
 from app.prospector.forms import DomainScoresForm, PageScoresForm
 from app.prospector.utils import (create_default_domain_scores, create_default_page_scores, load_domain_scores_form_to_model,
                                   load_domain_scores_model_to_form, load_page_scores_form_to_model, load_page_scores_model_to_form)
@@ -119,3 +119,39 @@ def edit_page_scores(username):
     page_scores_form = load_page_scores_model_to_form(page_scores, page_scores_form)
 
     return render_template("users/edit_page_scores.html", user=user, page_scores_form=page_scores_form)
+
+
+@users_blueprint.route('/delete_sites/<username>')
+@login_required
+def delete_sites(username):
+
+    user = User.query.filter_by(username=username).first()
+
+    if user is not None:
+        sites = DomainData.query.filter_by(owner=user.id)
+    else:
+        sites = DomainData.query.filter_by(owner=None)
+
+    return render_template("users/delete_sites.html", user=user, sites=sites)
+
+
+@users_blueprint.route('/delete_site/<site_id>')
+@login_required
+def delete_site(site_id):
+
+    user = current_user
+
+    site_to_delete = DomainData.query.get(site_id)
+
+    if site_to_delete and site_to_delete.owner == user.id:
+
+        for page_to_delete in site_to_delete.pages:
+            db.session.delete(page_to_delete)
+        db.session.commit()
+
+        db.session.delete(site_to_delete)
+        db.session.commit()
+        return redirect(url_for("users.delete_sites", username=user.username))
+
+    else:
+        return redirect(url_for("users.delete_sites", username=user.username))

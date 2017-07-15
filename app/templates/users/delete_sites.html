@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+    {% if sites.all() %}
+
+        {% for site in sites %}
+
+            <a class="sitebtn {{ site.level }}" onclick="user_confirmation('{{ url_for('users.delete_site', site_id = site.id) }}')" href="#">
+                {{site.ranking}}% {{site.domain_url}}
+                <p style="float:right; display:inline; padding:0;">X</p>
+            </a>
+            <br>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="no-scrapes">
+
+            <p style="text-align:center;">There are no scraped sites to delete.</p>
+            <a href="/">Scrape a site.</a>
+
+        </div>
+
+    {% endif %}
+
+    <script type="text/javascript">
+
+        function user_confirmation(url) {
+
+            if (confirm("Are you sure you want to delete this site?") == true) {
+                location.href = url;
+            }
+
+        }
+
+    </script>
+
+{% endblock %}
