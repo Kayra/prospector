@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, login_user, logout_user, current_user
 
 from app import db
-from app.users.forms import LoginForm, RegistrationForm
+from app.users.forms import LoginForm, RegistrationForm, UpdatePasswordForm
 from app.users.models import User
 from app.prospector.models import DomainScores, PageScores, DomainData
 from app.prospector.forms import DomainScoresForm, PageScoresForm
@@ -155,3 +155,26 @@ def delete_site(site_id):
 
     else:
         return redirect(url_for("users.delete_sites", username=user.username))
+
+
+@users_blueprint.route('/update-password/<username>', methods=["GET", "POST"])
+@login_required
+def update_password(username):
+
+    user = current_user
+
+    update_password_form = UpdatePasswordForm()
+
+    if update_password_form.validate_on_submit():
+
+        user.password = update_password_form.new_password.data
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash("Your password has been updated.")
+
+        return redirect(url_for("users.profile", username=username))
+
+    else:
+        return render_template("users/update_password.html", user=user, form=update_password_form)
