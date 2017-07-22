@@ -189,5 +189,5 @@ def delete_account(username):
     logout_user()
     db.session.delete(user)
     db.session.commit()
-    print("butts")
+
     return redirect(url_for("index"))
