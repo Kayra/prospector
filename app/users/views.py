@@ -4,6 +4,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from app import db
 from app.users.forms import LoginForm, RegistrationForm, UpdatePasswordForm
 from app.users.models import User
+from app.users.utils import delete_domain, delete_user_account
 from app.prospector.models import DomainScores, PageScores, DomainData
 from app.prospector.forms import DomainScoresForm, PageScoresForm
 from app.prospector.utils import (create_default_domain_scores, create_default_page_scores, load_domain_scores_form_to_model,
@@ -141,16 +142,11 @@ def delete_site(site_id):
 
     user = current_user
 
-    site_to_delete = DomainData.query.get(site_id)
+    domain_to_delete = DomainData.query.get(site_id)
 
-    if site_to_delete and site_to_delete.owner == user.id:
+    if domain_to_delete and domain_to_delete.owner == user.id:
+        delete_domain(domain_to_delete)
 
-        for page_to_delete in site_to_delete.pages:
-            db.session.delete(page_to_delete)
-        db.session.commit()
-
-        db.session.delete(site_to_delete)
-        db.session.commit()
         return redirect(url_for("users.delete_sites", username=user.username))
 
     else:
@@ -187,7 +183,7 @@ def delete_account(username):
     user = User.query.filter_by(username=username).first()
 
     logout_user()
-    db.session.delete(user)
+    delete_user_account(user)
     db.session.commit()
 
-    return redirect(url_for("index"))
+    return redirect(url_for("prospector.index"))
