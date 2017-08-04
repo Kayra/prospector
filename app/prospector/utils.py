@@ -5,6 +5,9 @@ from app.prospector.models import DomainData, DomainScores, PageScores
 
 def format_url(url):
 
+    if 'https://' in url:
+        return url
+
     if 'www.' not in url and 'http://' not in url:
         return 'http://www.' + url
 
