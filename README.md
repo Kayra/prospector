@@ -15,7 +15,6 @@ Ensure you have virtualenv and postgres installed on your system. Also create a 
 
 #### Todo
 
-* Add ability for user to delete account (cascade deletion of all sites owned by that user and all pages belonging to those sites)
 * Fix bug: https://www.rachelzarkhosh.com/ => http://https://www.rachelzarkhosh.com/
 * Implement clear messaging (flash() => bootstrap)
 * Link to robots.txt and sitemap.xml when present
