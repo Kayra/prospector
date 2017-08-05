@@ -59,3 +59,15 @@ class TestMetaDescriptionScrapers(unittest.TestCase):
 
     def test_meta_description_valid_strings(self):
         self.assertEquals(True, False)
+
+
+class TestTitleTextScrapers(unittest.TestCase):
+
+    def test_title_text_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_title_text_invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_title_text_valid_strings(self):
+        self.assertEquals(True, False)
