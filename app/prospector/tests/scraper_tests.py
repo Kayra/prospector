@@ -25,7 +25,7 @@ class TestBingAnalytics(unittest.TestCase):
         self.assertEquals(True, False)
 
 
-class TestHeaderTagScrapers(unittest.TestCase):
+class TestHeaderTagScraper(unittest.TestCase):
 
     def test_header_tag_no_valid_string(self):
         self.assertEquals(True, False)
@@ -37,7 +37,7 @@ class TestHeaderTagScrapers(unittest.TestCase):
         self.assertEquals(True, False)
 
 
-class TestAltTagScrapers(unittest.TestCase):
+class TestAltTagScraper(unittest.TestCase):
 
     def test_alt_tag_no_valid_string(self):
         self.assertEquals(True, False)
@@ -49,7 +49,7 @@ class TestAltTagScrapers(unittest.TestCase):
         self.assertEquals(True, False)
 
 
-class TestMetaDescriptionScrapers(unittest.TestCase):
+class TestMetaDescriptionScraper(unittest.TestCase):
 
     def test_meta_description_no_valid_string(self):
         self.assertEquals(True, False)
@@ -61,7 +61,7 @@ class TestMetaDescriptionScrapers(unittest.TestCase):
         self.assertEquals(True, False)
 
 
-class TestTitleTextScrapers(unittest.TestCase):
+class TestTitleTextScraper(unittest.TestCase):
 
     def test_title_text_no_valid_string(self):
         self.assertEquals(True, False)
@@ -73,7 +73,7 @@ class TestTitleTextScrapers(unittest.TestCase):
         self.assertEquals(True, False)
 
 
-class TestViewStateScrapers(unittest.TestCase):
+class TestViewStateScraper(unittest.TestCase):
 
     def test_view_state_no_valid_string(self):
         self.assertEquals(True, False)
@@ -85,7 +85,7 @@ class TestViewStateScrapers(unittest.TestCase):
         self.assertEquals(True, False)
 
 
-class TestPaginationScrapers(unittest.TestCase):
+class TestPaginationScraper(unittest.TestCase):
 
     def test_pagination_no_valid_string(self):
         self.assertEquals(True, False)
