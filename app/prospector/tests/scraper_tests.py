@@ -97,6 +97,18 @@ class TestPaginationScraper(unittest.TestCase):
         self.assertEquals(True, False)
 
 
+class TestIframeContentScraper(unittest.TestCase):
+
+    def test_iframe_content_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_iframe_content_invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_iframe_content_valid_strings(self):
+        self.assertEquals(True, False)
+
+
 class TestFlashAttributeScraper(unittest.TestCase):
 
     def test_flash_attribute_no_valid_string(self):
