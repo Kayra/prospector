@@ -25,13 +25,25 @@ class TestBingAnalytics(unittest.TestCase):
         self.assertEquals(True, False)
 
 
-class TestHeaderScrapers(unittest.TestCase):
+class TestHeaderTagScrapers(unittest.TestCase):
 
-    def test_header_no_valid_string(self):
+    def test_header_tag_no_valid_string(self):
         self.assertEquals(True, False)
 
-    def test_header_invalid_strings(self):
+    def test_header_tag_invalid_strings(self):
         self.assertEquals(True, False)
 
-    def test_header_valid_strings(self):
+    def test_header_tag_valid_strings(self):
+        self.assertEquals(True, False)
+
+
+class TestAltTagScrapers(unittest.TestCase):
+
+    def test_alt_tag_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_alt_tag_invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_alt_tag_valid_strings(self):
         self.assertEquals(True, False)
