@@ -83,3 +83,15 @@ class TestViewStateScrapers(unittest.TestCase):
 
     def test_view_state_valid_strings(self):
         self.assertEquals(True, False)
+
+
+class TestPaginationScrapers(unittest.TestCase):
+
+    def test_pagination_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_pagination_invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_pagination_valid_strings(self):
+        self.assertEquals(True, False)
