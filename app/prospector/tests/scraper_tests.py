@@ -71,3 +71,15 @@ class TestTitleTextScrapers(unittest.TestCase):
 
     def test_title_text_valid_strings(self):
         self.assertEquals(True, False)
+
+
+class TestViewStateScrapers(unittest.TestCase):
+
+    def test_view_state_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_view_state_invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_view_state_valid_strings(self):
+        self.assertEquals(True, False)
