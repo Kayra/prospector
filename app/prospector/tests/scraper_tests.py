@@ -1,7 +1,7 @@
 import unittest
 
 
-class TestDomainScrapers(unittest.TestCase):
+class TestGoogleAnalytics(unittest.TestCase):
 
     def test_google_analytics_no_valid_string(self):
         self.assertEquals(True, False)
@@ -11,6 +11,9 @@ class TestDomainScrapers(unittest.TestCase):
 
     def test_google_analytics_valid_strings(self):
         self.assertEquals(True, False)
+
+
+class TestBingAnalytics(unittest.TestCase):
 
     def test_bing_analytics_no_valid_string(self):
         self.assertEquals(True, False)
@@ -22,7 +25,7 @@ class TestDomainScrapers(unittest.TestCase):
         self.assertEquals(True, False)
 
 
-class TestPageScrapers(unittest.TestCase):
+class TestHeaderScrapers(unittest.TestCase):
 
     def test_header_no_valid_string(self):
         self.assertEquals(True, False)
