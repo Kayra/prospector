@@ -155,3 +155,15 @@ class TestBlogLocationsScraper(unittest.TestCase):
 
     def test_blog_locations_valid_strings(self):
         self.assertEquals(True, False)
+
+
+class TestNumberOfInternalLinksScraper(unittest.TestCase):
+
+    def test_number_of_internal_links_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_number_of_internal_links__invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_number_of_internal_links_valid_strings(self):
+        self.assertEquals(True, False)
