@@ -47,3 +47,15 @@ class TestAltTagScrapers(unittest.TestCase):
 
     def test_alt_tag_valid_strings(self):
         self.assertEquals(True, False)
+
+
+class TestMetaDescriptionScrapers(unittest.TestCase):
+
+    def test_meta_description_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_meta_description_invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_meta_description_valid_strings(self):
+        self.assertEquals(True, False)
