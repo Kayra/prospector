@@ -119,3 +119,15 @@ class TestFlashAttributeScraper(unittest.TestCase):
 
     def test_flash_attribute_valid_strings(self):
         self.assertEquals(True, False)
+
+
+class TestNoIndexNoFollowAttributeScraper(unittest.TestCase):
+
+    def test_no_index_no_follow_attribute_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_no_index_no_follow_attribute_invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_no_index_no_follow_attribute_valid_strings(self):
+        self.assertEquals(True, False)
