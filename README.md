@@ -15,7 +15,6 @@ Ensure you have virtualenv and postgres installed on your system. Also create a 
 
 #### Todo
 
-* Implement clear messaging (flash() => bootstrap)
 * Link to robots.txt and sitemap.xml when present
 * Make the spidering more robust
 * Add threading for spidering
