@@ -131,3 +131,15 @@ class TestNoIndexNoFollowAttributeScraper(unittest.TestCase):
 
     def test_no_index_no_follow_attribute_valid_strings(self):
         self.assertEquals(True, False)
+
+
+class TestSchemaTagsScraper(unittest.TestCase):
+
+    def test_schema_tags_no_valid_string(self):
+        self.assertEquals(True, False)
+
+    def test_schema_tags_invalid_strings(self):
+        self.assertEquals(True, False)
+
+    def test_schema_tags_valid_strings(self):
+        self.assertEquals(True, False)
