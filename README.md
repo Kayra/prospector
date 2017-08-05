@@ -13,6 +13,14 @@ Ensure you have virtualenv and postgres installed on your system. Also create a 
     python manage.py db_create
     python manage.py runserver
 
+
+### Run tests
+
+Ensure you are in the virtualenv and run:
+
+    nosetests
+
+
 #### Todo
 
 * Write unit tests
