@@ -1,5 +1,7 @@
 import unittest
 
+from app.prospector import scrapers
+
 
 class TestGoogleAnalytics(unittest.TestCase):
 
