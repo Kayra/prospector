@@ -37,3 +37,15 @@ class TestHTML:
             </script>
         """
 
+        self.bing_analytics_valid_html = """
+            <head>
+                <meta name="msvalidate.01" content="67432G234FR634H326543F" />
+            </head>
+
+            <body>
+            <script type="text/javascript">
+                if (!window.mstag)
+                mstag = {loadTag : function(){},time
+            </script>
+            </body>
+        """
