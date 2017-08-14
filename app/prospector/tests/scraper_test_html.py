@@ -58,3 +58,7 @@ class TestHTML:
             <h5>Test</h5>
             <h6>Test</h6>
         """
+
+        self.alt_tag_valid_html = """
+            <img id="test" src="../test/test.png" alt="Test" />
+        """
