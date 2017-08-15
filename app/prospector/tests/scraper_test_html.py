@@ -62,3 +62,7 @@ class TestHTML:
         self.alt_tag_valid_html = """
             <img id="test" src="../test/test.png" alt="Test" />
         """
+
+        self.meta_description_valid_html = """
+            <meta name="description" content"Test">
+        """
