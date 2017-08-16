@@ -66,3 +66,7 @@ class TestHTML:
         self.meta_description_valid_html = """
             <meta name="description" content"Test">
         """
+
+        self.title_text_valid_html = """
+            <title>Test</title>
+        """
