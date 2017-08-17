@@ -70,3 +70,7 @@ class TestHTML:
         self.title_text_valid_html = """
             <title>Test</title>
         """
+
+        self.view_state_valid_html = """
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="Test" />
+        """
