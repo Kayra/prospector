@@ -74,3 +74,7 @@ class TestHTML:
         self.view_state_valid_html = """
             <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="Test" />
         """
+
+        self.pagination_valid_html = """
+            <link rel="prev" href="http://www.site.com/page1.html"> <link rel="next" href="http://www.site.com/page3.html">
+        """
