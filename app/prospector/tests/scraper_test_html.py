@@ -78,3 +78,7 @@ class TestHTML:
         self.pagination_valid_html = """
             <link rel="prev" href="http://www.site.com/page1.html"> <link rel="next" href="http://www.site.com/page3.html">
         """
+
+        self.iframe_content_valid_html = """
+            <iframe width="960" height="540" src="Test" frameborder="0" allowfullscreen></iframe>
+        """
