@@ -82,3 +82,7 @@ class TestHTML:
         self.iframe_content_valid_html = """
             <iframe width="960" height="540" src="Test" frameborder="0" allowfullscreen></iframe>
         """
+
+        self.flash_attribute_valid_html = """
+            <embed src="Test" quality="high" name="test" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+        """
