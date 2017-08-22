@@ -86,3 +86,8 @@ class TestHTML:
         self.flash_attribute_valid_html = """
             <embed src="Test" quality="high" name="test" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
         """
+
+        self.no_index_no_follow_attribute_valid_html = """
+            <meta name="robots" content="noindex, nofollow">
+        """
+
