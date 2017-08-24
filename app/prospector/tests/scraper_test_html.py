@@ -99,3 +99,11 @@ class TestHTML:
               <a href="../movies/avatar-theatrical-trailer.html">Trailer</a>
             </div>
         """
+
+        self.blog_location_valid_html = """
+            <ul>
+                <li><a href="#">blog</a></li>
+                <li><a href="blog">research and development</a></li>
+                <li><a href="#">fitness</a></li>
+            </ul>
+        """
