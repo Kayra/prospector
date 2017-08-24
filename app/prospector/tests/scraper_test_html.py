@@ -91,3 +91,11 @@ class TestHTML:
             <meta name="robots" content="noindex, nofollow">
         """
 
+        self.schema_tags_valid_html = """
+            <div itemscope itemtype="http://schema.org/Movie">
+              <h1>Avatar</h1>
+              <span>Director: James Cameron (born August 16, 1954)</span>
+              <span>Science fiction</span>
+              <a href="../movies/avatar-theatrical-trailer.html">Trailer</a>
+            </div>
+        """
