@@ -107,3 +107,18 @@ class TestHTML:
                 <li><a href="#">fitness</a></li>
             </ul>
         """
+
+        self.number_of_internal_links_valid_url = "www.test.com"
+
+        self.number_of_internal_links_valid_html = """
+            <a href="/">valid</a>
+            <a href="test.com">valid</a>
+            <a href="www.test.com">valid</a>
+            <a href="http://www.test.com">valid</a>
+            <a href="http://test.com">valid</a>
+            <a href="https://www.test.com">valud</a>
+            <a href="https://test.com">valid</a>
+            <a href="http://google.com">invalid</a>
+            <a href="gnrioiwo3253456;'t?%$G$TW">invalid</a>
+            <a href="">invalid</a>
+        """
