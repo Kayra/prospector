@@ -1,6 +1,8 @@
 import unittest
 
-from app.prospector.scrapers import PageScraper
+from bs4 import BeautifulSoup
+
+from app.prospector.scrapers import DomainScraper, PageScraper
 from app.prospector.tests import scraper_test_html
 
 no_valid_string = ""
@@ -9,13 +11,20 @@ invalid_string = "1234567890¡€#¢¢∞§¶•ªº"
 class TestGoogleAnalytics(unittest.TestCase):
 
     def test_google_analytics_no_valid_string(self):
-        self.assertEquals(True, False)
+        valid_html = scraper_test_html.google_analytics_valid_html
+        test_soup = BeautifulSoup(valid_html, "html.parser")
+        scraped_value = DomainScraper.scrape_google_analytics(test_soup)
+        self.assertNotEquals(scraped_value, None)
 
     def test_google_analytics_invalid_strings(self):
-        self.assertEquals(True, False)
+        test_soup = BeautifulSoup(no_valid_string, "html.parser")
+        scraped_value = DomainScraper.scrape_google_analytics(test_soup)
+        self.assertEquals(scraped_value, None)
 
     def test_google_analytics_valid_strings(self):
-        self.assertEquals(True, False)
+        test_soup = BeautifulSoup(invalid_string, "html.parser")
+        scraped_value = DomainScraper.scrape_google_analytics(test_soup)
+        self.assertEquals(scraped_value, None)
 
 
 class TestBingAnalytics(unittest.TestCase):
