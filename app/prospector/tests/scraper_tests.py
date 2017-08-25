@@ -1,7 +1,10 @@
 import unittest
 
-from app.prospector import scrapers
+from app.prospector.scrapers import PageScraper
+from app.prospector.tests import scraper_test_html
 
+no_valid_string = ""
+invalid_string = "1234567890¡€#¢¢∞§¶•ªº"
 
 class TestGoogleAnalytics(unittest.TestCase):
 
