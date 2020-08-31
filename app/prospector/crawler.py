@@ -13,6 +13,7 @@ MAX_PAGES_TO_VISIT = 60
 
 
 def _get_html_soup(url):
+    print('OPENING', url)
     raw_html = request.urlopen(url).read()
     return BeautifulSoup(raw_html, "html.parser")
 
@@ -47,6 +48,7 @@ def scrape_page_data(page_url, domain):
 
     page_html_soup = _get_html_soup(page_url)
 
+    print('DOMAIN', domain.id)
     page_data = PageData.query.filter_by(page_url=page_url).filter_by(domain_site=domain).first()
 
     if not page_data:
@@ -86,7 +88,8 @@ def spider_site(domain_url):
            '#' not in current_url and \
            current_url not in urls and \
            len(urls) < MAX_PAGES_TO_VISIT and \
-           '@' not in current_url:
+           '@' not in current_url and \
+           ':' not in current_url:
             urls.append(current_url)
 
     return urls

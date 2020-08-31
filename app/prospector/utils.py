@@ -1,3 +1,4 @@
+from uuid import uuid4
 from urllib.parse import urlparse
 
 from app.prospector.models import DomainData, DomainScores, PageScores
@@ -5,6 +6,7 @@ from app.prospector.models import DomainData, DomainScores, PageScores
 
 def format_url(url):
 
+    print('URL', url)
     if 'https://' in url:
         return url
 
@@ -34,9 +36,9 @@ def get_or_create_domain_data(domain_url, user):
         domain_data = DomainData.query.filter_by(domain_url=domain_url).filter_by(owner=None).first()
 
     if domain_data is None and user is not None:
-        domain_data = DomainData(domain_url=domain_url, site_name=extract_site_name(domain_url), owner=user.id)
+        domain_data = DomainData(domain_url=domain_url, site_name=extract_site_name(domain_url), owner=user.id, id=uuid4())
     elif domain_data is None:
-        domain_data = DomainData(domain_url=domain_url, site_name=extract_site_name(domain_url))
+        domain_data = DomainData(domain_url=domain_url, site_name=extract_site_name(domain_url), id=uuid4())
 
     return domain_data
 

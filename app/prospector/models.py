@@ -1,4 +1,6 @@
-from sqlalchemy.dialects.postgresql import JSON, ARRAY
+from uuid import uuid4
+
+from sqlalchemy.dialects.postgresql import JSON, ARRAY, UUID
 
 from app import db
 
@@ -7,7 +9,7 @@ class DomainData(db.Model):
 
 	__tablename__ = "domain_data"
 
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
 	domain_url = db.Column(db.String(300), index=True)
 	site_name = db.Column(db.String(100), index=True)
 	bing_analytics = db.Column(db.String(10000), index=True)
@@ -19,7 +21,7 @@ class DomainData(db.Model):
 
 	pages = db.relationship('PageData', backref='domain_site', lazy='dynamic')
 
-	owner = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+	owner = db.Column(UUID(as_uuid=True), db.ForeignKey('users.id'), nullable=True)
 
 	def __repr__(self):
 		return '<DomainData %r>' % (self.site_name)
@@ -29,7 +31,7 @@ class PageData(db.Model):
 
 	__tablename__ = "page_data"
 
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
 	page_url = db.Column(db.String(500), index=True)
 	h1_tags = db.Column(ARRAY(db.String(1000)))
 	h2_tags = db.Column(ARRAY(db.String(1000)))
@@ -46,7 +48,7 @@ class PageData(db.Model):
 	blog_locations = db.Column(ARRAY(db.String(1000)))
 	number_of_internal_links = db.Column(db.Integer)
 
-	site_id = db.Column(db.Integer, db.ForeignKey('domain_data.id'), nullable=False)
+	site_id = db.Column(UUID(as_uuid=True), db.ForeignKey('domain_data.id'), nullable=False)
 
 	def __repr__(self):
 		return '<PageData %r>' % (self.page_url)
@@ -56,13 +58,13 @@ class DomainScores(db.Model):
 
 	__tablename__ = "domain_scores"
 
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
 	google_analytics = db.Column(db.Integer)
 	bing_analytics = db.Column(db.Integer)
 	robots_txt = db.Column(db.Integer)
 	sitemap_xml = db.Column(db.Integer)
 
-	owner = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+	owner = db.Column(UUID(as_uuid=True), db.ForeignKey('users.id'), nullable=True)
 
 	def __repr__(self):
 		return '<DomainScores>'
@@ -72,7 +74,7 @@ class PageScores(db.Model):
 
 	__tablename__ = "page_scores"
 
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
 	h1_tags = db.Column(db.Integer)
 	h2_tags = db.Column(db.Integer)
 	h3_tags = db.Column(db.Integer)
@@ -89,7 +91,7 @@ class PageScores(db.Model):
 	number_of_internal_links = db.Column(JSON)
 	url_character_length = db.Column(JSON)
 
-	owner = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+	owner = db.Column(UUID(as_uuid=True), db.ForeignKey('users.id'), nullable=True)
 
 	def __repr__(self):
 		return '<PageScores>'

@@ -69,7 +69,8 @@ def siteinspect(site_name, page=1):
 
     site = db.session.query(DomainData).filter_by(site_name=site_name).first()
 
-    currentPages = PageData.query.filter_by(site_id=site.id).paginate(page, 1, False)
+    # currentPages = PageData.query.filter_by(site_id=site.id).paginate(page, 1, False)
+    currentPages = db.paginate(PageData.query.filter_by(site_id=site.id))
 
     return render_template("siteinspect.html", site=site, currentPages=currentPages)
 

@@ -6,7 +6,7 @@ from flask_migrate import Migrate, MigrateCommand
 from app import create_app, db
 from app.prospector.utils import create_default_domain_scores, create_default_page_scores
 
-app = create_app(os.getenv("FLASK_CONFIG") or "default")
+app = create_app()
 
 migrate = Migrate(app, db)
 

@@ -15,8 +15,9 @@ login_manager.session_protection = "strong"
 login_manager.login_view = "users.login"
 
 
-def create_app(configuration_name):
+def create_app():
 
+    configuration_name = "development"
     app = Flask(__name__)
     app.config.from_object(configurations[configuration_name])
     configurations[configuration_name].init_app(app)
