@@ -37,14 +37,27 @@ In the root directory run:
     pip install -r requirements.txt
     python manage.py db_create
 
+### Code patch
+
+**Run this after installation and before starting the server.**
+
+This is required to make packages that are designed for Python 2 work on Python 3. (I did a partial resurrection of this application in 2023 and didn't want to spend a huge amount of time fixing something no one cares about, shoot me a message if you're interested in this project).
+
+In the root directory run:
+
+```bash
+cp ./patch_files/forms.py ./venv/lib/python3.10/site-packages/flask_user/forms.py
+cp ./patch_files/__init__.py ./venv/lib/python3.10/site-packages/flask_script/__init__.py
+```
+
 ## Helpful commands
 
-Start the server:
+To **start the server**, ensure you are in the virtualenv and in the root directory run:
 
 ```bash
 python manage.py runserver
 ```
 
-To run rests, ensure you are in the virtualenv and in the root directory run:
+To **run rests**, ensure you are in the virtualenv and in the root directory run:
 
     nosetests
