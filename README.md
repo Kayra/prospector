@@ -2,6 +2,8 @@
 
 **A web application that scrapes a website and provides relevant detailed information regarding its Search Engine Optimisation.** This was originally built to automate the manual prospecting work an SEO team did to find local clients for potential SEO business.
 
+(I did a partial resurrection of this application in 2023 and didn't want to spend a huge amount of time fixing something no one cares about, hence the hacky code patch in the installation process. Shoot me a message if you're interested in this project and I can implement a more reasonable fix).
+
 ## Design
 
 ![UI design](docs/screenshot_1.png)
@@ -32,7 +34,7 @@ CREATEDB prospector;
 
 In the root directory run:
 
-    virtualenv venv
+    python3 -m venv venv
     source venv/bin/activate
     pip install -r requirements.txt
     python manage.py db_create
@@ -41,7 +43,7 @@ In the root directory run:
 
 **Run this after installation and before starting the server.**
 
-This is required to make packages that are designed for Python 2 work on Python 3. (I did a partial resurrection of this application in 2023 and didn't want to spend a huge amount of time fixing something no one cares about, shoot me a message if you're interested in this project).
+This is required to make packages that are designed for Python 2 work on Python 3. 
 
 In the root directory run:
 
